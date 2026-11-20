@@ -14,7 +14,8 @@ Organisation-wide files of cscosine, read by GitHub:
 
 This repository is the organisation's plugin marketplace (`.claude-plugin/marketplace.json`). Plugin `cs-org`
 (`plugins/cs-org/`): how changes move in the cscosine repositories (`cs-workflow`), the release train across projects
-(`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`).
+(`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`), the state of the
+organisation (`cs-ecosystem-status`, members).
 
 ```
 /plugin marketplace add cscosine/.github
