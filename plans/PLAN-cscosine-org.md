@@ -1,7 +1,7 @@
 # Plan: organising cscosine: templates, rules, skills, GitHub practices
 
-Date: 2026-11-20 · Status: **approved**, in progress (S0 done; next S1b) · Related: `PLAN-stable-dev-ubuntu26mac-libs.md` (done),
-`PLAN-review-stable-dev.md` (S1b), `PLAN-csorchestrator-architecture.md` (to approve), `../TODO.md`
+Date: 2026-11-20 · Status: **approved**, in progress (S0 done; next S1b) · Related: `done/PLAN-stable-dev-ubuntu26mac-libs.md` (done),
+`done/PLAN-review-stable-dev.md` (S1b), `PLAN-csorchestrator-architecture.md` (to approve), `../TODO.md`
 
 Goal: every repository of the organisation looks the same, is created and updated from one template, follows the
 same process (branches, PRs, CI, releases), and an agent can work in any of them, or across several, with the right
@@ -525,7 +525,7 @@ Its workflows run for free (a public repository).
 | **S0b** | **GitHub settings** | Script applying settings + rulesets (§7.2) to public repositories; labels; archive the legacy repositories; from now on, PRs into `dev` / `main` (until the generated workflows have `pull_request` + `ci-ok`, no required check on csorchestrator consumers) | 1 day | done (2026-11-20; csVis still to delete) |
 | **S0c** | **Going public** | eigen3, csCore, csLie, csCamera, csVisOpenGL: secret scan, clean history if needed (§4.5), `LICENSE`, README, then public | 1 day | done (2026-11-20; no secrets; history kept, author emails as they are) |
 | S1 | Finish stable-dev | Done (2026-11-16); open: csCMake 0.x tags and `v1.0.0`, csopencvcuda (its §4.9) | — | done |
-| **S1b** | **Review of stable-dev** | `PLAN-review-stable-dev.md`: every change of the round reviewed (right place, one place, docs, tests, leftovers); fixes as PRs | ~1 week | todo |
+| **S1b** | **Review of stable-dev** | `done/PLAN-review-stable-dev.md`: every change of the round reviewed (right place, one place, docs, tests, leftovers); fixes as PRs | ~1 week | done (2026-11-20; the chain rebuilt as rcs) |
 | S2 | csorchestrator: minimal R0 | Decided 2026-11-20: no PyPI, no API promise until the rewrite (its plan). Only: tag csorchestrator `v0.1.0`; projects install it from the tag (default) through `setup.sh` / `setup.ps1`: `./setup.sh` = the pinned version, `--csorchestrator=<tag or branch>` = another one, `--csorchestrator=<path>` = editable local; the generated workflow states its csorchestrator version. Done with S3 (the setup scripts are template-owned, the default version a Copier answer `csorchestrator_version`) and before the finals round | ~1 day | todo |
 | S3 | Template: base layer | `cs-project-template` with the shared files of §2.4 and `kind`, including `setup.sh` / `setup.ps1` with the csorchestrator switch (S2) and the version as an answer; adopted by every repository; Renovate. Comes before the finals round (no longer waits for the csorchestrator rewrite) | ~1 week | todo |
 | S4 | Skills, first set | Create `.github` with the marketplace and `cs-org` (`cs-git-workflow`, `cs-multi-repo-change`, `cs-release`); `agent-plugin/` in csCMake and csfoundation (`cscmake-usage`, `csfoundation-libs`); `.claude/skills` migration | ~1 week, then continuous | doing (2026-11-20: marketplace + cs-org in `.github`: cs-workflow, cs-release-train, cs-fork-sync, cs-local-status; next: tool / library plugins, `.claude/settings.json` via the template) |

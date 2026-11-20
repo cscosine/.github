@@ -1,6 +1,6 @@
 # Plan: csorchestrator, from internal tool to a mature, deployable framework
 
-Date: 2026-11-16 · Status: **to approve** · Follows: `PLAN-stable-dev-ubuntu26mac-libs.md` (to finish first)
+Date: 2026-11-16 · Status: **to approve** · Follows: `done/PLAN-stable-dev-ubuntu26mac-libs.md` (to finish first)
 
 Goal: csorchestrator released and pinned like any other dependency; a model where steps are data, a configure stage
 separate from generate / run, selection of what to run (phases, steps, actions, variants), explicit handling of
@@ -52,7 +52,7 @@ lines each).
 
 - **A release train.** A change in csCMake or csorchestrator travels in a fixed order (csorchestrator, csCMake →
   third_party_base_libs → opencv / csopencvcpu / csqt6 → csfoundation → csoptimization → applications), with a new rc
-  per repository, by hand. `PLAN-stable-dev-ubuntu26mac-libs.md` is that train written out.
+  per repository, by hand. `done/PLAN-stable-dev-ubuntu26mac-libs.md` is that train written out.
 - **Pins typed by hand in every consumer.** `ManifestGithub(..., release_tag="v0.1.0-rc6")` for
   third_party_base_libs is in 5 configuration files; provider blocks are copied between consumers. Already
   inconsistent: the csopencvcpu provider has `project_version="5.0.0"` and tag `v5.0.1-rc3`.
@@ -491,7 +491,7 @@ later.
 - Manifest schema v2 and the end of `*_config.py`: old releases (schema v1 + `*_config.py`) must stay consumable
   until every provider has a release with v2; the reader supports both.
 - Generality creeping in: no Jenkins, no web GUI, no generic matrix until a real need.
-- Overlap with `PLAN-stable-dev-ubuntu26mac-libs.md`: that plan finishes first; R0 goes into the next release cycle.
+- Overlap with `done/PLAN-stable-dev-ubuntu26mac-libs.md`: that plan finishes first; R0 goes into the next release cycle.
 
 ---
 

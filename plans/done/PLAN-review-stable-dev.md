@@ -1,6 +1,8 @@
 # Plan: review of the stable-dev changes (Ubuntu 26.04, macOS, library updates)
 
-Date: 2026-11-20 · Status: **in progress**: every row reviewed (2026-11-20); open: decisions on tclap / NamedType / fmt-eigen, the opencv fork and versions (5.1, 5.2), small fixes 10.1, `-cs.2` tags after the next third_party_base_libs CI · Reviews the work of
+Date: 2026-11-20 · Status: **done** (2026-11-20): every row reviewed and the release chain rebuilt (third_party_base_libs rc10,
+csfoundation rc10, csopencvcpu v5.0.0-cpu.1-rc1, csoptimization rc6, csImgTracker v0.2.2-rc1, csSkiTracker rc4; the forks
+`-cs.2`); previously open: open: decisions on tclap / NamedType / fmt-eigen, the opencv fork and versions (5.1, 5.2), small fixes 10.1, `-cs.2` tags after the next third_party_base_libs CI · Reviews the work of
 `PLAN-stable-dev-ubuntu26mac-libs.md` (done; its §4.8 macOS deployment-target round included)
 
 Goal: every change of that round read once by the owner, and for each one: is it right, is it **in the right place**,
@@ -107,3 +109,7 @@ build (otherwise they wait for the next rc); `PLAN-stable-dev-ubuntu26mac-libs.m
   `v5.0.1-rc5` today). The release job should set `prerelease` when the tag has `-rc`.
 - Finals round (csCMake `v1.0.0` from the rc8 commit, then each project's final release, `stable` fast-forwarded):
   deferred (2026-11-20) until more is stabilised; the release candidates of this round stay the current versions.
+- The release chain rebuilt (2026-11-20, the release-train script, now skill `cs-release-train`): third_party_base_libs
+  `v0.1.0-rc10` (forks tagged `-cs.2`), csqt6 workflow only, csfoundation `v0.1.0-rc10`, csopencvcpu
+  `v5.0.0-cpu.1-rc1`, csoptimization `v0.1.0-rc6`, csImgTracker `v0.2.2-rc1`, csSkiTracker `v0.1.0-rc4`. Lessons: a
+  branch rename starts builds (cancel them); macOS 26 jobs sometimes never get a runner (re-run).
