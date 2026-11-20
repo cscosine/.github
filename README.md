@@ -10,6 +10,19 @@ Organisation-wide files of cscosine, read by GitHub:
 - `assets/cscosine-mark.svg` / `.png` (800 × 800): the mark alone (CS and the curve), centred to fit in a circle:
   for round avatars (accounts, small sizes where the text of the full logo is unreadable).
 
+## Claude Code plugins
+
+This repository is the organisation's plugin marketplace (`.claude-plugin/marketplace.json`). Plugin `cs-org`
+(`plugins/cs-org/`): how changes move in the cscosine repositories (`cs-workflow`), the release train across projects
+(`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`).
+
+```
+/plugin marketplace add cscosine/.github
+/plugin install cs-org@cscosine
+```
+
+The repositories will declare it in their `.claude/settings.json` (project template), so Claude Code proposes it.
+
 ## Avatars
 
 No service sets an avatar everywhere from one upload: Google and GitHub each keep their own. Use
@@ -22,4 +35,4 @@ No service sets an avatar everywhere from one upload: Google and GitHub each kee
 | GitHub organisation `cscosine` | github.com/organizations/cscosine/settings/profile → Profile picture (today the full logo; the mark reads better at small sizes) |
 | Gravatar (for the other sites: WordPress, forums, many developer tools) | gravatar.com: sign in with `cscosine@gmail.com`, upload the image, assign it to that address |
 
-To come: other community files, reusable workflows, and the Claude Code plugin marketplace of the organisation.
+To come: other community files, reusable workflows, the plugins of the tools and libraries.

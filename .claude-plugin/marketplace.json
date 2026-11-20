@@ -1,0 +1,13 @@
+{
+  "name": "cscosine",
+  "owner": { "name": "cscosine" },
+  "description": "Claude Code plugins of the cscosine organisation: how to work on its repositories and how to use its tools and libraries.",
+  "plugins": [
+    {
+      "name": "cs-org",
+      "description": "How changes move in the cscosine repositories (branches, CI on demand, releases, the release train across repositories, fork syncs) and the state of a local workspace.",
+      "source": "./plugins/cs-org",
+      "category": "development"
+    }
+  ]
+}
