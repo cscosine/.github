@@ -1,14 +1,18 @@
 # cscosine/.github
 
-Organisation-wide files of cscosine, read by GitHub:
+The organisation-level repository of cscosine (public; the only one):
 
-- `profile/README.md`: the public page of the organisation.
-- `CONTRIBUTING.md`: how changes move (branches, pull requests, releases), with the commands; shown by GitHub in every
-  repository without its own.
-- `assets/cscosine-logo.svg`: the logo (source); `assets/cscosine-logo.png`: its 920 × 920 export, the organisation
-  avatar. GitHub has no API for the avatar: after a change, upload the PNG in the organisation settings (Profile).
-- `assets/cscosine-mark.svg` / `.png` (800 × 800): the mark alone (CS and the curve), centred to fit in a circle:
-  for round avatars (accounts, small sizes where the text of the full logo is unreadable).
+- `profile/README.md`: the public page of the organisation (its projects section generated nightly).
+- `CONTRIBUTING.md`: how changes move (branches, releases, the fast path); shown by GitHub in every repository
+  without its own.
+- `LICENSING.md`: the licensing policy.
+- [plans/](plans/README.md): the plans of the organisation and their progress.
+- [rules/](rules/README.md): the rules of every repository (the "cscosine rules" section of each `CLAUDE.md`).
+- `ECOSYSTEM.md`: every repository, versions, dependencies, what needs attention (generated nightly).
+- `scripts/`: `github_settings.py` (repository settings and rulesets, from `github-settings.json`; run locally with
+  an admin login), `ecosystem.py` and `ecosystem_report.py` (the generated parts above).
+- `assets/cscosine-logo.svg` / `.png`: the logo; `assets/cscosine-mark.svg` / `.png` (800 × 800): the mark alone,
+  centred to fit in a circle, for round avatars.
 
 ## Claude Code plugins
 

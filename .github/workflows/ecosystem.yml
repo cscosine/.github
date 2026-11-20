@@ -1,7 +1,7 @@
 name: ecosystem
 
-# The "What lives here" section of the organisation page (profile/README.md), regenerated from GitHub: releases,
-# release candidates, CI status, what each project is built on. Nightly, and on demand after a release.
+# Regenerated from GitHub, nightly and on demand after a release: the projects section of the organisation page
+# (profile/README.md) and ECOSYSTEM.md (every repository, versions, dependencies, what needs attention).
 on:
   schedule:
     - cron: "17 4 * * *"
@@ -15,17 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Regenerate the section
+      - name: Regenerate the organisation page and ECOSYSTEM.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/ecosystem.py
+        run: |
+          python3 scripts/ecosystem.py
+          python3 scripts/ecosystem_report.py
       - name: Commit when it changed
         run: |
-          if git diff --quiet profile/README.md; then
+          if git diff --quiet profile/README.md ECOSYSTEM.md; then
             echo "up to date"
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -am "Organisation page: projects, releases and CI regenerated"
+            git commit -am "Organisation page and ECOSYSTEM.md regenerated"
             git push
           fi

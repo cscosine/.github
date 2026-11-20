@@ -1,0 +1,211 @@
+{
+  "org": "cscosine",
+  "kinds": {
+    "tool": [
+      "csCMake",
+      "csorchestrator",
+      "csWiki"
+    ],
+    "distribution": [
+      "third_party_base_libs",
+      "csqt6",
+      "csopencvcpu",
+      "csopencvcuda",
+      "csfoundation",
+      "csoptimization"
+    ],
+    "application": [
+      "csImgTracker",
+      "csSkiTracker"
+    ],
+    "library": [
+      "csBlockMatrix",
+      "csCamera",
+      "csCore",
+      "csLie",
+      "csNelson",
+      "csVisOpenGL"
+    ],
+    "fork": [
+      "Catch2",
+      "cpptrace",
+      "eigen3",
+      "fmt",
+      "fmt-eigen",
+      "libassert",
+      "magic_enum",
+      "NamedType",
+      "opencv",
+      "opencv_contrib",
+      "tclap",
+      "tl-expected",
+      "tl-optional"
+    ],
+    "meta": [
+      ".github"
+    ]
+  },
+  "ignored": [
+    "csMetaProjectAll",
+    "csOrchestratorTestRepo",
+    "csProjectManager",
+    "csVis",
+    "pipes"
+  ],
+  "archive": [],
+  "settings": {
+    "allow_merge_commit": true,
+    "allow_squash_merge": true,
+    "allow_rebase_merge": false,
+    "delete_branch_on_merge": true,
+    "allow_auto_merge": true
+  },
+  "rulesets_by_kind": {
+    "tool": [
+      "outer-main",
+      "tags-stable",
+      "tags-prerelease"
+    ],
+    "distribution": [
+      "outer-main",
+      "tags-stable",
+      "tags-prerelease"
+    ],
+    "application": [
+      "outer-main",
+      "tags-stable",
+      "tags-prerelease"
+    ],
+    "library": [
+      "inner-branches",
+      "tags-stable",
+      "tags-prerelease"
+    ],
+    "fork": [
+      "fork-branches",
+      "tags-stable",
+      "tags-prerelease"
+    ],
+    "meta": []
+  },
+  "rulesets": {
+    "outer-main": {
+      "target": "branch",
+      "include": [
+        "refs/heads/main",
+        "refs/heads/stable"
+      ],
+      "exclude": [],
+      "rules": [
+        {
+          "type": "deletion"
+        },
+        {
+          "type": "non_fast_forward"
+        }
+      ]
+    },
+    "inner-branches": {
+      "target": "branch",
+      "include": [
+        "refs/heads/main"
+      ],
+      "exclude": [],
+      "rules": [
+        {
+          "type": "deletion"
+        },
+        {
+          "type": "non_fast_forward"
+        }
+      ]
+    },
+    "fork-branches": {
+      "target": "branch",
+      "include": [
+        "refs/heads/main",
+        "refs/heads/cpu",
+        "refs/heads/cuda",
+        "refs/heads/dev-cpu",
+        "refs/heads/dev-cuda",
+        "refs/heads/main-cpu",
+        "refs/heads/main-cuda",
+        "refs/heads/main-original"
+      ],
+      "exclude": [],
+      "rules": [
+        {
+          "type": "deletion"
+        }
+      ]
+    },
+    "tags-stable": {
+      "target": "tag",
+      "include": [
+        "refs/tags/v*"
+      ],
+      "exclude": [
+        "refs/tags/v*-rc*",
+        "refs/tags/v*-test*"
+      ],
+      "rules": [
+        {
+          "type": "deletion"
+        },
+        {
+          "type": "update"
+        }
+      ]
+    },
+    "tags-prerelease": {
+      "target": "tag",
+      "include": [
+        "refs/tags/v*-rc*",
+        "refs/tags/v*-test*"
+      ],
+      "exclude": [],
+      "rules": [
+        {
+          "type": "update"
+        }
+      ]
+    }
+  },
+  "labels_by_kind": {
+    "tool": "release-notes",
+    "distribution": "release-notes",
+    "application": "release-notes"
+  },
+  "labels": {
+    "release-notes": [
+      {
+        "name": "feature",
+        "color": "1D76DB",
+        "description": "New behaviour (release notes: Features)"
+      },
+      {
+        "name": "fix",
+        "color": "D73A4A",
+        "description": "Bug fix (release notes: Fixes)"
+      },
+      {
+        "name": "breaking",
+        "color": "B60205",
+        "description": "Consumers must change something (release notes: Breaking)"
+      },
+      {
+        "name": "ci",
+        "color": "FBCA04",
+        "description": "CI, build, release machinery"
+      },
+      {
+        "name": "docs",
+        "color": "0075CA",
+        "description": "Documentation only"
+      }
+    ]
+  },
+  "actions_enabled_by_kind": {
+    "fork": false
+  }
+}
