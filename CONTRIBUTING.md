@@ -7,25 +7,28 @@ repository that has none of its own.
 
 | Branch | What it is | How it changes |
 |---|---|---|
-| `main` | The last release; every commit on it is tagged `vX.Y.Z` | **Only through a pull request from `dev`** (the release) |
+| `main` | The last release; every commit on it is tagged `vX.Y.Z` | **Fast-forwarded to a released commit of `dev`**; never force pushed, never deleted |
 | `dev` | Integration; kept green; what the other repositories build against | Direct pushes are fine; never force pushed, never deleted |
 | `feature/<topic>`, `fix/<topic>` | Work in progress | Anything goes (push, force push, rebase); deleted after the merge |
 
 Tags: `vX.Y.Z` (and `vX.Y.Z-cs.N` in the forks) are permanent: they cannot be moved or deleted. Release candidates
 `vX.Y.Z-rcN` can be deleted, never moved: a broken rc gets the next number.
 
-GitHub enforces all of this. A refused push looks like:
+GitHub enforces only what cannot be undone: no force push or deletion of `main` / `dev`, final tags never moved or
+deleted. A refused push looks like:
 
 ```
-remote: error: GH013: Repository rule violations found for refs/heads/main.
-remote: - Changes must be made through a pull request.
+remote: error: GH013: Repository rule violations found for refs/heads/dev.
+remote: - Cannot force-push to this branch
 ```
+
+Everything else here (a feature branch, waiting for CI before tagging, a release candidate first, a pull request) is
+good practice: skip it when in a hurry (scenario 6).
 
 ## What a pull request is
 
 A pull request (PR) is a request to merge one branch into another, kept on GitHub: the list of commits, the diff,
-the CI results and a description. Here it is used for one thing that must not go wrong (a release into `main`) and,
-optionally, to record or discuss a larger change into `dev`. With the GitHub CLI (`gh`) it is two commands:
+the CI results and a description. Here it is optional: to record or discuss a larger change into `dev`. With the GitHub CLI (`gh`) it is two commands:
 `gh pr create` opens it, `gh pr merge` merges it.
 
 ## Scenarios
@@ -81,20 +84,32 @@ git tag v1.4.0-rc1 && git push origin v1.4.0-rc1   # the release job publishes a
 ### 5. A release
 
 ```bash
-gh pr create --base main --head dev --title "Release v1.4.0" --body "What is in it (or: the CHANGELOG section)"
-# CI runs on the PR; when green:
-gh pr merge --merge                      # keep dev: no --delete-branch
 git fetch origin
+git push origin <rc commit>:main          # main fast-forwards to the released commit (no PR, no merge commit)
 git tag v1.4.0 origin/main && git push origin v1.4.0       # the release job publishes the release
-git switch dev && git merge --ff-only origin/main && git push   # dev level with main again
 ```
 
-### 6. Mistakes
+`main` is then exactly the commit built as the release candidate. `dev` already contains it.
+
+### 6. In a hurry: a one-line fix, released in one build
+
+```bash
+git switch dev && git pull --ff-only
+# the fix
+git commit -am "[area] The fix" && git push       # (cancel the dev run in the Actions tab to save the runners)
+git tag v1.4.1 && git push origin v1.4.1          # the tag build is the test and the release
+git push origin dev:main
+```
+
+If the build fails, fix and tag `v1.4.2`: a final tag is never moved. Tidy up later (a fork fix onto the shared
+branch, the CHANGELOG): nothing here blocks the release.
+
+### 7. Mistakes
 
 | What happened | What to do |
 |---|---|
 | A bad commit is on `dev` | `git revert <sha>` and push (history on `dev` is never rewritten) |
-| Pushed to `main` by mistake | Refused by GitHub: push to `dev` instead, or open a release PR |
+| Pushed a commit to `main` that is not released | Fast-forward only: `dev` gets it with `git merge --ff-only origin/main`; release it, or revert it on both |
 | A broken release candidate | `gh release delete v1.4.0-rc1 --cleanup-tag`, fix on `dev`, tag `v1.4.0-rc2` |
 | A broken stable release | Cannot be moved or deleted: fix on `dev`, release `v1.4.1` |
 | `dev` really must be rewritten (rare) | Ask a maintainer: the rule is switched off for that operation, then on again |
