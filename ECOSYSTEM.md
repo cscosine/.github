@@ -8,6 +8,7 @@ edit: change the repositories, or the script.
 - [csCMake](https://github.com/cscosine/csCMake): `stable` is not at a final release (last final: v0.4.0)
 - [csImgTracker](https://github.com/cscosine/csImgTracker): `stable` is not at a final release (last final: v0.2.1)
 - [csqt6](https://github.com/cscosine/csqt6): 8 commit(s) on `main` since v6.12.0-rc1
+- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs): 2 commit(s) on `main` since v0.1.0-rc11
 - [csfoundation](https://github.com/cscosine/csfoundation): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
 - [csfoundation](https://github.com/cscosine/csfoundation): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
 - [csImgTracker](https://github.com/cscosine/csImgTracker): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
@@ -51,7 +52,7 @@ edit: change the repositories, or the script.
 | [csqt6](https://github.com/cscosine/csqt6) | – | v6.12.0-rc1 | 8 | – |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | – | v0.1.0-rc5 | 0 | – |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | – | v0.1.0-rc11 | 0 | – |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | – | v0.1.0-rc11 | 2 | – |
 
 ## Dependencies (recipes on `main`)
 
@@ -64,7 +65,7 @@ edit: change the repositories, or the script.
 | [csoptimization](https://github.com/cscosine/csoptimization) | 1.0.0-rc8 | csfoundation `v0.1.0-rc11`, third_party_base_libs `v0.1.0-rc10` | csNelson, csBlockMatrix (`main`) |
 | [csqt6](https://github.com/cscosine/csqt6) | – | – | – |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | 1.0.0-rc8 | third_party_base_libs `v0.1.0-rc10`, csfoundation `v0.1.0-rc11`, csoptimization `v0.1.0-rc7`, csqt6 `v6.12.0-rc1`, csopencvcpu `v5.1.0-cpu.3-rc1` | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | 1.0.0-rc8 | – | eigen3, fmt, cpptrace, libassert, magic_enum, Catch2, tl-expected, tl-optional, NamedType, tclap, fmt-eigen (`main`) |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | 1.0.0-rc8 | – | eigen3 `v5.0.1-cs.2`, fmt `v12.2.1-cs.2`, cpptrace `v1.0.4-cs.2`, libassert `v2.2.1-cs.2`, magic_enum `v0.9.8-cs.2`, Catch2 `v3.16.1-cs.2`, tl-expected `v1.3.1-cs.2`, tl-optional `v1.1.0-cs.2`, NamedType `v1.1.0-rc1`, tclap `v1.0.0-rc1`, fmt-eigen `v1.0.0-rc1` |
 
 ```mermaid
 flowchart LR
@@ -134,18 +135,29 @@ Not on the template yet: [csopencvcuda](https://github.com/cscosine/csopencvcuda
 
 ## Forks
 
-| Fork | Upstream | Base | Our tags on it | Newer upstream releases |
-|---|---|---|---|---|
-| [Catch2](https://github.com/cscosine/Catch2) | https://github.com/catchorg/Catch2 | `v3.16.1` | v3.16.1-cs.1, v3.16.1-cs.2 | – |
-| [cpptrace](https://github.com/cscosine/cpptrace) | https://github.com/jeremy-rifkin/cpptrace | `v1.0.4` | v1.0.4-cs.1, v1.0.4-cs.2 | – |
-| [eigen3](https://github.com/cscosine/eigen3) | https://gitlab.com/libeigen/eigen | `5.0.1` | v5.0.1-cs.1, v5.0.1-cs.2 | – |
-| [fmt](https://github.com/cscosine/fmt) | https://github.com/fmtlib/fmt | `12.2.1` | v12.2.1-cs.1, v12.2.1-cs.2 | – |
-| [libassert](https://github.com/cscosine/libassert) | https://github.com/jeremy-rifkin/libassert | `v2.2.1` | v2.2.1-cs.1, v2.2.1-cs.2 | – |
-| [magic_enum](https://github.com/cscosine/magic_enum) | https://github.com/Neargye/magic_enum | `v0.9.8` | v0.9.8-cs.1, v0.9.8-cs.2 | – |
-| [opencv](https://github.com/cscosine/opencv) | https://github.com/opencv/opencv | `5.1.0` | v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
-| [opencv_contrib](https://github.com/cscosine/opencv_contrib) | https://github.com/opencv/opencv_contrib | `5.1.0` | v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
-| [tl-expected](https://github.com/cscosine/tl-expected) | https://github.com/TartanLlama/expected | `v1.3.1` | v1.3.1-cs.1, v1.3.1-cs.2 | – |
-| [tl-optional](https://github.com/cscosine/tl-optional) | https://github.com/TartanLlama/optional | `v1.1.0` | v1.1.0-cs.1, v1.1.0-cs.2 | – |
+A fork is an upstream release plus our commits (`cscosine/README.md` in the fork says why each one exists);
+syncs: the `cs-fork-sync` skill.
+
+| Fork | Upstream | Base | Our commits | Our tags on it | Newer upstream releases |
+|---|---|---|---|---|---|
+| [Catch2](https://github.com/cscosine/Catch2) | https://github.com/catchorg/Catch2 | `v3.16.1` | 2 | v3.16.1-cs.1, v3.16.1-cs.2 | – |
+| [cpptrace](https://github.com/cscosine/cpptrace) | https://github.com/jeremy-rifkin/cpptrace | `v1.0.4` | 4 | v1.0.4-cs.1, v1.0.4-cs.2 | – |
+| [eigen3](https://github.com/cscosine/eigen3) | https://gitlab.com/libeigen/eigen | `5.0.1` | 3 | v5.0.1-cs.1, v5.0.1-cs.2 | – |
+| [fmt](https://github.com/cscosine/fmt) | https://github.com/fmtlib/fmt | `12.2.1` | 3 | v12.2.1-cs.1, v12.2.1-cs.2 | – |
+| [libassert](https://github.com/cscosine/libassert) | https://github.com/jeremy-rifkin/libassert | `v2.2.1` | 5 | v2.2.1-cs.1, v2.2.1-cs.2 | – |
+| [magic_enum](https://github.com/cscosine/magic_enum) | https://github.com/Neargye/magic_enum | `v0.9.8` | 3 | v0.9.8-cs.1, v0.9.8-cs.2 | – |
+| [opencv](https://github.com/cscosine/opencv) | https://github.com/opencv/opencv | `5.1.0` | 8 | v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
+| [opencv_contrib](https://github.com/cscosine/opencv_contrib) | https://github.com/opencv/opencv_contrib | `5.1.0` | 3 | v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
+| [tl-expected](https://github.com/cscosine/tl-expected) | https://github.com/TartanLlama/expected | `v1.3.1` | 3 | v1.3.1-cs.1, v1.3.1-cs.2 | – |
+| [tl-optional](https://github.com/cscosine/tl-optional) | https://github.com/TartanLlama/optional | `v1.1.0` | 4 | v1.1.0-cs.1, v1.1.0-cs.2 | – |
+
+Copies of our own (upstream inactive, no syncs; a csCMake project of ours around the upstream files):
+
+| Library | Came from | Our version |
+|---|---|---|
+| [fmt-eigen](https://github.com/cscosine/fmt-eigen) | https://github.com/RENyunfan/fmt-eigen | `1.0.0` |
+| [NamedType](https://github.com/cscosine/NamedType) | https://github.com/joboccara/NamedType | `1.1.0` |
+| [tclap](https://github.com/cscosine/tclap) | https://sourceforge.net/projects/tclap/ | `1.0.0` |
 
 ## Repositories
 
