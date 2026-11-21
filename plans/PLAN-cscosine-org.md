@@ -229,10 +229,10 @@ built. Migrated 2026-11-20 from `dev` + `main`: `dev` renamed `main`, the old `m
 2. Release: tag `vX.Y.Z` on the chosen commit (usually the last rc), `stable` fast-forwarded to it; release notes from
    the commits / PRs since the previous tag.
 3. **A distribution tags what it built**: when csfoundation releases, every first-party library it built from a branch
-   gets a tag on the exact commit. Proposal: each library keeps **its own semver** (`csCore v1.4.0`, from its
-   `project(VERSION)`), tagged only if it changed since its last tag; the distribution manifest records library,
-   version, tag and commit. Alternative: tag the libraries with the distribution's name (`csfoundation-v0.2.0`): simpler,
-   but a library in two distributions gets two unrelated version lines. To decide (Q3).
+   gets a tag on the exact commit: its **own semver** (`csCore v0.2.0`, from its `project(VERSION)`), tagged only if
+   it changed since its last tag (a changed library needs a version bump first); 0.x until the distribution reaches
+   1.0, starting at `v0.1.0`. The distribution manifest records library, version, tag and commit (csorchestrator R1;
+   until then the release skill tags and notes them). Decided 2026-11-21 (Q3).
 4. **Refs:** a recipe names its refs explicitly: inner repositories at `main` (a `feature/*` while working on it),
    released providers by tag, csCMake by release. No per-branch tables, no build of `stable`: the weekly build of
    `main` covers both inner changes and environment drift (decided 2026-11-20, replacing the outer-`main` canary).
@@ -561,7 +561,7 @@ but the C++ layers of the template must wait for R4, otherwise they template an 
 |---|---|---|
 | Q1 | Where plans and the overview live | `.github` (public): plans, `ECOSYSTEM.md`, scripts; `.github` retired (2026-11-20) |
 | Q2 | Branches | `main` trunk everywhere (default), `stable` on outer repositories (fast-forwarded to final tags), tags for releases, `feature/*` with CI on demand; only no force push / deletion enforced (decided and migrated 2026-11-20) |
-| Q3 | Tags of first-party libraries built by a distribution | Own semver per library, tagged when changed; manifest records the commit |
+| Q3 | Tags of first-party libraries built by a distribution | **Decided 2026-11-21**: own semver per library (`project(VERSION)`), starting at `v0.1.0` (0.x until the distribution reaches 1.0), tagged when changed; the manifest records ref, commit, tag and version (csorchestrator R1) |
 | Q4 | Refs of outer projects | Explicit in the recipe: inner `main` (or a feature branch), providers by tag; exact rebuilds from tags + manifest; weekly build of `main` (§4.3, 2026-11-20) |
 | Q5 | Skills location | Marketplace + `cs-org` in the public `.github`; tool / library plugins in an `agent-plugin/` folder of their repository; repository-only skills in `.claude/skills/`; `.agents/skills` migrated (symlink if another tool needs it) |
 | Q6 | One Copier template with `kind`, or one template per kind | One, with `kind` |

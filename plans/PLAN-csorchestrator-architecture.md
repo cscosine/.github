@@ -342,7 +342,9 @@ section for each consumer's README.
 
 - Never overwrite work without consent: `reset` is `DESTRUCTIVE` (B3), stashes first, and asks.
 - Every warning ends in the run record and the report: "csCore: local, branch `feature/x` @abc123, 3 modified files".
-- A release (tag build) requires `strict`; the manifest records the commit of every repository built (provenance).
+- A release (tag build) requires `strict`; the manifest records, for every repository built (provenance): URL, ref
+  requested (tag or branch), commit, the tag on that commit if any, and the package version installed; the release
+  notes and `ecosystem release` (R9) read them from there.
 
 **Local overrides** (`cs-workspace.local.toml`, git-ignored; like CMake user presets, `go work`, Cargo `[patch]`):
 
@@ -455,7 +457,7 @@ One phase at a time, CI green and every consumer's workflow regenerated (diff re
 | # | Phase | Content | Estimate |
 |---|---|---|---|
 | R0 | Safety net | Releases of csorchestrator (CHANGELOG, tags, wheel), consumers pin it; version stamped in workflows and manifests; **golden tests** of the 8 consumers' workflows; public `csorchestrator.api` facade; "workflow up to date" check in consumer CI | 1–2 weeks |
-| R1 | Checkout | B12 on the current model: `ls-remote` / one fetch, parallel, plain git, URL normalisation, policies `auto / keep / update / strict / reset`, `--offline`, `status`, `cs-workspace.local.toml` (`path`, `ref`); commits recorded in the manifest | 1–2 weeks |
+| R1 | Checkout | B12 on the current model: `ls-remote` / one fetch, parallel, plain git, URL normalisation, policies `auto / keep / update / strict / reset`, `--offline`, `status`, `cs-workspace.local.toml` (`path`, `ref`); provenance in the manifest (ref, commit, tag, package version of every repository built) | 1–2 weeks |
 | R2 | Core model | B1 (steps as data, handlers), B2 (event bus, Diagnostic, `Result[T]`, run record), B3 types (effects, Secret / Param / MatrixVar); adapter for the current API | 3–4 weeks |
 | R3 | Configure stage | B4: pure `create_orchestrator`, `configure`, plan.json, cs.lock, manifest cache, offline, sha256; manifest schema v2 (declarative dependencies, test dependencies, system requirements); matrix from csCMake's `variants.json` (`TODO-cscmake-alignment.md`) | 2–3 weeks |
 | R4 | Project API | B13: `Project` / `Repo` / `Provider` / `Builder`, topological build order, validation, `describe --graph`, manifest from the graph; consumers migrated one per commit (third_party_base_libs, csfoundation, csoptimization, applications; then csqt6, csopencvcpu, csopencvcuda with builders); `*_config.py` dropped | 3–4 weeks |
