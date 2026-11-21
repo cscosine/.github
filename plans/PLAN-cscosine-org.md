@@ -1,6 +1,6 @@
 # Plan: organising cscosine: templates, rules, skills, GitHub practices
 
-Date: 2026-11-20 · Status: **approved**, in progress (S0, S1b done; S3 adopted, Renovate next) · Related: `done/PLAN-stable-dev-ubuntu26mac-libs.md` (done),
+Date: 2026-11-20 · Status: **approved**, in progress (S0, S1b, S3 done) · Related: `done/PLAN-stable-dev-ubuntu26mac-libs.md` (done),
 `done/PLAN-review-stable-dev.md` (S1b), `PLAN-csorchestrator-architecture.md` (to approve), `../TODO.md`
 
 Goal: every repository of the organisation looks the same, is created and updated from one template, follows the
@@ -13,13 +13,13 @@ rules and skills loaded. One place says what exists, how it depends on what, and
 
 | Topic | Today | Target |
 |---|---|---|
-| Project structure | Similar by copy: 4 variants of `setup.sh`, 6 of `.pre-commit-config.yaml`, 11 different `pyproject.toml` for 11 repositories | One Copier template, `kind` per repository; `copier update` brings every repository to the new version; Renovate opens the PRs |
+| Project structure | Similar by copy: 4 variants of `setup.sh`, 6 of `.pre-commit-config.yaml`, 11 different `pyproject.toml` for 11 repositories | One Copier template, `kind` per repository; `copier update` brings every repository to the new version; the nightly report says which ones are behind |
 | Ownership of files | Implicit | Every file has one owner: the template, a generator (csCMake presets, csorchestrator workflow), or the project |
 | Plans | Not versioned: the `PLAN-*.md` live only on this disk | In `.github` (`plans/`), with the generated overview and the org admin scripts (GitHub API only); no new repository |
 | Agent rules | Per repository (`AGENTS.md` + `CLAUDE.md` in csCMake; `.agents/skills/` in 5 repositories, which Claude Code does not read) | Org rules written once in the template, so every repository carries them; process skills in a public plugin; usage skills next to the code |
 | Process | Direct pushes to `dev` / `main`, no PRs, no protection, rc tags by hand | `main` trunk + `stable` (outer), tags for releases; only no force push / deletion enforced; multi-repo changes with one branch name and one plan step |
 | Overview and versions | In heads, partly in `../TODO.md` | Generated nightly from releases, manifests and Copier answers into `ECOSYSTEM.md` (graph, versions, drift) |
-| GitHub | Free plan, issues / projects / rulesets unused | Rulesets on public repositories, PR templates, release notes from PRs, Dependabot / Renovate, progress tracked in the plans themselves (no issues); Team plan only if the private libraries must be protected |
+| GitHub | Free plan, issues / projects / rulesets unused | Rulesets on public repositories, PR templates, release notes from PRs, pins bumped by hand with a nightly drift report, progress tracked in the plans themselves (no issues); Team plan only if the private libraries must be protected |
 
 **Recommended order**: S0 (plans into `.github`, rules, GitHub settings; then the repositories going public) → finish stable-dev → csorchestrator
 R0 → Copier template "base" layer → csorchestrator R1… → template layers for csCMake / csorchestrator projects once
@@ -113,9 +113,13 @@ would have to be written twice.
 
 ### 2.5 Keeping it updated
 
-- Renovate has a Copier manager: it sees a new template tag and opens a PR "update template to vX" in every
-  repository (running `copier update`). Dependabot does not know Copier. Renovate also bumps GitHub Actions and,
-  with a regex manager, the `release_tag="v…"` pins of the recipes until csorchestrator R3 gives a lock file.
+- **By hand, with a nightly report** (decided 2026-11-21, instead of Renovate): `scripts/ecosystem_report.py` lists in
+  `ECOSYSTEM.md` "Needs attention" every repository behind the latest template, csorchestrator
+  (`csorchestrator_version`), csCMake (`cscmake_version`), a provider (`release_tag`, and a `project_version` that
+  does not match it) or a fork tag it builds (`repo_ref_dict`). The bumps are done in planned rounds, in release-chain
+  order, so builds run only when we decide. Renovate was considered: its Copier and Actions managers work out of the
+  box, but our pins come in pairs (`project_version` + `release_tag`), are rcs on purpose during development, follow
+  the release chain, and every PR would cost a full matrix build. Reconsider for GitHub Actions versions only.
 - The template has its own CI: render every `kind`, run `setup.sh` + pre-commit + tests on the result.
 - csCMake today ships `templates/` (CMake config / env templates): those are csCMake's own runtime templates, not
   project templates; they stay.
@@ -476,7 +480,7 @@ of date, propose the release train"), reading `ECOSYSTEM.md` or calling the same
 | `.github/release.yml` + labels (`feature`, `fix`, `breaking`, `ci`, `docs`) | Release notes for free; `breaking` visible in the release train | Template |
 | PR template (what / why, checks done, skill and docs updated, plan step, the other PRs of a multi-repo change) | Consistent PRs, agents fill it | Template |
 | Dependabot alerts + secret scanning + push protection (free on public) | Security baseline | Settings |
-| Renovate (or Dependabot for Actions) | Bump Actions, the Copier template, pins | Medium |
+| ~~Renovate (or Dependabot for Actions)~~ dropped 2026-11-21 (§2.5): pins by hand, drift in the nightly report | Bump Actions, the Copier template, pins | — |
 | Reusable workflows in a public `cscosine/.github` (e.g. the Python tool CI, lint, release-notes check), called with `uses: cscosine/.github/.github/workflows/x.yml@v1` | CI of the `tool` repositories written once; the generated workflows stay csorchestrator's | Medium |
 | Environment `release` with protection for the release job | A tag push alone does not publish; one click to confirm | Low |
 | Artifact attestations (`actions/attest-build-provenance`) on release archives (free on public) | Supply chain gap noted in the csorchestrator plan §1.3 | Low, with R0 |
@@ -530,7 +534,7 @@ Its workflows run for free (a public repository).
 | S1 | Finish stable-dev | Done (2026-11-16); open: csCMake 0.x tags and `v1.0.0`, csopencvcuda (its §4.9) | — | done |
 | **S1b** | **Review of stable-dev** | `done/PLAN-review-stable-dev.md`: every change of the round reviewed (right place, one place, docs, tests, leftovers); fixes as PRs | ~1 week | done (2026-11-20; the chain rebuilt as rcs) |
 | S2 | csorchestrator: minimal R0 | Decided 2026-11-20: no PyPI, no API promise until the rewrite (its plan). Only: tag csorchestrator `v0.1.0`; projects install it from the tag (default) through `setup.sh` / `setup.ps1`: `./setup.sh` = the pinned version, `--csorchestrator=<tag or branch>` = another one, `--csorchestrator=<path>` = editable local; the generated workflow states its csorchestrator version. Done with S3 (the setup scripts are template-owned, the default version a Copier answer `csorchestrator_version`) and before the finals round | ~1 day | doing (2026-11-21: `v0.1.0-rc1` tagged, the template's `setup.sh` / `setup.ps1` install it by default; final `v0.1.0` at the finals round. **R0 decided minimal** (2026-11-21): generated workflows build `main` after the merge, no PR builds; the `pull_request` trigger, the `ci-ok` job and build-once-per-commit (a tag republishes its commit's build) go to csorchestrator's backlog, `PLAN-csorchestrator-architecture.md` §7c; §7.3 waits for them) |
-| S3 | Template: base layer | `cs-project-template` with the shared files of §2.4 and `kind`, including `setup.sh` / `setup.ps1` with the csorchestrator switch (S2) and the version as an answer; adopted by every repository; Renovate. Comes before the finals round (no longer waits for the csorchestrator rewrite) | ~1 week | doing (2026-11-21: adoption done, every repository on `cs-project-template` v0.2.5 (tools, distributions, csfoundation and csoptimization with their libraries, applications); open: Renovate (Copier update PRs on new template tags, Actions versions, pins)) |
+| S3 | Template: base layer | `cs-project-template` with the shared files of §2.4 and `kind`, including `setup.sh` / `setup.ps1` with the csorchestrator switch (S2) and the version as an answer; adopted by every repository; updates by hand with a nightly drift report (§2.5). Comes before the finals round (no longer waits for the csorchestrator rewrite) | ~1 week | done (2026-11-21: every repository on `cs-project-template` v0.2.5; Renovate dropped, the nightly report lists what is behind) |
 | S4 | Skills, first set | Create `.github` with the marketplace and `cs-org` (`cs-git-workflow`, `cs-multi-repo-change`, `cs-release`); `agent-plugin/` in csCMake and csfoundation (`cscmake-usage`, `csfoundation-libs`); `.claude/skills` migration | ~1 week, then continuous | doing (2026-11-20: marketplace + cs-org in `.github`: cs-workflow, cs-release-train, cs-fork-sync, cs-local-status; next: tool / library plugins, `.claude/settings.json` via the template) |
 | S4b | Forks | `cscosine/README.md` + `CHANGELOG.md` in each fork (patches listed from `git log <base>..dev`), `-cs.N` tags, `cs-fork-sync` skill, generated `FORKS.md`; upstream PRs for the generic fixes | 2–3 days | todo |
 | S5 | Overview | `cs-ecosystem` script (GitHub API only) + nightly workflow → `ECOSYSTEM.md` in `.github` (all repositories, drift); and the public part generated into `.github/profile/README.md` between markers (`<!-- ecosystem:start/end -->`): public repositories with kind, latest release / rc, CI badge, what each is built on, and the Mermaid graph of the release chain; a scheduled workflow in `.github` (public data only) regenerates it nightly and on demand after a release. Manual input: the repository descriptions and kinds only | 2–3 days | doing (2026-11-20: public part done, `.github/scripts/ecosystem.py` + nightly workflow; next: the private `ECOSYSTEM.md` with drift) |
@@ -561,7 +565,7 @@ but the C++ layers of the template must wait for R4, otherwise they template an 
 | Q4 | Refs of outer projects | Explicit in the recipe: inner `main` (or a feature branch), providers by tag; exact rebuilds from tags + manifest; weekly build of `main` (§4.3, 2026-11-20) |
 | Q5 | Skills location | Marketplace + `cs-org` in the public `.github`; tool / library plugins in an `agent-plugin/` folder of their repository; repository-only skills in `.claude/skills/`; `.agents/skills` migrated (symlink if another tool needs it) |
 | Q6 | One Copier template with `kind`, or one template per kind | One, with `kind` |
-| Q7 | Renovate (Copier + Actions + pins) or Dependabot (Actions only) | Renovate |
+| Q7 | Renovate (Copier + Actions + pins) or Dependabot (Actions only) | Neither (2026-11-21): bumps by hand in planned rounds, drift listed by the nightly report (§2.5) |
 | Q8 | Team plan | Not now; revisit when the private libraries need protection or a second contributor joins |
 | Q9 | Tracking progress | The plans in `.github/plans/` are the only tracker (status column per step, updated in the PR that does the work); no issues, no Project; reconsider with a second regular contributor (§3.2) |
 | Q10 | Old repositories csProjectManager, csVis, pipes | Deleted (2026-11-20; git bundles kept in `~/cscosine-deleted-repos/`); csMetaProjectAll already archived |

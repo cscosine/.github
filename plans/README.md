@@ -6,7 +6,7 @@ The plans of the organisation and their progress: each plan has a status line, i
 
 | Plan | Status | Open steps |
 |---|---|---|
-| [PLAN-cscosine-org.md](PLAN-cscosine-org.md): templates, rules, skills, GitHub practices | approved, in progress | S2–S7 (S2, S3 (Renovate), S4, S5 started) |
+| [PLAN-cscosine-org.md](PLAN-cscosine-org.md): templates, rules, skills, GitHub practices | approved, in progress | S2, S4–S7 (S2, S4, S5 started) |
 | [PLAN-licensing.md](PLAN-licensing.md): the open points of the licensing policy ([LICENSING.md](../LICENSING.md)) | open | L1, L3, L4, L6–L8 |
 | [PLAN-csorchestrator-architecture.md](PLAN-csorchestrator-architecture.md): csorchestrator as a mature framework | to approve | R0–R9 |
 

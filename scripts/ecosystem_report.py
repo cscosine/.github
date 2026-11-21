@@ -5,7 +5,9 @@
     python3 scripts/ecosystem_report.py --stdout
 
 Reads GitHub only (REST API; GH_TOKEN / GITHUB_TOKEN, else the token of the local gh login) and the upstream tags of
-the forks (git ls-remote). The repositories and their kinds: scripts/github-settings.json; what each outer project
+the forks (git ls-remote). Pins checked against the latest releases / tags: csCMake (`cscmake_version`), the providers
+(`release_tag`, and its `project_version`), the fork tags a distribution builds (`repo_ref_dict`), csorchestrator
+(`csorchestrator_version` answer) and the template; bumping them stays manual. The repositories and their kinds: scripts/github-settings.json; what each outer project
 builds: scripts/ecosystem.json. A private repository (if any) is listed with a lock. Nothing is changed on GitHub.
 """
 
@@ -66,6 +68,33 @@ def vkey(tag: str) -> tuple[int, ...]:
     nums = [int(x) for x in re.findall(r"\d+", tag)]
     final = 0 if re.search(r"-rc\d+$", tag) else 1
     return (*nums[:3], final, *nums[3:])
+
+
+_TAGS: dict[str, list[str]] = {}
+
+
+def tags(org: str, repo: str) -> list[str]:
+    if repo not in _TAGS:
+        _TAGS[repo] = [t["name"] for t in (api(f"repos/{org}/{repo}/tags?per_page=100") or [])]  # type: ignore[union-attr]
+    return _TAGS[repo]
+
+
+def fork_refs(proj: str) -> dict[str, str]:
+    """The refs of the inner repositories in `repo_ref_dict={...}`, with `{NAME}` from `NAME = "..."` resolved."""
+    consts = dict(re.findall(r'^\s*([A-Z_][A-Z0-9_]*) = "([^"]*)"', proj, re.M))
+    block = re.search(r"repo_ref_dict=\{((?:[^{}]|\{[^{}]*\})*)\}", proj)  # f-string fields: one level of braces
+    refs = dict(re.findall(r'"([^"]+)":\s*f?"([^"]+)"', block.group(1))) if block else {}
+    return {r: re.sub(r"\{([A-Z_][A-Z0-9_]*)\}", lambda m: consts.get(m.group(1), m.group(0)), v) for r, v in refs.items()}
+
+
+def newer_fork_tag(tag: str, available: list[str]) -> str | None:
+    """The newest tag of the same variant (`-cs` / `-cpu` / `-cuda`) newer than `tag`, if any (finals only)."""
+    m = re.fullmatch(r"v[\d.]+-(cs|cpu|cuda)\.\d+(-rc\d+)?", tag)
+    if not m:
+        return None  # a branch, or another scheme
+    same = [t for t in available if re.fullmatch(rf"v[\d.]+-{m.group(1)}\.\d+", t)]
+    best = max(same, key=vkey, default=None)
+    return best if best and vkey(best) > vkey(tag) else None
 
 
 def link(org: str, repo: str, sub: str = "") -> str:
@@ -153,6 +182,10 @@ def main() -> int:
                 published["csCMake"].get("v" + cm, "") < published["csCMake"][cscmake_latest]:
             attention.append(f"{link(org, repo)}: csCMake {cm}, latest is {cscmake_latest}")
         pins = re.findall(r'git_repo="([^"]+)".{0,300}?release_tag="([^"]+)"', conf, re.S)
+        for dep, pv, tag in re.findall(r'git_repo="([^"]+)".{0,300}?project_version="([^"]+)".{0,300}?release_tag="([^"]+)"',
+                                       conf, re.S):
+            if not tag.startswith(f"v{pv}"):
+                attention.append(f"{link(org, repo)}: pins {dep} {tag} with project_version {pv}")
         for dep, tag in pins:
             edges.add((dep, repo))
             if dep in latest and tag != latest[dep] and published[dep].get(tag, "") < published[dep][latest[dep]]:
@@ -161,8 +194,14 @@ def main() -> int:
         inner = builds.get(repo, [])
         for r in inner:
             edges.add((repo, r))
+        frefs = fork_refs(proj)
+        for r, fref in frefs.items():
+            newer_tag = newer_fork_tag(fref, tags(org, r))
+            if newer_tag:
+                attention.append(f"{link(org, repo)}: builds {r} `{fref}`, newer is {newer_tag}")
+        inner_txt = ", ".join(f"{r} `{frefs[r]}`" if r in frefs else r for r in inner) or "–"
         drows.append(f"| {link(org, repo)} | {cm} | {', '.join(f'{d} `{t}`' for d, t in pins) or '–'} | "
-                     f"{', '.join(inner) or '–'}{' (`' + ref.group(1) + '`)' if ref and inner else ''} |")
+                     f"{inner_txt}{' (`' + ref.group(1) + '`)' if ref and inner else ''} |")
 
     # --- forks: base, our tags, newer upstream
     frows = ["| Fork | Upstream | Base | Our tags on it | Newer upstream releases |", "|---|---|---|---|---|"]
@@ -208,6 +247,12 @@ def main() -> int:
         trows.append(f"| {link(org, repo)} | {kinds[repo]} | {version} | {given or '–'} |")
         if tlatest and version != tlatest:
             attention.append(f"{link(org, repo)}: template {version}, latest is {tlatest} (`copier update`)")
+        orch = re.search(r"^csorchestrator_version:\s*(\S+)", answers, re.M)
+        olatest = max((x for x in tags(org, "csorchestrator") if re.fullmatch(r"v\d+\.\d+\.\d+(-rc\d+)?", x)),
+                      key=vkey, default=None)  # tags: csorchestrator has no GitHub releases
+        if orch and olatest and vkey(orch.group(1)) < vkey(olatest):
+            attention.append(f"{link(org, repo)}: csorchestrator {orch.group(1)}, latest is {olatest} "
+                             "(answer `csorchestrator_version`, then `copier update`)")
     if not_adopted:
         trows += ["", "Not on the template yet: " + ", ".join(link(org, r) for r in not_adopted) + "."]
 
