@@ -6,7 +6,8 @@
 
 Reads GitHub only (REST API; GH_TOKEN / GITHUB_TOKEN, else the token of the local gh login) and the upstream tags of
 the forks (git ls-remote). Pins checked against the latest releases / tags: csCMake (`cscmake_version`), the providers
-(`release_tag`, and its `project_version`), the fork tags a distribution builds (`repo_ref_dict`), csorchestrator
+(`release_tag`, and its `project_version`), the tags of the inner repositories a distribution builds (`repo_ref_dict`,
+`RepoRefBuildPublishConfig`), csorchestrator
 (`csorchestrator_version` answer) and the template; bumping them stays manual. The repositories and their kinds: scripts/github-settings.json; what each outer project
 builds: scripts/ecosystem.json. A private repository (if any) is listed with a lock. Nothing is changed on GitHub.
 """
@@ -80,19 +81,25 @@ def tags(org: str, repo: str) -> list[str]:
 
 
 def fork_refs(proj: str) -> dict[str, str]:
-    """The refs of the inner repositories in `repo_ref_dict={...}`, with `{NAME}` from `NAME = "..."` resolved."""
+    """The refs of the inner repositories, with `{NAME}` from `NAME = "..."` resolved: `repo_ref_dict={"repo": "ref"}`
+    or `"repo": RepoRefBuildPublishConfig("ref", ...)` entries."""
     consts = dict(re.findall(r'^\s*([A-Z_][A-Z0-9_]*) = "([^"]*)"', proj, re.M))
     block = re.search(r"repo_ref_dict=\{((?:[^{}]|\{[^{}]*\})*)\}", proj)  # f-string fields: one level of braces
     refs = dict(re.findall(r'"([^"]+)":\s*f?"([^"]+)"', block.group(1))) if block else {}
+    refs.update(re.findall(r'"([^"]+)":\s*RepoRefBuildPublishConfig\(\s*f?"([^"]+)"', proj))
     return {r: re.sub(r"\{([A-Z_][A-Z0-9_]*)\}", lambda m: consts.get(m.group(1), m.group(0)), v) for r, v in refs.items()}
 
 
 def newer_fork_tag(tag: str, available: list[str]) -> str | None:
-    """The newest tag of the same variant (`-cs` / `-cpu` / `-cuda`) newer than `tag`, if any (finals only)."""
+    """The newest tag of the same variant (`-cs` / `-cpu` / `-cuda`, or plain semver for a library of ours) newer than
+    `tag`, if any (finals only)."""
     m = re.fullmatch(r"v[\d.]+-(cs|cpu|cuda)\.\d+(-rc\d+)?", tag)
-    if not m:
+    if m:
+        same = [t for t in available if re.fullmatch(rf"v[\d.]+-{m.group(1)}\.\d+", t)]
+    elif re.fullmatch(r"v\d+\.\d+\.\d+(-rc\d+)?", tag):
+        same = [t for t in available if re.fullmatch(r"v\d+\.\d+\.\d+", t)]
+    else:
         return None  # a branch, or another scheme
-    same = [t for t in available if re.fullmatch(rf"v[\d.]+-{m.group(1)}\.\d+", t)]
     best = max(same, key=vkey, default=None)
     return best if best and vkey(best) > vkey(tag) else None
 
@@ -204,16 +211,17 @@ def main() -> int:
                      f"{inner_txt}{' (`' + ref.group(1) + '`)' if ref and inner else ''} |")
 
     # --- forks: base, our tags, newer upstream
-    frows = ["| Fork | Upstream | Base | Our tags on it | Newer upstream releases |", "|---|---|---|---|---|"]
+    frows = ["| Fork | Upstream | Base | Our commits | Our tags on it | Newer upstream releases |",
+             "|---|---|---|---|---|---|"]
     for repo in sorted((r for r, k in kinds.items() if k == "fork"), key=str.lower):
         readme = file_on_main(org, repo, "cscosine/README.md") or ""
         if "the cscosine copy" in readme:
-            frows.append(f"| {link(org, repo)} | (a copy of our own) | | | |")
+            frows.append(f"| {link(org, repo)} | (a copy of our own) | | | | |")
             continue
         up = re.search(r"\| Upstream \| <?([^ >|]+)", readme)
         base = re.search(r"\| Base \| upstream (?:tag )?`([^`]+)`", readme)
         if not (up and base):
-            frows.append(f"| {link(org, repo)} | ? | ? | | |")
+            frows.append(f"| {link(org, repo)} | ? | ? | | | |")
             if repo != "opencv_contrib":
                 attention.append(f"{link(org, repo)}: no cscosine/README.md with upstream and base")
             continue
@@ -224,9 +232,22 @@ def main() -> int:
         newer = sorted((t for t in up_tags if re.fullmatch(r"v?\d+(\.\d+){1,3}", t) and vkey(t) > vkey(b)), key=vkey)
         ours = sorted((t["name"] for t in (api(f"repos/{org}/{repo}/tags?per_page=100") or [])  # type: ignore[union-attr]
                        if re.fullmatch(rf"v{re.escape(b.lstrip('v'))}-(cs|cpu|cuda)\.\d+", t["name"])), key=vkey)
-        frows.append(f"| {link(org, repo)} | {url} | `{b}` | {', '.join(ours) or '–'} | {', '.join(newer[-3:]) or '–'} |")
+        # our commits on the upstream base: the size of the patch stack a sync rebases
+        cmp = api(f"repos/{org}/{repo}/compare/{b}...main")
+        ahead = str(cmp["ahead_by"]) if isinstance(cmp, dict) else "?"  # type: ignore[index]
+        frows.append(f"| {link(org, repo)} | {url} | `{b}` | {ahead} | {', '.join(ours) or '–'} | "
+                     f"{', '.join(newer[-3:]) or '–'} |")
         if newer:
             attention.append(f"{link(org, repo)}: upstream has {', '.join(newer[-3:])} (we are on {b})")
+
+    # copies of our own: libraries around upstream files whose upstream is inactive (no syncs)
+    crows = ["| Library | Came from | Our version |", "|---|---|---|"]
+    for repo in sorted((r for r, k in kinds.items() if k == "library"), key=str.lower):
+        readme = file_on_main(org, repo, "cscosine/README.md") or ""
+        if "the cscosine copy" in readme:
+            came = re.search(r"\| Came from \| <?([^ >|]+)", readme)
+            ver = re.search(r"\| Our version \| `([^`]+)`", readme)
+            crows.append(f"| {link(org, repo)} | {came.group(1) if came else '?'} | `{ver.group(1) if ver else '?'}` |")
 
     # --- project template (cs-project-template): the version each repository is on (.copier-answers.yml on main)
     template = "cs-project-template"
@@ -290,7 +311,14 @@ def main() -> int:
         "",
         "## Forks",
         "",
+        "A fork is an upstream release plus our commits (`cscosine/README.md` in the fork says why each one exists);",
+        "syncs: the `cs-fork-sync` skill.",
+        "",
         *frows,
+        "",
+        "Copies of our own (upstream inactive, no syncs; a csCMake project of ours around the upstream files):",
+        "",
+        *crows,
         "",
         "## Repositories",
         "",
