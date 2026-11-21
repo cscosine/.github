@@ -5,7 +5,8 @@
       "name": "Tooling",
       "repos": [
         {"repo": "csCMake", "what": "CMake for families of C++ projects: targets, packages, presets for every platform", "workflow": "ci.yml"},
-        {"repo": "csorchestrator", "what": "One Python script per project: run locally or as a generated CI, releases as binary packages", "workflow": "ci.yml"}
+        {"repo": "csorchestrator", "what": "One Python script per project: run locally or as a generated CI, releases as binary packages", "workflow": "ci.yml"},
+        {"repo": "cs-project-template", "what": "Copier template: the shared files and rules of every repository, created and kept up to date", "workflow": "ci.yml"}
       ]
     },
     {

@@ -9,7 +9,6 @@ edit: change the repositories, or the script.
 - [csCMake](https://github.com/cscosine/csCMake): `stable` is not at a final release (last final: v0.4.0)
 - [csImgTracker](https://github.com/cscosine/csImgTracker): `stable` is not at a final release (last final: v0.2.1)
 - [csqt6](https://github.com/cscosine/csqt6): 2 commit(s) on `main` since v6.12.0-rc1
-- [csSkiTracker](https://github.com/cscosine/csSkiTracker): 2 commit(s) on `main` since v0.1.0-rc3
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): csCMake 1.0.0-rc2, latest is v1.0.0-rc8
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc10
 - [opencv](https://github.com/cscosine/opencv): upstream has 5.1.0 (we are on 5.0.0)
@@ -18,6 +17,7 @@ edit: change the repositories, or the script.
 
 | Project | Final | Candidate | Commits on main since | stable |
 |---|---|---|---|---|
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | – | – | – | – |
 | [csCMake](https://github.com/cscosine/csCMake) | v0.4.0 | v1.0.0-rc8 | 1 | not at the last final |
 | [csfoundation](https://github.com/cscosine/csfoundation) | – | v0.1.0-rc10 | 0 | – |
 | [csImgTracker](https://github.com/cscosine/csImgTracker) | v0.2.1 | v0.2.2-rc1 | 0 | not at the last final |
@@ -26,7 +26,7 @@ edit: change the repositories, or the script.
 | [csoptimization](https://github.com/cscosine/csoptimization) | – | v0.1.0-rc6 | 0 | – |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | – | – | – | – |
 | [csqt6](https://github.com/cscosine/csqt6) | – | v6.12.0-rc1 | 2 | – |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | – | v0.1.0-rc3 | 2 | – |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | – | v0.1.0-rc4 | 0 | – |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | – | v0.1.0-rc10 | 0 | – |
 
@@ -81,6 +81,15 @@ flowchart LR
   third_party_base_libs --> tl-optional
 ```
 
+## Project template
+
+Latest template: v0.1.0
+
+| Repository | Kind | Template | Answers |
+|---|---|---|---|
+
+Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatrix), [csCamera](https://github.com/cscosine/csCamera), [csCMake](https://github.com/cscosine/csCMake), [csCore](https://github.com/cscosine/csCore), [csfoundation](https://github.com/cscosine/csfoundation), [csImgTracker](https://github.com/cscosine/csImgTracker), [csLie](https://github.com/cscosine/csLie), [csNelson](https://github.com/cscosine/csNelson), [csopencvcpu](https://github.com/cscosine/csopencvcpu), [csopencvcuda](https://github.com/cscosine/csopencvcuda), [csoptimization](https://github.com/cscosine/csoptimization), [csorchestrator](https://github.com/cscosine/csorchestrator), [csqt6](https://github.com/cscosine/csqt6), [csSkiTracker](https://github.com/cscosine/csSkiTracker), [csVisOpenGL](https://github.com/cscosine/csVisOpenGL), [csWiki](https://github.com/cscosine/csWiki), [third_party_base_libs](https://github.com/cscosine/third_party_base_libs).
+
 ## Forks
 
 | Fork | Upstream | Base | Our tags on it | Newer upstream releases |
@@ -106,6 +115,7 @@ flowchart LR
 | [.github](https://github.com/cscosine/.github) | meta | public | main | main | – |
 | [Catch2](https://github.com/cscosine/Catch2) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [cpptrace](https://github.com/cscosine/cpptrace) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | tool | public | main | main | outer-main, tags-prerelease, tags-stable |
 | [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [csCamera](https://github.com/cscosine/csCamera) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [csCMake](https://github.com/cscosine/csCMake) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |

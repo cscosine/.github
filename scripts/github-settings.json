@@ -4,7 +4,8 @@
     "tool": [
       "csCMake",
       "csorchestrator",
-      "csWiki"
+      "csWiki",
+      "cs-project-template"
     ],
     "distribution": [
       "third_party_base_libs",

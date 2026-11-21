@@ -39,7 +39,7 @@ TOKEN = token()
 
 
 def curl(url: str) -> tuple[int, str]:
-    cmd = ["curl", "-sS", "-L", "--max-time", "30", "-w", "\n%{http_code}", "-H", "Accept: application/vnd.github+json"]
+    cmd = ["curl", "-sS", "-L", "--max-time", "30", "--retry", "3", "-w", "\n%{http_code}", "-H", "Accept: application/vnd.github+json"]
     if TOKEN and "api.github.com" in url:
         cmd += ["-H", f"Authorization: Bearer {TOKEN}"]
     out = subprocess.run([*cmd, url], capture_output=True, text=True, check=True).stdout
@@ -189,6 +189,28 @@ def main() -> int:
         if newer:
             attention.append(f"{link(org, repo)}: upstream has {', '.join(newer[-3:])} (we are on {b})")
 
+    # --- project template (cs-project-template): the version each repository is on (.copier-answers.yml on main)
+    template = "cs-project-template"
+    ttags = sorted((t["name"] for t in (api(f"repos/{org}/{template}/tags?per_page=100") or [])  # type: ignore[union-attr]
+                    if re.fullmatch(r"v\d+\.\d+\.\d+", t["name"])), key=vkey)
+    tlatest = ttags[-1] if ttags else None
+    trows = [f"Latest template: {tlatest or '–'}", "", "| Repository | Kind | Template | Answers |", "|---|---|---|---|"]
+    not_adopted: list[str] = []
+    for repo in sorted((r for r, k in kinds.items() if k not in ("fork", "meta") and r != template), key=str.lower):
+        answers = file_on_main(org, repo, ".copier-answers.yml")
+        if answers is None:
+            not_adopted.append(repo)
+            continue
+        commit = re.search(r"^_commit:\s*(\S+)", answers, re.M)
+        version = commit.group(1) if commit else "?"
+        given = ", ".join(f"{k}={v}" for k, v in re.findall(r"^(kind|workspace_dir|csorchestrator_version):\s*(\S+)",
+                                                             answers, re.M))
+        trows.append(f"| {link(org, repo)} | {kinds[repo]} | {version} | {given or '–'} |")
+        if tlatest and version != tlatest:
+            attention.append(f"{link(org, repo)}: template {version}, latest is {tlatest} (`copier update`)")
+    if not_adopted:
+        trows += ["", "Not on the template yet: " + ", ".join(link(org, r) for r in not_adopted) + "."]
+
     # --- CI of main
     for repo in sorted(outer, key=str.lower):
         runs = api(f"repos/{org}/{repo}/actions/runs?branch=main&per_page=10") or {}
@@ -216,6 +238,10 @@ def main() -> int:
         *drows,
         "",
         *graph,
+        "",
+        "## Project template",
+        "",
+        *trows,
         "",
         "## Forks",
         "",

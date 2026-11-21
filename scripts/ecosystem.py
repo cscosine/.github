@@ -8,6 +8,8 @@ release candidate, its CI status, what it is built on, and the release chain as 
 Reads public data only (the GitHub REST API; GITHUB_TOKEN / GH_TOKEN when set, for the rate limit): repositories it
 cannot see (private) are left out. The groups, descriptions and inner repositories: scripts/ecosystem.json. What a
 project is built on: the providers its recipe pins on main (`git_repo=` / `release_tag=` of `<repo>_config.py`).
+The health line (how many items need attention): the "Needs attention" section of ECOSYSTEM.md, so
+scripts/ecosystem_report.py runs first.
 """
 
 import json
@@ -20,12 +22,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "scripts" / "ecosystem.json"
 README = ROOT / "profile" / "README.md"
+REPORT = ROOT / "ECOSYSTEM.md"
 START, END = "<!-- ecosystem:start -->", "<!-- ecosystem:end -->"
 
 
 def _curl(url: str, headers: list[str]) -> tuple[int, str]:
     """GET with curl (present on every runner; it falls back between IPv6 and IPv4 where urllib can hang)."""
-    cmd = ["curl", "-sS", "-L", "--max-time", "30", "-w", "\n%{http_code}"]
+    cmd = ["curl", "-sS", "-L", "--max-time", "30", "--retry", "3", "-w", "\n%{http_code}"]
     for h in headers:
         cmd += ["-H", h]
     out = subprocess.run([*cmd, url], capture_output=True, text=True, check=True).stdout
@@ -75,6 +78,19 @@ def release_link(org: str, repo: str, tag: str | None) -> str:
     return f"[{tag}](https://github.com/{org}/{repo}/releases/tag/{tag})" if tag else "–"
 
 
+def health(org: str) -> str:
+    """One line: how many items of ECOSYSTEM.md need attention, linking to it."""
+    url = f"https://github.com/{org}/.github/blob/main/ECOSYSTEM.md"
+    if not REPORT.exists():
+        return f"Full status of every repository: [ECOSYSTEM.md]({url})."
+    text = REPORT.read_text()
+    section = text.split("## Needs attention", 1)[1].split("\n## ", 1)[0] if "## Needs attention" in text else ""
+    count = sum(1 for line in section.splitlines() if line.startswith("- "))
+    state = "everything up to date" if count == 0 else f"{count} item(s) need attention"
+    return (f"**Status** (updated nightly): {state} · every repository, versions, dependencies, forks, template: "
+            f"[ECOSYSTEM.md]({url})")
+
+
 def generate() -> str:
     cfg = json.loads(CONFIG.read_text())
     org = cfg["org"]
@@ -102,7 +118,7 @@ def generate() -> str:
     graph = ["```mermaid", "flowchart LR"]
     graph += [f"  {a} --> {b}" for a, b in sorted(set(edges))]
     graph.append("```")
-    return "\n".join([START, "", *lines, "", "The release chain (who builds on whom):", "", *graph, "", END])
+    return "\n".join([START, "", health(org), "", *lines, "", "The release chain (who builds on whom):", "", *graph, "", END])
 
 
 def main() -> int:

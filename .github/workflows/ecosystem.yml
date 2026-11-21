@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 scripts/ecosystem.py
           python3 scripts/ecosystem_report.py
+          python3 scripts/ecosystem.py
       - name: Commit when it changed
         run: |
           if git diff --quiet profile/README.md ECOSYSTEM.md; then

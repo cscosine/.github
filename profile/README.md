@@ -8,6 +8,14 @@
   Computer vision · geometry · non-linear optimisation · modern C++ and Python
 </p>
 
+<p align="center">
+  <a href="https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md">📊 Status</a> ·
+  <a href="https://github.com/cscosine/.github/blob/main/plans/README.md">🗺️ Roadmap</a> ·
+  <a href="https://cscosine.github.io/csWiki/">📚 Docs</a> ·
+  <a href="https://github.com/cscosine/.github/blob/main/CONTRIBUTING.md">🤝 Contributing</a> ·
+  <a href="https://github.com/cscosine/.github/blob/main/LICENSING.md">⚖️ Licensing</a>
+</p>
+
 ---
 
 Most ideas die between the notebook and the release. **cscosine** is built for that gap: the science is done in
@@ -29,11 +37,14 @@ Linux, Windows and macOS.
 
 <!-- ecosystem:start -->
 
+**Status** (updated nightly): 7 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
+
 | Project | What it is | Release | Candidate | CI | Built on |
 |---|---|---|---|---|---|
 | **Tooling** | | | | | |
 | [csCMake](https://github.com/cscosine/csCMake) | CMake for families of C++ projects: targets, packages, presets for every platform | [v0.4.0](https://github.com/cscosine/csCMake/releases/tag/v0.4.0) | [v1.0.0-rc8](https://github.com/cscosine/csCMake/releases/tag/v1.0.0-rc8) | [![CI](https://github.com/cscosine/csCMake/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/cscosine/csCMake/actions/workflows/ci.yml) | – |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | One Python script per project: run locally or as a generated CI, releases as binary packages | – | – | [![CI](https://github.com/cscosine/csorchestrator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/cscosine/csorchestrator/actions/workflows/ci.yml) | – |
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | Copier template: the shared files and rules of every repository, created and kept up to date | – | – | [![CI](https://github.com/cscosine/cs-project-template/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/cscosine/cs-project-template/actions/workflows/ci.yml) | – |
 | **Foundations** | | | | | |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform (builds [eigen3](https://github.com/cscosine/eigen3), [fmt](https://github.com/cscosine/fmt), [cpptrace](https://github.com/cscosine/cpptrace), [libassert](https://github.com/cscosine/libassert), [magic_enum](https://github.com/cscosine/magic_enum), [Catch2](https://github.com/cscosine/Catch2), [tl-expected](https://github.com/cscosine/tl-expected), [tl-optional](https://github.com/cscosine/tl-optional), [NamedType](https://github.com/cscosine/NamedType), [tclap](https://github.com/cscosine/tclap), [fmt-eigen](https://github.com/cscosine/fmt-eigen)) | – | [v0.1.0-rc10](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10) | [![CI](https://github.com/cscosine/third_party_base_libs/actions/workflows/third_party_base_libs.yml/badge.svg?branch=main)](https://github.com/cscosine/third_party_base_libs/actions/workflows/third_party_base_libs.yml) | – |
 | [csqt6](https://github.com/cscosine/csqt6) | Qt 6 (LGPL modules) built for every platform | – | [v6.12.0-rc1](https://github.com/cscosine/csqt6/releases/tag/v6.12.0-rc1) | [![CI](https://github.com/cscosine/csqt6/actions/workflows/csqt6.yml/badge.svg?branch=main)](https://github.com/cscosine/csqt6/actions/workflows/csqt6.yml) | – |
@@ -42,7 +53,7 @@ Linux, Windows and macOS.
 | [csoptimization](https://github.com/cscosine/csoptimization) | Non-linear optimisation libraries (builds [csNelson](https://github.com/cscosine/csNelson), [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)) | – | [v0.1.0-rc6](https://github.com/cscosine/csoptimization/releases/tag/v0.1.0-rc6) | [![CI](https://github.com/cscosine/csoptimization/actions/workflows/csoptimization.yml/badge.svg?branch=main)](https://github.com/cscosine/csoptimization/actions/workflows/csoptimization.yml) | [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0-rc10`, [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0-rc10` |
 | **Applications** | | | | | |
 | [csImgTracker](https://github.com/cscosine/csImgTracker) | Image tracking application | [v0.2.1](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.1) | [v0.2.2-rc1](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.2-rc1) | [![CI](https://github.com/cscosine/csImgTracker/actions/workflows/csImgTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csImgTracker/actions/workflows/csImgTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0-rc10`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0-rc10`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0-rc1`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.0.0-cpu.1-rc1` |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | – | [v0.1.0-rc3](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0-rc3) | [![CI](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0-rc10`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0-rc10`, [csoptimization](https://github.com/cscosine/csoptimization) `v0.1.0-rc6`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0-rc1`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.0.0-cpu.1-rc1` |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | – | [v0.1.0-rc4](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0-rc4) | [![CI](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0-rc10`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0-rc10`, [csoptimization](https://github.com/cscosine/csoptimization) `v0.1.0-rc6`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0-rc1`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.0.0-cpu.1-rc1` |
 
 The release chain (who builds on whom):
 
@@ -65,6 +76,16 @@ flowchart LR
 ```
 
 <!-- ecosystem:end -->
+
+### Get started
+
+| To | Do |
+|---|---|
+| Work on a project | `git clone` it, `./setup.sh` (Windows: `.\setup.ps1`), `source .venv/bin/activate`; its README says the rest |
+| Start a new project | `copier copy gh:cscosine/cs-project-template <name>`: every repository is created and kept up to date from [cs-project-template](https://github.com/cscosine/cs-project-template) |
+| Work with an AI agent | Claude Code reads each repository's rules (`CLAUDE.md`, `AGENTS.md`); the skills of the organisation: `/plugin marketplace add cscosine/.github`, then `/plugin install cs-org@cscosine` |
+| Follow the work | [Status](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md) (nightly: versions, dependencies, what needs attention) · [Roadmap](https://github.com/cscosine/.github/blob/main/plans/README.md) (the plans and their steps) |
+| Contribute | [How changes move](https://github.com/cscosine/.github/blob/main/CONTRIBUTING.md) (branches, PRs, releases) · [Rules](https://github.com/cscosine/cs-project-template/blob/main/template/.claude/cscosine-rules.md) |
 
 Documentation: [csWiki](https://cscosine.github.io/csWiki/) · [csCMake](https://cscosine.github.io/csCMake/)
 

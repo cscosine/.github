@@ -2,17 +2,31 @@
 
 The organisation-level repository of cscosine (public; the only one):
 
-- `profile/README.md`: the public page of the organisation (its projects section generated nightly).
+- `profile/README.md`: the public page of the organisation (links, get started; its projects section and status line
+  generated nightly).
 - `CONTRIBUTING.md`: how changes move (branches, releases, the fast path); shown by GitHub in every repository
   without its own.
 - `LICENSING.md`: the licensing policy.
 - [plans/](plans/README.md): the plans of the organisation and their progress.
-- [rules/](rules/README.md): the rules of every repository (the "cscosine rules" section of each `CLAUDE.md`).
-- `ECOSYSTEM.md`: every repository, versions, dependencies, what needs attention (generated nightly).
-- `scripts/`: `github_settings.py` (repository settings and rulesets, from `github-settings.json`; run locally with
-  an admin login), `ecosystem.py` and `ecosystem_report.py` (the generated parts above).
+- `ECOSYSTEM.md`: every repository, versions, dependencies, forks, the template version of each, what needs attention
+  (generated nightly).
+- `scripts/`: `github_settings.py` (repository settings, rulesets and labels, from `github-settings.json`; run
+  locally with an admin login), `ecosystem_report.py` and `ecosystem.py` (the generated parts above, in this order).
 - `assets/cscosine-logo.svg` / `.png`: the logo; `assets/cscosine-mark.svg` / `.png` (800 × 800): the mark alone,
   centred to fit in a circle, for round avatars.
+
+The files every repository shares (setup, checks, CI of the tools, the agent files) and the **rules of every
+repository** (`template/.claude/cscosine-rules.md`, imported by each `CLAUDE.md`) live in
+[cs-project-template](https://github.com/cscosine/cs-project-template), their only source.
+
+## A new repository
+
+Created from [cs-project-template](https://github.com/cscosine/cs-project-template) (its README: create, update),
+then registered here, one line each in `scripts/`:
+
+- `github-settings.json`: the name under its kind. `scripts/github_settings.py --apply <name>` then sets its rulesets,
+  settings and labels, and the nightly report tracks it in `ECOSYSTEM.md` (releases, CI, template version, drift).
+- `ecosystem.json` (public repositories worth showing): its group and one sentence, for the organisation page.
 
 ## Claude Code plugins
 
@@ -26,7 +40,8 @@ organisation (`cs-ecosystem-status`, members).
 /plugin install cs-org@cscosine
 ```
 
-The repositories will declare it in their `.claude/settings.json` (project template), so Claude Code proposes it.
+Every repository created from the template declares it in its `.claude/settings.json`, so Claude Code proposes it
+when the folder is trusted.
 
 ## Avatars
 
