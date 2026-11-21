@@ -12,6 +12,7 @@ edit: change the repositories, or the script.
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): csCMake 1.0.0-rc2, latest is v1.0.0-rc8
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc10
 - [opencv](https://github.com/cscosine/opencv): upstream has 5.1.0 (we are on 5.0.0)
+- [cs-project-template](https://github.com/cscosine/cs-project-template): last `main` run failure (https://github.com/cscosine/cs-project-template/actions/runs/44898047558)
 
 ## Versions (outer projects)
 
@@ -131,7 +132,7 @@ Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatr
 | [csqt6](https://github.com/cscosine/csqt6) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | application | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
-| [csWiki](https://github.com/cscosine/csWiki) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
+| [csWiki](https://github.com/cscosine/csWiki) | tool | public | main | feature/project-template, main, stable | outer-main, tags-prerelease, tags-stable |
 | [eigen3](https://github.com/cscosine/eigen3) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [fmt](https://github.com/cscosine/fmt) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [fmt-eigen](https://github.com/cscosine/fmt-eigen) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
