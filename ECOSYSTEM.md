@@ -12,7 +12,6 @@ edit: change the repositories, or the script.
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): csCMake 1.0.0-rc2, latest is v1.0.0-rc8
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda): pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc10
 - [opencv](https://github.com/cscosine/opencv): upstream has 5.1.0 (we are on 5.0.0)
-- [cs-project-template](https://github.com/cscosine/cs-project-template): last `main` run failure (https://github.com/cscosine/cs-project-template/actions/runs/44898047558)
 
 ## Versions (outer projects)
 
@@ -84,12 +83,13 @@ flowchart LR
 
 ## Project template
 
-Latest template: v0.1.0
+Latest template: v0.2.1
 
 | Repository | Kind | Template | Answers |
 |---|---|---|---|
+| [csWiki](https://github.com/cscosine/csWiki) | tool | v0.2.1 | kind=tool |
 
-Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatrix), [csCamera](https://github.com/cscosine/csCamera), [csCMake](https://github.com/cscosine/csCMake), [csCore](https://github.com/cscosine/csCore), [csfoundation](https://github.com/cscosine/csfoundation), [csImgTracker](https://github.com/cscosine/csImgTracker), [csLie](https://github.com/cscosine/csLie), [csNelson](https://github.com/cscosine/csNelson), [csopencvcpu](https://github.com/cscosine/csopencvcpu), [csopencvcuda](https://github.com/cscosine/csopencvcuda), [csoptimization](https://github.com/cscosine/csoptimization), [csorchestrator](https://github.com/cscosine/csorchestrator), [csqt6](https://github.com/cscosine/csqt6), [csSkiTracker](https://github.com/cscosine/csSkiTracker), [csVisOpenGL](https://github.com/cscosine/csVisOpenGL), [csWiki](https://github.com/cscosine/csWiki), [third_party_base_libs](https://github.com/cscosine/third_party_base_libs).
+Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatrix), [csCamera](https://github.com/cscosine/csCamera), [csCMake](https://github.com/cscosine/csCMake), [csCore](https://github.com/cscosine/csCore), [csfoundation](https://github.com/cscosine/csfoundation), [csImgTracker](https://github.com/cscosine/csImgTracker), [csLie](https://github.com/cscosine/csLie), [csNelson](https://github.com/cscosine/csNelson), [csopencvcpu](https://github.com/cscosine/csopencvcpu), [csopencvcuda](https://github.com/cscosine/csopencvcuda), [csoptimization](https://github.com/cscosine/csoptimization), [csorchestrator](https://github.com/cscosine/csorchestrator), [csqt6](https://github.com/cscosine/csqt6), [csSkiTracker](https://github.com/cscosine/csSkiTracker), [csVisOpenGL](https://github.com/cscosine/csVisOpenGL), [third_party_base_libs](https://github.com/cscosine/third_party_base_libs).
 
 ## Forks
 
@@ -128,11 +128,11 @@ Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatr
 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csoptimization](https://github.com/cscosine/csoptimization) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
-| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
+| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | public | main | feature/project-template, main, stable | outer-main, tags-prerelease, tags-stable |
 | [csqt6](https://github.com/cscosine/csqt6) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | application | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
-| [csWiki](https://github.com/cscosine/csWiki) | tool | public | main | feature/project-template, main, stable | outer-main, tags-prerelease, tags-stable |
+| [csWiki](https://github.com/cscosine/csWiki) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [eigen3](https://github.com/cscosine/eigen3) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [fmt](https://github.com/cscosine/fmt) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [fmt-eigen](https://github.com/cscosine/fmt-eigen) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
@@ -142,6 +142,6 @@ Not on the template yet: [csBlockMatrix](https://github.com/cscosine/csBlockMatr
 | [opencv](https://github.com/cscosine/opencv) | fork | public | main | 2.4, 3.4, 4.x, 5.x, cpu, cuda, main, master, next | fork-branches, tags-prerelease, tags-stable |
 | [opencv_contrib](https://github.com/cscosine/opencv_contrib) | fork | public | main-original | 3.4, 4.x, 5.x, dev-cpu, dev-cuda, main-cpu, main-cuda, main-original, master, next | fork-branches, fork-branches-dev, fork-branches-stable, tags-prerelease, tags-stable |
 | [tclap](https://github.com/cscosine/tclap) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | public | main | feature/project-template, main, stable | outer-main, tags-prerelease, tags-stable |
 | [tl-expected](https://github.com/cscosine/tl-expected) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [tl-optional](https://github.com/cscosine/tl-optional) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
