@@ -278,7 +278,9 @@ def main() -> int:
     tlatest = ttags[-1] if ttags else None
     trows = [f"Latest template: {tlatest or '–'}", "", "| Repository | Kind | Template | Answers |", "|---|---|---|---|"]
     not_adopted: list[str] = []
-    for repo in sorted((r for r, k in kinds.items() if k not in ("fork", "meta") and r != template), key=str.lower):
+    # not on the template on purpose: the template itself, and what the template uses (ecosystem.json outside_template)
+    outside = set(public_cfg.get("outside_template", [template]))
+    for repo in sorted((r for r, k in kinds.items() if k not in ("fork", "meta") and r not in outside), key=str.lower):
         answers = file_on_main(org, repo, ".copier-answers.yml")
         if answers is None:
             not_adopted.append(repo)

@@ -1,12 +1,14 @@
 {
   "org": "cscosine",
+  "outside_template": ["cs-project-template", "cs-pre-commit-hooks"],
   "groups": [
     {
       "name": "Tooling",
       "repos": [
         {"repo": "csCMake", "workflow": "ci.yml"},
         {"repo": "csorchestrator", "workflow": "ci.yml"},
-        {"repo": "cs-project-template", "what": "Copier template: the shared files and rules of every repository, created and kept up to date", "workflow": "ci.yml"}
+        {"repo": "cs-project-template", "what": "Copier template: the shared files and rules of every repository, created and kept up to date", "workflow": "ci.yml"},
+        {"repo": "cs-pre-commit-hooks", "what": "pre-commit hooks of every repository: gersemi with the csCMake signatures, cscmake-lint", "workflow": "ci.yml"}
       ]
     },
     {

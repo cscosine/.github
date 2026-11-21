@@ -5,7 +5,8 @@
       "csCMake",
       "csorchestrator",
       "csWiki",
-      "cs-project-template"
+      "cs-project-template",
+      "cs-pre-commit-hooks"
     ],
     "distribution": [
       "third_party_base_libs",
