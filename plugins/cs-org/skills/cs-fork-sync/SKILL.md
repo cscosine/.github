@@ -52,7 +52,8 @@ git rebase --onto <new> <old base> sync/<new>        # our commits onto the new 
 ## Add or drop a patch
 
 A commit on the fork's `main` (or a feature branch, tested as above), a row in `cscosine/README.md`, a line in the
-CHANGELOG under the next `-cs.<n>`. A generic fix is also proposed upstream: one patch less at the next sync.
+CHANGELOG under the next `-cs.<n>`. The fix stays ours: no pull request or issue to upstream unless the user asks for
+it.
 
 ## Clean up a fork's history (done once for the forks of 2026-11)
 
