@@ -16,7 +16,8 @@ description: Maintain the cscosine forks of third-party libraries (eigen3, fmt, 
   built the commit.
 - GitHub Actions is disabled on the forks: upstream's `.github/` stays as it is.
 - `main` of a fork can be force pushed (only for a sync); deleting it is refused.
-- tclap, NamedType, fmt-eigen are copies of our own (no syncs): their `cscosine/README.md` says where they came from.
+- tclap, NamedType, fmt-eigen are copies of our own (no syncs; kind `library` on the project template, upstream
+  files excluded from the hooks): their `cscosine/README.md` says where they came from; tagged with their own semver.
 
 ## See where the forks are
 
@@ -24,7 +25,13 @@ description: Maintain the cscosine forks of third-party libraries (eigen3, fmt, 
 python3 ${CLAUDE_PLUGIN_ROOT}/skills/cs-fork-sync/scripts/fork_status.py <workspace>/third_party_base_libs/workspace/*
 ```
 
-It prints the base, our commits and the newer upstream releases of each fork.
+It prints the base, our commits and the newer upstream releases of each fork. With `--markdown` it writes the
+overview `third_party_base_libs/FORKS.md` (generated: regenerate it in the commit that moves a fork's tag or base):
+
+```bash
+cd <workspace>/third_party_base_libs
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/cs-fork-sync/scripts/fork_status.py --markdown workspace/*/ > FORKS.md
+```
 
 ## Sync a fork with a new upstream release
 
