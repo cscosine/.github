@@ -126,12 +126,7 @@
       "include": [
         "refs/heads/main",
         "refs/heads/cpu",
-        "refs/heads/cuda",
-        "refs/heads/dev-cpu",
-        "refs/heads/dev-cuda",
-        "refs/heads/main-cpu",
-        "refs/heads/main-cuda",
-        "refs/heads/main-original"
+        "refs/heads/cuda"
       ],
       "exclude": [],
       "rules": [

@@ -6,7 +6,9 @@ release candidate, its CI status, what it is built on, and the release chain as 
     python3 scripts/ecosystem.py --check    # exit 1 if the section is out of date
 
 Reads public data only (the GitHub REST API; GITHUB_TOKEN / GH_TOKEN when set, for the rate limit): repositories it
-cannot see (private) are left out. The groups, descriptions and inner repositories: scripts/ecosystem.json. What a
+cannot see (private) are left out. What each project is: the `description` answer of its .copier-answers.yml on main
+(`what` in scripts/ecosystem.json for a repository without one). The groups and inner repositories:
+scripts/ecosystem.json. What a
 project is built on: the providers its recipe pins on main (`git_repo=` / `release_tag=` of `<repo>_config.py`).
 The health line (how many items need attention): the "Needs attention" section of ECOSYSTEM.md, so
 scripts/ecosystem_report.py runs first.
@@ -70,6 +72,20 @@ def providers(org: str, repo: str) -> list[tuple[str, str]]:
     return re.findall(r'git_repo="([^"]+)".{0,300}?release_tag="([^"]+)"', text, re.S)
 
 
+def description(org: str, repo: str) -> str | None:
+    """The `description` answer of the repository's .copier-answers.yml on main (plain, quoted or wrapped scalar)."""
+    text = raw(org, repo, ".copier-answers.yml") or ""
+    m = re.search(r"^description:[ \t]*(.*(?:\n[ \t]+\S.*)*)", text, re.M)
+    if not m:
+        return None
+    value = " ".join(part.strip() for part in m.group(1).splitlines())
+    if len(value) >= 2 and value[0] == value[-1] == "'":
+        value = value[1:-1].replace("''", "'")
+    elif len(value) >= 2 and value[0] == value[-1] == '"':
+        value = json.loads(value)
+    return value or None
+
+
 def link(org: str, repo: str) -> str:
     return f"[{repo}](https://github.com/{org}/{repo})"
 
@@ -112,7 +128,7 @@ def generate() -> str:
                 edges.append((dep, repo))
             inner = [r for r in entry.get("builds", []) if r in public]
             built_on = ", ".join(f"{link(org, d)} `{t}`" for d, t in deps) or "–"
-            what = entry["what"] + (f" (builds {', '.join(link(org, r) for r in inner)})" if inner else "")
+            what = (description(org, repo) or entry.get("what", "")) + (f" (builds {', '.join(link(org, r) for r in inner)})" if inner else "")
             lines.append(f"| {link(org, repo)} | {what} | {release_link(org, repo, final)} | "
                          f"{release_link(org, repo, rc)} | {badge} | {built_on} |")
     graph = ["```mermaid", "flowchart LR"]

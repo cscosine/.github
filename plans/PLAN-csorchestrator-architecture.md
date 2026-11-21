@@ -538,6 +538,10 @@ later.
 - Later, an optimisation: a tag republishes the build of its commit (the `dev` run, its artifacts and the inner
   commits it recorded) instead of rebuilding; the final tag republishes the rc. Not a rule: a tag may always build.
 - Schedule per project (e.g. monthly for csqt6).
+- **Backlog from the organisation plan's minimal R0** (2026-11-21; `PLAN-cscosine-org.md` §7.3, §8 S2): a
+  `pull_request` trigger for `main` in the generated workflows; a final `ci-ok` job (`needs:` all, `if: always()`)
+  as the one stable check a ruleset can require; build once per commit (the republish above). Until then `main`
+  builds after the merge.
 
 ## 8. Parking lot
 

@@ -4,26 +4,26 @@
     {
       "name": "Tooling",
       "repos": [
-        {"repo": "csCMake", "what": "CMake for families of C++ projects: targets, packages, presets for every platform", "workflow": "ci.yml"},
-        {"repo": "csorchestrator", "what": "One Python script per project: run locally or as a generated CI, releases as binary packages", "workflow": "ci.yml"},
+        {"repo": "csCMake", "workflow": "ci.yml"},
+        {"repo": "csorchestrator", "workflow": "ci.yml"},
         {"repo": "cs-project-template", "what": "Copier template: the shared files and rules of every repository, created and kept up to date", "workflow": "ci.yml"}
       ]
     },
     {
       "name": "Foundations",
       "repos": [
-        {"repo": "third_party_base_libs", "what": "Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform", "builds": ["eigen3", "fmt", "cpptrace", "libassert", "magic_enum", "Catch2", "tl-expected", "tl-optional", "NamedType", "tclap", "fmt-eigen"]},
-        {"repo": "csqt6", "what": "Qt 6 (LGPL modules) built for every platform"},
-        {"repo": "csopencvcpu", "what": "OpenCV 5 (CPU) built for every platform", "builds": ["opencv", "opencv_contrib"]},
-        {"repo": "csfoundation", "what": "The base C++ libraries: core, Lie groups, cameras, OpenGL visualisation", "builds": ["csCore", "csLie", "csCamera", "csVisOpenGL"]},
-        {"repo": "csoptimization", "what": "Non-linear optimisation libraries", "builds": ["csNelson", "csBlockMatrix"]}
+        {"repo": "third_party_base_libs", "builds": ["eigen3", "fmt", "cpptrace", "libassert", "magic_enum", "Catch2", "tl-expected", "tl-optional", "NamedType", "tclap", "fmt-eigen"]},
+        {"repo": "csqt6"},
+        {"repo": "csopencvcpu", "builds": ["opencv", "opencv_contrib"]},
+        {"repo": "csfoundation", "builds": ["csCore", "csLie", "csCamera", "csVisOpenGL"]},
+        {"repo": "csoptimization", "builds": ["csNelson", "csBlockMatrix"]}
       ]
     },
     {
       "name": "Applications",
       "repos": [
-        {"repo": "csImgTracker", "what": "Image tracking application"},
-        {"repo": "csSkiTracker", "what": "Ski tracking application"}
+        {"repo": "csImgTracker"},
+        {"repo": "csSkiTracker"}
       ]
     }
   ]
