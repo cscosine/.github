@@ -5,37 +5,62 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
-- [csCMake](https://github.com/cscosine/csCMake): `stable` is not at a final release (last final: v0.4.0)
-- [csImgTracker](https://github.com/cscosine/csImgTracker): `stable` is not at a final release (last final: v0.2.1)
-- [csqt6](https://github.com/cscosine/csqt6): 8 commit(s) on `main` since v6.12.0-rc1
-- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs): 2 commit(s) on `main` since v0.1.0-rc11
-- [csfoundation](https://github.com/cscosine/csfoundation): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csfoundation](https://github.com/cscosine/csfoundation): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
-- [csImgTracker](https://github.com/cscosine/csImgTracker): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csImgTracker](https://github.com/cscosine/csImgTracker): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
-- [csopencvcpu](https://github.com/cscosine/csopencvcpu): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csopencvcpu](https://github.com/cscosine/csopencvcpu): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
-- [csopencvcuda](https://github.com/cscosine/csopencvcuda): csCMake 1.0.0-rc2, latest is v1.0.0-rc9
-- [csopencvcuda](https://github.com/cscosine/csopencvcuda): pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc11
-- [csoptimization](https://github.com/cscosine/csoptimization): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csoptimization](https://github.com/cscosine/csoptimization): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
-- [csSkiTracker](https://github.com/cscosine/csSkiTracker): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csSkiTracker](https://github.com/cscosine/csSkiTracker): pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
-- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs): csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-- [csBlockMatrix](https://github.com/cscosine/csBlockMatrix): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csCamera](https://github.com/cscosine/csCamera): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csCMake](https://github.com/cscosine/csCMake): template v0.2.5, latest is v0.3.1 (`copier update`)
-- [csCore](https://github.com/cscosine/csCore): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csfoundation](https://github.com/cscosine/csfoundation): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csImgTracker](https://github.com/cscosine/csImgTracker): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csLie](https://github.com/cscosine/csLie): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csNelson](https://github.com/cscosine/csNelson): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csopencvcpu](https://github.com/cscosine/csopencvcpu): template v0.2.5, latest is v0.3.1 (`copier update`)
-- [csoptimization](https://github.com/cscosine/csoptimization): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csorchestrator](https://github.com/cscosine/csorchestrator): template v0.2.5, latest is v0.3.1 (`copier update`)
-- [csqt6](https://github.com/cscosine/csqt6): template v0.2.5, latest is v0.3.1 (`copier update`)
-- [csVisOpenGL](https://github.com/cscosine/csVisOpenGL): template v0.3.0, latest is v0.3.1 (`copier update`)
-- [csWiki](https://github.com/cscosine/csWiki): template v0.2.5, latest is v0.3.1 (`copier update`)
+- [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csCamera](https://github.com/cscosine/csCamera)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csCMake](https://github.com/cscosine/csCMake)
+  - `stable` is not at a final release (last final: v0.4.0)
+  - template v0.2.5, latest is v0.3.2 (`copier update`)
+- [csCore](https://github.com/cscosine/csCore)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csfoundation](https://github.com/cscosine/csfoundation)
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csImgTracker](https://github.com/cscosine/csImgTracker)
+  - `stable` is not at a final release (last final: v0.2.1)
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csLie](https://github.com/cscosine/csLie)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csNelson](https://github.com/cscosine/csNelson)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csopencvcpu](https://github.com/cscosine/csopencvcpu)
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - template v0.2.5, latest is v0.3.2 (`copier update`)
+- [csopencvcuda](https://github.com/cscosine/csopencvcuda)
+  - csCMake 1.0.0-rc2, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc11
+- [csoptimization](https://github.com/cscosine/csoptimization)
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csorchestrator](https://github.com/cscosine/csorchestrator)
+  - template v0.2.5, latest is v0.3.2 (`copier update`)
+- [csqt6](https://github.com/cscosine/csqt6)
+  - 8 commit(s) on `main` since v6.12.0-rc1
+  - template v0.2.5, latest is v0.3.2 (`copier update`)
+- [csSkiTracker](https://github.com/cscosine/csSkiTracker)
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - template v0.3.1, latest is v0.3.2 (`copier update`)
+- [csVisOpenGL](https://github.com/cscosine/csVisOpenGL)
+  - template v0.3.0, latest is v0.3.2 (`copier update`)
+- [csWiki](https://github.com/cscosine/csWiki)
+  - template v0.2.5, latest is v0.3.2 (`copier update`)
+- [fmt-eigen](https://github.com/cscosine/fmt-eigen)
+  - template v0.3.1, latest is v0.3.2 (`copier update`)
+- [NamedType](https://github.com/cscosine/NamedType)
+  - template v0.3.1, latest is v0.3.2 (`copier update`)
+- [tclap](https://github.com/cscosine/tclap)
+  - template v0.3.1, latest is v0.3.2 (`copier update`)
+- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs)
+  - 2 commit(s) on `main` since v0.1.0-rc11
+  - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
+  - template v0.3.1, latest is v0.3.2 (`copier update`)
 
 ## Versions (outer projects)
 
@@ -56,16 +81,16 @@ edit: change the repositories, or the script.
 
 ## Dependencies (recipes on `main`)
 
-| Project | csCMake | Providers (pinned) | Builds (inner, ref) |
+| Project | csCMake | Providers (pinned release) | Builds (inner repository at ref) |
 |---|---|---|---|
-| [csfoundation](https://github.com/cscosine/csfoundation) | 1.0.0-rc8 | third_party_base_libs `v0.1.0-rc10`, csqt6 `v6.12.0-rc1` | csCore, csLie, csCamera, csVisOpenGL (`main`) |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | 1.0.0-rc8 | third_party_base_libs `v0.1.0-rc10`, csfoundation `v0.1.0-rc11`, csqt6 `v6.12.0-rc1`, csopencvcpu `v5.1.0-cpu.3-rc1` | – |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | 1.0.0-rc8 | third_party_base_libs `v0.1.0-rc10` | opencv `v5.1.0-cpu.3`, opencv_contrib `v5.1.0-cpu.3` |
-| [csopencvcuda](https://github.com/cscosine/csopencvcuda) | 1.0.0-rc2 | third_party_base_libs `v0.1.0-rc6` | – |
-| [csoptimization](https://github.com/cscosine/csoptimization) | 1.0.0-rc8 | csfoundation `v0.1.0-rc11`, third_party_base_libs `v0.1.0-rc10` | csNelson, csBlockMatrix (`main`) |
+| [csfoundation](https://github.com/cscosine/csfoundation) | 1.0.0-rc8 | [third_party_base_libs `v0.1.0-rc10`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10)<br>[csqt6 `v6.12.0-rc1`](https://github.com/cscosine/csqt6/releases/tag/v6.12.0-rc1) | [csCore `main`](https://github.com/cscosine/csCore/tree/main)<br>[csLie `main`](https://github.com/cscosine/csLie/tree/main)<br>[csCamera `main`](https://github.com/cscosine/csCamera/tree/main)<br>[csVisOpenGL `main`](https://github.com/cscosine/csVisOpenGL/tree/main) |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | 1.0.0-rc8 | [third_party_base_libs `v0.1.0-rc10`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10)<br>[csfoundation `v0.1.0-rc11`](https://github.com/cscosine/csfoundation/releases/tag/v0.1.0-rc11)<br>[csqt6 `v6.12.0-rc1`](https://github.com/cscosine/csqt6/releases/tag/v6.12.0-rc1)<br>[csopencvcpu `v5.1.0-cpu.3-rc1`](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3-rc1) | – |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | 1.0.0-rc8 | [third_party_base_libs `v0.1.0-rc10`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10) | [opencv `v5.1.0-cpu.3`](https://github.com/cscosine/opencv/tree/v5.1.0-cpu.3)<br>[opencv_contrib `v5.1.0-cpu.3`](https://github.com/cscosine/opencv_contrib/tree/v5.1.0-cpu.3) |
+| [csopencvcuda](https://github.com/cscosine/csopencvcuda) | 1.0.0-rc2 | [third_party_base_libs `v0.1.0-rc6`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc6) | – |
+| [csoptimization](https://github.com/cscosine/csoptimization) | 1.0.0-rc8 | [csfoundation `v0.1.0-rc11`](https://github.com/cscosine/csfoundation/releases/tag/v0.1.0-rc11)<br>[third_party_base_libs `v0.1.0-rc10`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10) | [csNelson `main`](https://github.com/cscosine/csNelson/tree/main)<br>[csBlockMatrix `main`](https://github.com/cscosine/csBlockMatrix/tree/main) |
 | [csqt6](https://github.com/cscosine/csqt6) | – | – | – |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | 1.0.0-rc8 | third_party_base_libs `v0.1.0-rc10`, csfoundation `v0.1.0-rc11`, csoptimization `v0.1.0-rc7`, csqt6 `v6.12.0-rc1`, csopencvcpu `v5.1.0-cpu.3-rc1` | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | 1.0.0-rc8 | – | eigen3 `v5.0.1-cs.2`, fmt `v12.2.1-cs.2`, cpptrace `v1.0.4-cs.2`, libassert `v2.2.1-cs.2`, magic_enum `v0.9.8-cs.2`, Catch2 `v3.16.1-cs.2`, tl-expected `v1.3.1-cs.2`, tl-optional `v1.1.0-cs.2`, NamedType `v1.1.0-rc1`, tclap `v1.0.0-rc1`, fmt-eigen `v1.0.0-rc1` |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | 1.0.0-rc8 | [third_party_base_libs `v0.1.0-rc10`](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0-rc10)<br>[csfoundation `v0.1.0-rc11`](https://github.com/cscosine/csfoundation/releases/tag/v0.1.0-rc11)<br>[csoptimization `v0.1.0-rc7`](https://github.com/cscosine/csoptimization/releases/tag/v0.1.0-rc7)<br>[csqt6 `v6.12.0-rc1`](https://github.com/cscosine/csqt6/releases/tag/v6.12.0-rc1)<br>[csopencvcpu `v5.1.0-cpu.3-rc1`](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3-rc1) | – |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | 1.0.0-rc8 | – | [eigen3 `v5.0.1-cs.2`](https://github.com/cscosine/eigen3/tree/v5.0.1-cs.2)<br>[fmt `v12.2.1-cs.2`](https://github.com/cscosine/fmt/tree/v12.2.1-cs.2)<br>[cpptrace `v1.0.4-cs.2`](https://github.com/cscosine/cpptrace/tree/v1.0.4-cs.2)<br>[libassert `v2.2.1-cs.2`](https://github.com/cscosine/libassert/tree/v2.2.1-cs.2)<br>[magic_enum `v0.9.8-cs.2`](https://github.com/cscosine/magic_enum/tree/v0.9.8-cs.2)<br>[Catch2 `v3.16.1-cs.2`](https://github.com/cscosine/Catch2/tree/v3.16.1-cs.2)<br>[tl-expected `v1.3.1-cs.2`](https://github.com/cscosine/tl-expected/tree/v1.3.1-cs.2)<br>[tl-optional `v1.1.0-cs.2`](https://github.com/cscosine/tl-optional/tree/v1.1.0-cs.2)<br>[NamedType `v1.1.0-rc1`](https://github.com/cscosine/NamedType/tree/v1.1.0-rc1)<br>[tclap `v1.0.0-rc1`](https://github.com/cscosine/tclap/tree/v1.0.0-rc1)<br>[fmt-eigen `v1.0.0-rc1`](https://github.com/cscosine/fmt-eigen/tree/v1.0.0-rc1) |
 
 ```mermaid
 flowchart LR
@@ -107,7 +132,7 @@ flowchart LR
 
 ## Project template
 
-Latest template: v0.3.1
+Latest template: v0.3.2
 
 | Repository | Kind | Template | Answers |
 |---|---|---|---|
@@ -188,7 +213,7 @@ Copies of our own (upstream inactive, no syncs; a csCMake project of ours around
 | [fmt-eigen](https://github.com/cscosine/fmt-eigen) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [libassert](https://github.com/cscosine/libassert) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [magic_enum](https://github.com/cscosine/magic_enum) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
-| [NamedType](https://github.com/cscosine/NamedType) | library | public | main | main | fork-branches, inner-branches, tags-prerelease, tags-stable |
+| [NamedType](https://github.com/cscosine/NamedType) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [opencv](https://github.com/cscosine/opencv) | fork | public | main | cpu, cuda, main | fork-branches, tags-prerelease, tags-stable |
 | [opencv_contrib](https://github.com/cscosine/opencv_contrib) | fork | public | main | cpu, cuda, main | fork-branches, tags-prerelease, tags-stable |
 | [tclap](https://github.com/cscosine/tclap) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |

@@ -37,7 +37,7 @@ Linux, Windows and macOS.
 
 <!-- ecosystem:start -->
 
-**Status** (updated nightly): 31 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
+**Status** (updated nightly): 36 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
 
 | Project | What it is | Release | Candidate | CI | Built on |
 |---|---|---|---|---|---|
