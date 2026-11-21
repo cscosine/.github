@@ -5,6 +5,8 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
+- [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks)
+  - last `main` run failure (https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44960306447)
 - [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)
   - template v0.3.0, latest is v0.3.2 (`copier update`)
 - [csCamera](https://github.com/cscosine/csCamera)
@@ -16,37 +18,41 @@ edit: change the repositories, or the script.
   - template v0.3.0, latest is v0.3.2 (`copier update`)
 - [csfoundation](https://github.com/cscosine/csfoundation)
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc12
   - template v0.3.0, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csImgTracker](https://github.com/cscosine/csImgTracker)
   - `stable` is not at a final release (last final: v0.2.1)
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc12
   - template v0.3.0, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csLie](https://github.com/cscosine/csLie)
   - template v0.3.0, latest is v0.3.2 (`copier update`)
 - [csNelson](https://github.com/cscosine/csNelson)
   - template v0.3.0, latest is v0.3.2 (`copier update`)
 - [csopencvcpu](https://github.com/cscosine/csopencvcpu)
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc12
   - template v0.2.5, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda)
   - csCMake 1.0.0-rc2, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0-rc12
 - [csoptimization](https://github.com/cscosine/csoptimization)
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc12
   - template v0.3.0, latest is v0.3.2 (`copier update`)
-- [csorchestrator](https://github.com/cscosine/csorchestrator)
-  - template v0.2.5, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csqt6](https://github.com/cscosine/csqt6)
   - 8 commit(s) on `main` since v6.12.0-rc1
   - template v0.2.5, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csSkiTracker](https://github.com/cscosine/csSkiTracker)
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
-  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc11
+  - pins third_party_base_libs v0.1.0-rc10, latest is v0.1.0-rc12
   - template v0.3.1, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 - [csVisOpenGL](https://github.com/cscosine/csVisOpenGL)
   - template v0.3.0, latest is v0.3.2 (`copier update`)
 - [csWiki](https://github.com/cscosine/csWiki)
@@ -58,14 +64,15 @@ edit: change the repositories, or the script.
 - [tclap](https://github.com/cscosine/tclap)
   - template v0.3.1, latest is v0.3.2 (`copier update`)
 - [third_party_base_libs](https://github.com/cscosine/third_party_base_libs)
-  - 2 commit(s) on `main` since v0.1.0-rc11
   - csCMake 1.0.0-rc8, latest is v1.0.0-rc9
   - template v0.3.1, latest is v0.3.2 (`copier update`)
+  - csorchestrator v0.1.0-rc1, latest is v0.1.0 (answer `csorchestrator_version`, then `copier update`)
 
 ## Versions (outer projects)
 
 | Project | Final | Candidate | Commits on main since | stable |
 |---|---|---|---|---|
+| [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | – | – | – | – |
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | – | – | – | – |
 | [csCMake](https://github.com/cscosine/csCMake) | v0.4.0 | v1.0.0-rc9 | 0 | not at the last final |
 | [csfoundation](https://github.com/cscosine/csfoundation) | – | v0.1.0-rc11 | 0 | – |
@@ -77,7 +84,7 @@ edit: change the repositories, or the script.
 | [csqt6](https://github.com/cscosine/csqt6) | – | v6.12.0-rc1 | 8 | – |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | – | v0.1.0-rc5 | 0 | – |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | – | v0.1.0-rc11 | 2 | – |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | – | v0.1.0-rc12 | 0 | – |
 
 ## Dependencies (recipes on `main`)
 
@@ -146,7 +153,7 @@ Latest template: v0.3.2
 | [csNelson](https://github.com/cscosine/csNelson) | library | v0.3.0 | kind=library |
 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | distribution | v0.2.5 | csorchestrator_version=v0.1.0-rc1, kind=project, workspace_dir=workspace |
 | [csoptimization](https://github.com/cscosine/csoptimization) | distribution | v0.3.0 | csorchestrator_version=v0.1.0-rc1, kind=project, workspace_dir=workspace |
-| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | v0.2.5 | kind=tool |
+| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | v0.3.2 | kind=tool |
 | [csqt6](https://github.com/cscosine/csqt6) | distribution | v0.2.5 | csorchestrator_version=v0.1.0-rc1, kind=project, workspace_dir=workspace |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | application | v0.3.1 | csorchestrator_version=v0.1.0-rc1, kind=project, workspace_dir=workspace |
 | [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | library | v0.3.0 | kind=library |
@@ -191,10 +198,11 @@ Copies of our own (upstream inactive, no syncs; a csCMake project of ours around
 | [.github](https://github.com/cscosine/.github) | meta | public | main | main | – |
 | [Catch2](https://github.com/cscosine/Catch2) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [cpptrace](https://github.com/cscosine/cpptrace) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
+| [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | tool | public | main | main | outer-main, tags-prerelease, tags-stable |
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | tool | public | main | main | outer-main, tags-prerelease, tags-stable |
 | [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [csCamera](https://github.com/cscosine/csCamera) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
-| [csCMake](https://github.com/cscosine/csCMake) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
+| [csCMake](https://github.com/cscosine/csCMake) | tool | public | main | feature/finals, main, stable | outer-main, tags-prerelease, tags-stable |
 | [csCore](https://github.com/cscosine/csCore) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
 | [csfoundation](https://github.com/cscosine/csfoundation) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [csImgTracker](https://github.com/cscosine/csImgTracker) | application | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
