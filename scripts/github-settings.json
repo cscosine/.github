@@ -20,6 +20,8 @@
       "csSkiTracker"
     ],
     "library": [
+        "fmt-eigen",
+        "tclap",
       "csBlockMatrix",
       "csCamera",
       "csCore",
@@ -32,13 +34,11 @@
       "cpptrace",
       "eigen3",
       "fmt",
-      "fmt-eigen",
       "libassert",
       "magic_enum",
       "NamedType",
       "opencv",
       "opencv_contrib",
-      "tclap",
       "tl-expected",
       "tl-optional"
     ],
