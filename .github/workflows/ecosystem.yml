@@ -1,11 +1,15 @@
 name: ecosystem
 
-# Regenerated from GitHub, nightly and on demand after a release: the projects section of the organisation page
+# Regenerated from GitHub, nightly, when the generator changes, and on demand after a release: the projects section of the organisation page
 # (profile/README.md) and ECOSYSTEM.md (every repository, versions, dependencies, what needs attention).
 on:
   schedule:
     - cron: "17 4 * * *"
   workflow_dispatch:
+  # the generator or its inputs changed (its own commit touches neither, so no loop)
+  push:
+    branches: [main]
+    paths: [scripts/ecosystem.py, scripts/ecosystem_report.py, scripts/ecosystem.json, scripts/github-settings.json]
 
 permissions:
   contents: write
