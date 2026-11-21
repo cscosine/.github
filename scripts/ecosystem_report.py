@@ -108,6 +108,26 @@ def link(org: str, repo: str, sub: str = "") -> str:
     return f"[{repo}](https://github.com/{org}/{repo}{sub})"
 
 
+def grouped(items: list[str]) -> list[str]:
+    """The attention items as a nested list: one entry per repository (by name), its items below it."""
+    by_repo: dict[str, list[str]] = {}
+    for item in items:
+        head, sep, rest = item.partition(": ")
+        if not sep:
+            head, rest = item, ""
+        by_repo.setdefault(head, []).append(rest)
+    lines = []
+    for head in sorted(by_repo, key=lambda h: h.lower()):
+        lines.append(f"- {head}")
+        lines += [f"  - {r}" for r in by_repo[head] if r]
+    return lines
+
+
+def at(org: str, repo: str, ref: str, kind: str) -> str:
+    """`repo ref`, linked to the repository at that ref (`kind`: "tree" for a tag or branch, "releases/tag")."""
+    return f"[{repo} `{ref}`](https://github.com/{org}/{repo}/{kind}/{ref})"
+
+
 def main() -> int:
     cfg = json.loads(SETTINGS.read_text())
     org = cfg["org"]
@@ -176,7 +196,7 @@ def main() -> int:
 
     # --- dependencies (recipes on main) and drift of the pins
     cscmake_latest = latest.get("csCMake")
-    drows = ["| Project | csCMake | Providers (pinned) | Builds (inner, ref) |", "|---|---|---|---|"]
+    drows = ["| Project | csCMake | Providers (pinned release) | Builds (inner repository at ref) |", "|---|---|---|---|"]
     edges: set[tuple[str, str]] = set()
     for repo in sorted(outer, key=str.lower):
         proj = file_on_main(org, repo, f"{repo}_project.py") or ""
@@ -206,9 +226,11 @@ def main() -> int:
             newer_tag = newer_fork_tag(fref, tags(org, r))
             if newer_tag:
                 attention.append(f"{link(org, repo)}: builds {r} `{fref}`, newer is {newer_tag}")
-        inner_txt = ", ".join(f"{r} `{frefs[r]}`" if r in frefs else r for r in inner) or "–"
-        drows.append(f"| {link(org, repo)} | {cm} | {', '.join(f'{d} `{t}`' for d, t in pins) or '–'} | "
-                     f"{inner_txt}{' (`' + ref.group(1) + '`)' if ref and inner else ''} |")
+        # one line per provider / inner repository, each linked at the version shown (release, or tree at tag / branch)
+        common = ref.group(1) if ref else "main"
+        inner_txt = "<br>".join(at(org, r, frefs.get(r, common), "tree") for r in inner) or "–"
+        pins_txt = "<br>".join(at(org, d, t, "releases/tag") for d, t in pins) or "–"
+        drows.append(f"| {link(org, repo)} | {cm} | {pins_txt} | {inner_txt} |")
 
     # --- forks: base, our tags, newer upstream
     frows = ["| Fork | Upstream | Base | Our commits | Our tags on it | Newer upstream releases |",
@@ -293,7 +315,7 @@ def main() -> int:
         "",
         "## Needs attention",
         "",
-        *([f"- {a}" for a in attention] or ["Nothing."]),
+        *(grouped(attention) or ["Nothing."]),
         "",
         "## Versions (outer projects)",
         "",

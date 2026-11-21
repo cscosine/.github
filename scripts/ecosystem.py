@@ -101,7 +101,7 @@ def health(org: str) -> str:
         return f"Full status of every repository: [ECOSYSTEM.md]({url})."
     text = REPORT.read_text()
     section = text.split("## Needs attention", 1)[1].split("\n## ", 1)[0] if "## Needs attention" in text else ""
-    count = sum(1 for line in section.splitlines() if line.startswith("- "))
+    count = sum(1 for line in section.splitlines() if line.startswith("  - "))  # the items, under their repository
     state = "everything up to date" if count == 0 else f"{count} item(s) need attention"
     return (f"**Status** (updated nightly): {state} · every repository, versions, dependencies, forks, template: "
             f"[ECOSYSTEM.md]({url})")
