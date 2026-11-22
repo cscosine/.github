@@ -448,7 +448,7 @@ def main() -> int:
         if main_cell or tag_cell or stable_cell:
             cirows.append(f"| {link(org, repo)} | {main_cell or '–'} | {tag_cell or '–'} | {stable_cell or '–'} |")
 
-    qrows = ["| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 runs) |", "|---|---|---|---|"]
+    qrows = ["| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 successful runs) |", "|---|---|---|---|"]
     # the queue starts on Sunday (csqt6); the daily runs last
     for (d, h, m), repo, wf, dur in sorted(queue, key=lambda q: ((q[0][0] + 1) % 7 if q[0][0] < 7 else 7, *q[0][1:], q[1].lower())):
         qrows.append(f"| {'Daily' if d == 7 else DAYS[d]} {h:02d}:{m:02d} | {link(org, repo)} | {wf} | {dur} |")
