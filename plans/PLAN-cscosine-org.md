@@ -203,7 +203,7 @@ each repository's `CLAUDE.md` as it is touched.
 
 | Branch | Where | Meaning |
 |---|---|---|
-| `main` | every repository, default | The trunk; built on push and weekly (schedule): catches inner changes and runner-image changes |
+| `main` | every repository, default | The trunk; built on push and weekly (schedule, one project at a time: the weekly queue, §8): catches inner changes and runner-image changes |
 | `stable` | outer repositories | The last final release, fast-forwarded to each final tag; never built |
 | `feature/*`, `fix/*` | any | Work; CI on demand (dispatch) |
 | `cpu`, `cuda` | the opencv fork | `main` + the variant's setup |
@@ -564,6 +564,16 @@ inner ones included (Actions enabled on the fmt-eigen / NamedType / tclap forks 
 (each workflow on `main`, the newest tag build, `stable`); template v1.1.0 everywhere, versions bumped (csCMake 1.0.1,
 csorchestrator, third_party_base_libs, csfoundation, csoptimization, csSkiTracker 0.1.1, csImgTracker 0.2.3, the
 libraries + patch; not csWiki, csqt6, csopencvcpu); the main builds the pushes started cancelled.
+
+**Weekly queue: done (2026-11-22).** The weekly runs on `main` no longer start together (each outer build is about 19
+jobs, 4 on macOS: close to the org limits of 20 jobs and 5 macOS runners). A queue in dependency order, CET (the crons
+are UTC, +1 h in summer): cs-pre-commit-hooks and the template Sunday 20:00, the tools (csCMake, csorchestrator,
+csWiki) 20:15, csqt6 20:50; Monday third_party_base_libs 01:15, csopencvcpu 02:00, csfoundation 04:35, csoptimization
+05:10, csImgTracker 05:40, csSkiTracker 06:10; the ecosystem update daily at 07:00; csopencvcuda (out of the chain)
+Sunday 14:30. `schedule=` in each recipe, the tools' `ci.yml` from the template (v1.1.4, rule in
+`cscosine-rules.md`, all 19 repositories); ECOSYSTEM.md shows the queue (Weekly queue) and flags an outer project on
+csorchestrator's default schedule. The weekly runs use pinned releases: the order spreads the load and makes failures
+read top-down, no run consumes another's output.
 
 **Next (2026-11-22):** csopencvcuda back into the chain; S4 (tool / library plugins), S7, S6 when ready.
 

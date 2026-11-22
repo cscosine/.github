@@ -539,7 +539,8 @@ later.
   weekly schedule on `main` (done 2026-11-20).
 - Later, an optimisation: a tag republishes the build of its commit (the `dev` run, its artifacts and the inner
   commits it recorded) instead of rebuilding; the final tag republishes the rc. Not a rule: a tag may always build.
-- Schedule per project (e.g. monthly for csqt6).
+- Schedule per project: done 2026-11-22 (`schedule=` in each recipe, the weekly queue of `PLAN-cscosine-org.md` §8;
+  csqt6 stays weekly, Sunday evening). Later, if fixed times prove fragile: chain the queue with `workflow_run`.
 - **Backlog from the organisation plan's minimal R0** (2026-11-21; `PLAN-cscosine-org.md` §7.3, §8 S2): a
   `pull_request` trigger for `main` in the generated workflows; a final `ci-ok` job (`needs:` all, `if: always()`)
   as the one stable check a ruleset can require; build once per commit (the republish above). Until then `main`
