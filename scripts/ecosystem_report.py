@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate ECOSYSTEM.md: every cscosine repository, versions, dependencies, and what needs attention.
+"""Generate ECOSYSTEM.md: every cscosine repository, CI, versions, dependencies, and what needs attention.
 
     python3 scripts/ecosystem_report.py            # writes ECOSYSTEM.md at the repository root
     python3 scripts/ecosystem_report.py --stdout
@@ -126,6 +126,68 @@ def grouped(items: list[str]) -> list[str]:
 def at(org: str, repo: str, ref: str, kind: str) -> str:
     """`repo ref`, linked to the repository at that ref (`kind`: "tree" for a tag or branch, "releases/tag")."""
     return f"[{repo} `{ref}`](https://github.com/{org}/{repo}/{kind}/{ref})"
+
+
+def _real(runs: list[dict]) -> list[dict]:
+    """Completed runs that are not cancelled or skipped (a release cancels the `main` run its tag build replaces)."""
+    return [r for r in runs if r["status"] == "completed" and r["conclusion"] not in ("cancelled", "skipped")]
+
+
+def _mark(run: dict, label: str) -> str:
+    return f"{'✅' if run['conclusion'] == 'success' else '❌'} [{label}]({run['html_url']})"
+
+
+def ci_status(org: str, repo: str, outer_repo: bool, attention: list[str]) -> tuple[str, str, str]:
+    """The CI cells of a repository: the last real run of each workflow on `main`, the builds of its newest tag (outer
+    repositories; failed -> attention, as no newer tag built green), the last run of each workflow on `stable`
+    (failed -> attention). Each run a mark linking to it, labelled by the workflow file."""
+    wfs = (api(f"repos/{org}/{repo}/actions/workflows?per_page=100") or {}).get("workflows", [])  # type: ignore[union-attr]
+    # GitHub keeps listing a deleted workflow file: only the files on main, and the Pages deployment (dynamic; not
+    # Dependabot's dependency graph)
+    on_main = {f["path"] for f in api(f"repos/{org}/{repo}/contents/.github/workflows?ref=main") or []}  # type: ignore[union-attr]
+    wfs = [w for w in wfs if w["path"] in on_main or w["path"].startswith("dynamic/pages/")]  # type: ignore[index]
+    name = {w["id"]: w["path"].rsplit("/", 1)[-1].removesuffix(".yml") for w in wfs}  # type: ignore[index]
+    main_marks = []
+    for w in sorted(wfs, key=lambda w: name[w["id"]].lower()):  # type: ignore[index]
+        if w["state"] != "active":  # type: ignore[index]
+            continue
+        runs = api(f"repos/{org}/{repo}/actions/workflows/{w['id']}/runs?branch=main&per_page=20") or {}  # type: ignore[index]
+        done = _real(runs.get("workflow_runs", []))  # type: ignore[union-attr]
+        if done:
+            main_marks.append(_mark(done[0], name[w["id"]]))  # type: ignore[index]
+            if done[0]["conclusion"] != "success":
+                attention.append(f"{link(org, repo)}: `main` {name[w['id']]} {done[0]['conclusion']} "  # type: ignore[index]
+                                 f"({done[0]['html_url']})")
+    tag_cell = ""
+    if outer_repo:
+        # a tag as it is now (name and commit): not the runs of a deleted tag of the same name, nor of old workflows
+        existing = {t["name"]: t["commit"]["sha"] for t in api(f"repos/{org}/{repo}/tags?per_page=100") or []}  # type: ignore[union-attr]
+        pushes = (api(f"repos/{org}/{repo}/actions/runs?event=push&per_page=100") or {}).get("workflow_runs", [])  # type: ignore[union-attr]
+        tag_runs = [r for r in _real(pushes) if re.match(r"v\d", r["head_branch"] or "") and r["workflow_id"] in name
+                    and existing.get(r["head_branch"]) == r["head_sha"]]
+        if tag_runs:
+            newest = max(tag_runs, key=lambda r: r["created_at"])["head_branch"]
+            of_tag: dict[int, dict] = {}
+            for r in tag_runs:  # newest first: the last run of each workflow for that tag
+                if r["head_branch"] == newest:
+                    of_tag.setdefault(r["workflow_id"], r)
+            tag_cell = f"`{newest}` " + " ".join(_mark(r, name[r["workflow_id"]]) for r in of_tag.values())
+            failed = [name[r["workflow_id"]] for r in of_tag.values() if r["conclusion"] != "success"]
+            if failed:
+                attention.append(f"{link(org, repo)}: build of the newest tag {newest} failed ({', '.join(failed)}), "
+                                 "no newer tag")
+    stable_marks = []
+    stable = (api(f"repos/{org}/{repo}/actions/runs?branch=stable&per_page=30") or {}).get("workflow_runs", [])  # type: ignore[union-attr]
+    last: dict[int, dict] = {}
+    for r in _real(stable):
+        if r["workflow_id"] in name:
+            last.setdefault(r["workflow_id"], r)
+    for r in last.values():
+        stable_marks.append(_mark(r, name[r["workflow_id"]]))
+        if r["conclusion"] != "success":
+            attention.append(f"{link(org, repo)}: `stable` {name[r['workflow_id']]} {r['conclusion']} "
+                             f"({r['html_url']})")
+    return "<br>".join(main_marks), tag_cell, "<br>".join(stable_marks)
 
 
 def main() -> int:
@@ -322,12 +384,13 @@ def main() -> int:
             attention.append(f"{link(org, repo)}: {cmp_['ahead_by']} commit(s) on `main` since {finals[-1]}, "  # type: ignore[index]
                              f"version still {m.group(1)} (bump it: CONTRIBUTING.md, Versions)")
 
-    # --- CI of main
-    for repo in sorted(outer, key=str.lower):
-        runs = api(f"repos/{org}/{repo}/actions/runs?branch=main&per_page=10") or {}
-        done = [r for r in runs.get("workflow_runs", []) if r["status"] == "completed"]  # type: ignore[union-attr]
-        if done and done[0]["conclusion"] not in ("success", "skipped", "cancelled"):
-            attention.append(f"{link(org, repo)}: last `main` run {done[0]['conclusion']} ({done[0]['html_url']})")
+    # --- CI: every repository with workflows (tools, distributions, applications, libraries: the checks everywhere)
+    ci_repos = [r for r, k in kinds.items() if k in ("tool", "distribution", "application", "library")]
+    cirows = ["| Repository | `main` (each workflow) | Last tag build | `stable` |", "|---|---|---|---|"]
+    for repo in sorted(ci_repos, key=str.lower):
+        main_cell, tag_cell, stable_cell = ci_status(org, repo, outer_repo=repo in outer, attention=attention)
+        if main_cell or tag_cell or stable_cell:
+            cirows.append(f"| {link(org, repo)} | {main_cell or '–'} | {tag_cell or '–'} | {stable_cell or '–'} |")
 
     graph = ["```mermaid", "flowchart LR", *[f"  {a} --> {b}" for a, b in sorted(edges)], "```"]
     doc = "\n".join([
@@ -339,6 +402,13 @@ def main() -> int:
         "## Needs attention",
         "",
         *(grouped(attention) or ["Nothing."]),
+        "",
+        "## CI",
+        "",
+        "The last real run (completed, not cancelled or skipped) of each workflow on `main`; the builds of the newest",
+        "tag that still exists (outer repositories); the last run of each workflow on `stable`.",
+        "",
+        *cirows,
         "",
         "## Versions (outer projects)",
         "",
