@@ -1,6 +1,6 @@
 # TODO: organisation-level content
 
-Status 2026-11-22. Larger work is in the plans (`PLAN-cscosine-org.md`); this is the list of small items.
+Status 2026-11-22 (evening). Larger work is in the plans (`PLAN-cscosine-org.md`); this is the list of small items.
 
 - [x] Public `cscosine/.github`: org page, logo and mark, avatars, `CONTRIBUTING.md`, plugin marketplace, plans, rules,
       licensing, the generated overview (`.github-private` retired).
@@ -21,3 +21,10 @@ Status 2026-11-22. Larger work is in the plans (`PLAN-cscosine-org.md`); this is
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.
+- [ ] Stale docs found during S4 (documentation only, `[skip ci]`): csfoundation `README.md` still names
+      `csfoundation/csorchestrator_config.py` and constants that no longer exist (`CSFOUNDATION_PROJECT_VERSION`,
+      `THIRD_PARTY_LIBRARY_DEPENDENCIES`, ...: now `csfoundation_config.py`); csorchestrator `README.md` "Using the
+      package" example is outdated (compare with a real `*_project.py`).
+- [ ] csfoundation `csfoundation_project.py`: `phase_name_suffix="csoptimization dependencies"` (copy-paste); the fix
+      regenerates the workflow (a build): with the next real csfoundation change.
+- [ ] Generated plans index (last item of S5): `plans/README.md` written from the status lines of the plans.
