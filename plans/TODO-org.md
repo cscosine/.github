@@ -18,6 +18,9 @@ Status 2026-11-22 (evening). Larger work is in the plans (`PLAN-cscosine-org.md`
 - [ ] **Every repository**: `CITATION.cff`; the copyright line (`PLAN-licensing.md`, L1).
 - [ ] csopencvcuda: back into the chain, then its final; the only repository ECOSYSTEM.md still flags. Now a plan:
       `PLAN-csopencvcuda.md` (C0: rc1 built, to check; low priority, unused for now).
+- [ ] **VS Code as an IDE** on the build folders of the workspace, for every C++ repository (template `.vscode/`, the
+      workspace file written by csCMake or csorchestrator, `open-code.sh` / `.ps1`): now a plan, `PLAN-vscode.md`
+      (experiment positive on csLie `feature/vscode-setup`; V1–V9, not scheduled).
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.
