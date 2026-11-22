@@ -1,5 +1,6 @@
 {
   "org": "cscosine",
+  "upstream_versioned": ["csqt6", "csopencvcpu", "csopencvcuda"],
   "outside_template": ["cs-project-template", "cs-pre-commit-hooks"],
   "groups": [
     {

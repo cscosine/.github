@@ -47,11 +47,12 @@ version to be `X.Y.Z` already.
   | A new feature, compatible | minor (1.4.2 → 1.5.0) | patch (0.1.3 → 0.1.4) |
   | A fix | patch (1.4.2 → 1.4.3) | patch (0.1.3 → 0.1.4) |
 
-- **Exceptions**: a distribution of a third-party product follows it (csqt6 = the Qt version); csopencvcpu /
+- **Exceptions**: a distribution of a third-party product carries its version plus a level of ours: csqt6
+  `vX.Y.Z-cs.N` (the Qt version; `-cs.N` for each rebuild with changes of ours, none on the first build); csopencvcpu /
   csopencvcuda add their level as a suffix (`v5.1.0-cpu.3` → `-cpu.4`); forks follow upstream (`vX.Y.Z-cs.N`, `N` + 1
   for each change of ours).
 - **Checked**: ECOSYSTEM.md flags a repository with commits on `main` since its last final tag whose version is still
-  that tag's (suffix tags excepted).
+  that tag's (not the distributions versioned by their upstream product: their level is in the tag).
 
 ## What a pull request is
 

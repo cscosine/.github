@@ -301,10 +301,12 @@ def main() -> int:
 
     # --- version bump: a repository with commits on main since its last final release must already declare the next
     # version (bumped in the first commit that changes it: CONTRIBUTING.md, "Versions"). Its version: pyproject.toml
-    # (tools, distributions, applications), project(... VERSION) of the top CMakeLists.txt (libraries). A tag with a
-    # suffix of ours (csopencvcpu v5.1.0-cpu.3: the level is the suffix) is not checked.
-    for repo in sorted((r for r, k in kinds.items() if k in ("tool", "distribution", "application", "library")),
-                       key=str.lower):
+    # (tools, distributions, applications), project(... VERSION) of the top CMakeLists.txt (libraries). Not checked:
+    # the distributions versioned by their upstream product (ecosystem.json `upstream_versioned`: csqt6 v6.12.0-cs.N,
+    # csopencvcpu v5.1.0-cpu.N), whose level of ours is in the tag only.
+    upstream_versioned = set(public_cfg.get("upstream_versioned", []))
+    for repo in sorted((r for r, k in kinds.items() if k in ("tool", "distribution", "application", "library")
+                        and r not in upstream_versioned), key=str.lower):
         finals = sorted((t for t in tags(org, repo) if re.fullmatch(r"v\d+\.\d+\.\d+", t)), key=vkey)
         if not finals:
             continue
