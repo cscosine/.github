@@ -8,6 +8,7 @@ The plans of the organisation and their progress: each plan has a status line, i
 |---|---|---|
 | [PLAN-cscosine-org.md](PLAN-cscosine-org.md): templates, rules, skills, GitHub practices | approved, in progress | S4–S7 (S4, S5 started; finals round, S8 and the weekly queue done 2026-11-22; next: csopencvcuda back into the chain) |
 | [PLAN-licensing.md](PLAN-licensing.md): the open points of the licensing policy ([LICENSING.md](../LICENSING.md)) | open | L1, L3, L4, L6–L8 |
+| [PLAN-csopencvcuda.md](PLAN-csopencvcuda.md): csopencvcuda back into the chain, then build time, CUDA install, Jetson | in progress | C0 (doing), C1–C6 |
 | [PLAN-csorchestrator-architecture.md](PLAN-csorchestrator-architecture.md): csorchestrator as a mature framework | to approve | R0–R9 |
 
 This table is written by hand for now; a script will generate it from the plans (step S5 of `PLAN-cscosine-org.md`).
