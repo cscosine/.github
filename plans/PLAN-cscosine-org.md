@@ -549,6 +549,19 @@ also gives agents the rules before they start touching many repositories.
 **Order (2026-11-20):** S4 and S5 now; then S3 with the minimal R0 (S2); then the finals round (csCMake `v1.0.0`,
 every project's final, csorchestrator `v0.1.0` pinned); the csorchestrator rewrite (S6) whenever ready.
 
+**Finals round: done (2026-11-22).** Two passes (an rc train, then the finals bottom-up), everything on
+cs-project-template v1.0.0: cs-pre-commit-hooks v1.0.0 (new: the CMake hooks, out of csCMake, which broke the
+csCMake ↔ template cycle; the template's CI uses csorchestrator `stable`, which broke the csorchestrator ↔ template
+one), csCMake v1.0.0, csorchestrator v0.1.0, the copies (fmt-eigen v1.0.0, tclap v1.0.0, NamedType v1.1.0),
+third_party_base_libs v0.1.0, csqt6 v6.12.0, csopencvcpu v5.1.0-cpu.3, csfoundation and csoptimization v0.1.0 (their
+six libraries tagged v0.1.0, Q3 A), csImgTracker v0.2.2, csSkiTracker v0.1.0; `stable` on every final. ECOSYSTEM.md:
+only csopencvcuda (set aside) needs attention. Also decided then: versions (CONTRIBUTING.md "Versions", the bump checked
+in ECOSYSTEM.md; csqt6 `vX.Y.Z-cs.N` from now), the org page's build status (the last real build, not GitHub's
+badge).
+
+**Next (2026-11-22):** S8 (checks in CI, CI results in ECOSYSTEM.md, template v1.1.0 with the version rule); then
+csopencvcuda back into the chain; S4 (tool / library plugins), S7, S6 when ready.
+
 **csorchestrator or Copier first?** (earlier reasoning) csorchestrator R0, then the Copier base layer: R0 is the largest maturity gap
 (no releases, unreproducible workflows) and the base layer of the template does not depend on it, so they can overlap;
 but the C++ layers of the template must wait for R4, otherwise they template an API that is about to change. Copier is

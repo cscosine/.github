@@ -1,6 +1,6 @@
 # TODO: organisation-level content
 
-Status 2026-11-20. Larger work is in the plans (`PLAN-cscosine-org.md`); this is the list of small items.
+Status 2026-11-22. Larger work is in the plans (`PLAN-cscosine-org.md`); this is the list of small items.
 
 - [x] Public `cscosine/.github`: org page, logo and mark, avatars, `CONTRIBUTING.md`, plugin marketplace, plans, rules,
       licensing, the generated overview (`.github-private` retired).
@@ -16,6 +16,8 @@ Status 2026-11-20. Larger work is in the plans (`PLAN-cscosine-org.md`); this is
       `THIRD_PARTY_NOTICES` generated into every deployment; a check that fails when a GPL-only Qt module is installed;
       later an SBOM per release.
 - [ ] **Every repository**: `CITATION.cff`; the copyright line (`PLAN-licensing.md`, L1).
+- [ ] csopencvcuda: back into the chain (csCMake v1.0.0, third_party_base_libs v0.1.0, template v1.0.0), then its
+      final; the only repository ECOSYSTEM.md still flags.
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.
