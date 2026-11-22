@@ -5,47 +5,9 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
-- [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csCamera](https://github.com/cscosine/csCamera)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csCMake](https://github.com/cscosine/csCMake)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csCore](https://github.com/cscosine/csCore)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csfoundation](https://github.com/cscosine/csfoundation)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csImgTracker](https://github.com/cscosine/csImgTracker)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csLie](https://github.com/cscosine/csLie)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csNelson](https://github.com/cscosine/csNelson)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csopencvcpu](https://github.com/cscosine/csopencvcpu)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda)
   - csCMake 1.0.0-rc2, latest is v1.0.0
   - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0
-- [csoptimization](https://github.com/cscosine/csoptimization)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csorchestrator](https://github.com/cscosine/csorchestrator)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csqt6](https://github.com/cscosine/csqt6)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csSkiTracker](https://github.com/cscosine/csSkiTracker)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csVisOpenGL](https://github.com/cscosine/csVisOpenGL)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [csWiki](https://github.com/cscosine/csWiki)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [fmt-eigen](https://github.com/cscosine/fmt-eigen)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [NamedType](https://github.com/cscosine/NamedType)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [tclap](https://github.com/cscosine/tclap)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
-- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs)
-  - template v1.0.0, latest is v1.1.0 (`copier update`)
 
 ## CI
 
@@ -55,18 +17,50 @@ tag that still exists (outer repositories); the last run of each workflow on `st
 | Repository | `main` (each workflow) | Last tag build | `stable` |
 |---|---|---|---|
 | [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | ✅ [ci](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44960512898) | `v1.0.0` ✅ [release](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44982576787) | – |
-| [cs-project-template](https://github.com/cscosine/cs-project-template) | ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/45019057905) | `v1.0.0` ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/44983059410) | – |
-| [csCMake](https://github.com/cscosine/csCMake) | ✅ [ci](https://github.com/cscosine/csCMake/actions/runs/44928988629)<br>✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44928988586)<br>✅ [smoke](https://github.com/cscosine/csCMake/actions/runs/44928988602) | `v1.0.0` ✅ [release](https://github.com/cscosine/csCMake/actions/runs/44985202613) | ✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44985204900) |
-| [csfoundation](https://github.com/cscosine/csfoundation) | ✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44931629150) | `v0.1.0` ✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44999719820) | – |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/44917172567) | `v0.2.2` ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/45002938555) | – |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44916518930) | `v5.1.0-cpu.3` ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) | – |
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/45019057905) | `v1.1.1` ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/45023075302) | – |
+| [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | ✅ [checks](https://github.com/cscosine/csBlockMatrix/actions/runs/45019743666) | – | – |
+| [csCamera](https://github.com/cscosine/csCamera) | ✅ [checks](https://github.com/cscosine/csCamera/actions/runs/45019734481) | – | – |
+| [csCMake](https://github.com/cscosine/csCMake) | ✅ [checks](https://github.com/cscosine/csCMake/actions/runs/45019817473)<br>✅ [ci](https://github.com/cscosine/csCMake/actions/runs/44928988629)<br>✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44928988586)<br>✅ [smoke](https://github.com/cscosine/csCMake/actions/runs/44928988602) | `v1.0.0` ✅ [release](https://github.com/cscosine/csCMake/actions/runs/44985202613) | ✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44985204900) |
+| [csCore](https://github.com/cscosine/csCore) | ✅ [checks](https://github.com/cscosine/csCore/actions/runs/45019728048) | – | – |
+| [csfoundation](https://github.com/cscosine/csfoundation) | ✅ [checks](https://github.com/cscosine/csfoundation/actions/runs/45019767768)<br>✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44931629150) | `v0.1.0` ✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44999719820) | – |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | ✅ [checks](https://github.com/cscosine/csImgTracker/actions/runs/45019774982)<br>✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/44917172567) | `v0.2.2` ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/45002938555) | – |
+| [csLie](https://github.com/cscosine/csLie) | ✅ [checks](https://github.com/cscosine/csLie/actions/runs/45019730763) | – | – |
+| [csNelson](https://github.com/cscosine/csNelson) | ✅ [checks](https://github.com/cscosine/csNelson/actions/runs/45019740215) | – | – |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | ✅ [checks](https://github.com/cscosine/csopencvcpu/actions/runs/45019763084)<br>✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44916518930) | `v5.1.0-cpu.3` ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) | – |
 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | ✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/43262723471) | `v5.0.1-rc3` ✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/43262753895) | – |
-| [csoptimization](https://github.com/cscosine/csoptimization) | ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/44917041840) | `v0.1.0` ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/45001631628) | – |
-| [csorchestrator](https://github.com/cscosine/csorchestrator) | ✅ [ci](https://github.com/cscosine/csorchestrator/actions/runs/44984084169) | – | – |
-| [csqt6](https://github.com/cscosine/csqt6) | ✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44916504733) | `v6.12.0` ✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44984322898) | – |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | ✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/44917189180) | `v0.1.0` ✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/45002986356) | – |
-| [csWiki](https://github.com/cscosine/csWiki) | ✅ [ci](https://github.com/cscosine/csWiki/actions/runs/45003738124)<br>✅ [pages-build-deployment](https://github.com/cscosine/csWiki/actions/runs/45003738175) | – | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | ✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44916490041) | `v0.1.0` ✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44989560064) | – |
+| [csoptimization](https://github.com/cscosine/csoptimization) | ✅ [checks](https://github.com/cscosine/csoptimization/actions/runs/45019771497)<br>✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/44917041840) | `v0.1.0` ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/45001631628) | – |
+| [csorchestrator](https://github.com/cscosine/csorchestrator) | ✅ [checks](https://github.com/cscosine/csorchestrator/actions/runs/45019821512)<br>✅ [ci](https://github.com/cscosine/csorchestrator/actions/runs/44984084169) | – | – |
+| [csqt6](https://github.com/cscosine/csqt6) | ✅ [checks](https://github.com/cscosine/csqt6/actions/runs/45019759619)<br>✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44916504733) | `v6.12.0` ✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44984322898) | – |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | ✅ [checks](https://github.com/cscosine/csSkiTracker/actions/runs/45019779722)<br>✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/44917189180) | `v0.1.0` ✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/45002986356) | – |
+| [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | ✅ [checks](https://github.com/cscosine/csVisOpenGL/actions/runs/45019737024) | – | – |
+| [csWiki](https://github.com/cscosine/csWiki) | ✅ [checks](https://github.com/cscosine/csWiki/actions/runs/45019825120)<br>✅ [ci](https://github.com/cscosine/csWiki/actions/runs/45003738124)<br>✅ [pages-build-deployment](https://github.com/cscosine/csWiki/actions/runs/45023685131) | – | – |
+| [fmt-eigen](https://github.com/cscosine/fmt-eigen) | ✅ [checks](https://github.com/cscosine/fmt-eigen/actions/runs/45020694203) | – | – |
+| [NamedType](https://github.com/cscosine/NamedType) | ✅ [checks](https://github.com/cscosine/NamedType/actions/runs/45020697446) | – | – |
+| [tclap](https://github.com/cscosine/tclap) | ✅ [checks](https://github.com/cscosine/tclap/actions/runs/45020700670) | – | – |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | ✅ [checks](https://github.com/cscosine/third_party_base_libs/actions/runs/45019756960)<br>✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44916490041) | `v0.1.0` ✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44989560064) | – |
+
+### Weekly queue
+
+The scheduled runs on `main`, one project at a time (no shared runners): csqt6 on Sunday evening, the base
+repositories, the build train in dependency order, the ecosystem update in the morning. From the `schedule:`
+crons on `main` (UTC; shown in local time, so they move by an hour with summer time). A new outer project gets
+its own slot after the projects it depends on.
+
+| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 runs) |
+|---|---|---|---|
+| Sun 15:00 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | csopencvcuda | 3 h 11 m |
+| Sun 21:07 | [csqt6](https://github.com/cscosine/csqt6) | csqt6 | 2 h 46 m |
+| Mon 01:07 | [cs-project-template](https://github.com/cscosine/cs-project-template) | ci | 2 m |
+| Mon 01:07 | [csCMake](https://github.com/cscosine/csCMake) | ci | 3 m |
+| Mon 01:07 | [csorchestrator](https://github.com/cscosine/csorchestrator) | ci | 5 m |
+| Mon 01:07 | [csWiki](https://github.com/cscosine/csWiki) | ci | 2 m |
+| Mon 01:45 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | third_party_base_libs | 20 m |
+| Mon 02:30 | [csfoundation](https://github.com/cscosine/csfoundation) | csfoundation | 18 m |
+| Mon 03:00 | [csoptimization](https://github.com/cscosine/csoptimization) | csoptimization | 14 m |
+| Mon 03:20 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | csopencvcpu | 1 h 52 m |
+| Mon 06:15 | [csImgTracker](https://github.com/cscosine/csImgTracker) | csImgTracker | 7 m |
+| Mon 06:45 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | csSkiTracker | 11 m |
+| Daily 08:00 | [.github](https://github.com/cscosine/.github) | ecosystem | 1 m |
 
 ## Versions (outer projects)
 
@@ -74,17 +68,17 @@ tag that still exists (outer repositories); the last run of each workflow on `st
 |---|---|---|---|---|
 | [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | v1.0.0 | – | 0 | at the last final |
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | – | – | – | – |
-| [csCMake](https://github.com/cscosine/csCMake) | v1.0.0 | – | 0 | at the last final |
-| [csfoundation](https://github.com/cscosine/csfoundation) | v0.1.0 | – | 0 | at the last final |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | v0.2.2 | – | 0 | at the last final |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | v5.1.0-cpu.3 | – | 0 | at the last final |
-| [csopencvcuda](https://github.com/cscosine/csopencvcuda) | – | v5.0.1-rc3 | 0 | – |
-| [csoptimization](https://github.com/cscosine/csoptimization) | v0.1.0 | – | 0 | at the last final |
+| [csCMake](https://github.com/cscosine/csCMake) | v1.0.0 | – | 3 | at the last final |
+| [csfoundation](https://github.com/cscosine/csfoundation) | v0.1.0 | – | 3 | at the last final |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | v0.2.2 | – | 3 | at the last final |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | v5.1.0-cpu.3 | – | 3 | at the last final |
+| [csopencvcuda](https://github.com/cscosine/csopencvcuda) | – | v5.0.1-rc3 | 2 | – |
+| [csoptimization](https://github.com/cscosine/csoptimization) | v0.1.0 | – | 3 | at the last final |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | – | – | – | – |
-| [csqt6](https://github.com/cscosine/csqt6) | v6.12.0 | – | 2 | at the last final |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | v0.1.0 | – | 0 | at the last final |
+| [csqt6](https://github.com/cscosine/csqt6) | v6.12.0 | – | 5 | at the last final |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | v0.1.0 | – | 3 | at the last final |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | v0.1.0 | – | 0 | at the last final |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | v0.1.0 | – | 3 | at the last final |
 
 ## Dependencies (recipes on `main`)
 
@@ -139,29 +133,29 @@ flowchart LR
 
 ## Project template
 
-Latest template: v1.1.0
+Latest template: v1.1.1
 
 | Repository | Kind | Template | Answers |
 |---|---|---|---|
-| [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | library | v1.0.0 | kind=library |
-| [csCamera](https://github.com/cscosine/csCamera) | library | v1.0.0 | kind=library |
-| [csCMake](https://github.com/cscosine/csCMake) | tool | v1.0.0 | kind=tool |
-| [csCore](https://github.com/cscosine/csCore) | library | v1.0.0 | kind=library |
-| [csfoundation](https://github.com/cscosine/csfoundation) | distribution | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | application | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csLie](https://github.com/cscosine/csLie) | library | v1.0.0 | kind=library |
-| [csNelson](https://github.com/cscosine/csNelson) | library | v1.0.0 | kind=library |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | distribution | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csoptimization](https://github.com/cscosine/csoptimization) | distribution | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | v1.0.0 | kind=tool |
-| [csqt6](https://github.com/cscosine/csqt6) | distribution | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | application | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
-| [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | library | v1.0.0 | kind=library |
-| [csWiki](https://github.com/cscosine/csWiki) | tool | v1.0.0 | kind=tool |
-| [fmt-eigen](https://github.com/cscosine/fmt-eigen) | library | v1.0.0 | kind=library |
-| [NamedType](https://github.com/cscosine/NamedType) | library | v1.0.0 | kind=library |
-| [tclap](https://github.com/cscosine/tclap) | library | v1.0.0 | kind=library |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | v1.0.0 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | library | v1.1.1 | kind=library |
+| [csCamera](https://github.com/cscosine/csCamera) | library | v1.1.1 | kind=library |
+| [csCMake](https://github.com/cscosine/csCMake) | tool | v1.1.1 | kind=tool |
+| [csCore](https://github.com/cscosine/csCore) | library | v1.1.1 | kind=library |
+| [csfoundation](https://github.com/cscosine/csfoundation) | distribution | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | application | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csLie](https://github.com/cscosine/csLie) | library | v1.1.1 | kind=library |
+| [csNelson](https://github.com/cscosine/csNelson) | library | v1.1.1 | kind=library |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | distribution | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csoptimization](https://github.com/cscosine/csoptimization) | distribution | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csorchestrator](https://github.com/cscosine/csorchestrator) | tool | v1.1.1 | kind=tool |
+| [csqt6](https://github.com/cscosine/csqt6) | distribution | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | application | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
+| [csVisOpenGL](https://github.com/cscosine/csVisOpenGL) | library | v1.1.1 | kind=library |
+| [csWiki](https://github.com/cscosine/csWiki) | tool | v1.1.1 | kind=tool |
+| [fmt-eigen](https://github.com/cscosine/fmt-eigen) | library | v1.1.1 | kind=library |
+| [NamedType](https://github.com/cscosine/NamedType) | library | v1.1.1 | kind=library |
+| [tclap](https://github.com/cscosine/tclap) | library | v1.1.1 | kind=library |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | v1.1.1 | csorchestrator_version=v0.1.0, kind=project, workspace_dir=workspace |
 
 Not on the template yet: [csopencvcuda](https://github.com/cscosine/csopencvcuda).
 
