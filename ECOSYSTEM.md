@@ -5,13 +5,9 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
-- [csImgTracker](https://github.com/cscosine/csImgTracker)
-  - `stable` is not at a final release (last final: v0.2.2)
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda)
   - csCMake 1.0.0-rc2, latest is v1.0.0
   - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0
-- [csSkiTracker](https://github.com/cscosine/csSkiTracker)
-  - 2 commit(s) on `main` since v0.1.0-rc6
 
 ## Versions (outer projects)
 
@@ -21,13 +17,13 @@ edit: change the repositories, or the script.
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | – | – | – | – |
 | [csCMake](https://github.com/cscosine/csCMake) | v1.0.0 | – | 0 | at the last final |
 | [csfoundation](https://github.com/cscosine/csfoundation) | v0.1.0 | – | 0 | at the last final |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | v0.2.2 | – | 0 | not at the last final |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | v0.2.2 | – | 0 | at the last final |
 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | v5.1.0-cpu.3 | – | 0 | at the last final |
 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | – | v5.0.1-rc3 | 0 | – |
 | [csoptimization](https://github.com/cscosine/csoptimization) | v0.1.0 | – | 0 | at the last final |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | – | – | – | – |
 | [csqt6](https://github.com/cscosine/csqt6) | v6.12.0 | – | 0 | at the last final |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | – | v0.1.0-rc6 | 2 | – |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | v0.1.0 | – | 0 | at the last final |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | v0.1.0 | – | 0 | at the last final |
 

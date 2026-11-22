@@ -182,8 +182,6 @@ def main() -> int:
         if newest:
             cmp_ = api(f"repos/{org}/{repo}/compare/{newest}...main")
             since = str(cmp_["ahead_by"]) if cmp_ else "?"  # type: ignore[index]
-            if cmp_ and cmp_["ahead_by"] > 0 and repo != "csWiki":  # type: ignore[index]
-                attention.append(f"{link(org, repo)}: {cmp_['ahead_by']} commit(s) on `main` since {newest}")  # type: ignore[index]
         st = "–"
         if any(b["name"] == "stable" for b in branches.get(repo, [])) and finals:
             c = api(f"repos/{org}/{repo}/compare/{finals[-1]}...stable")
@@ -300,6 +298,27 @@ def main() -> int:
                              "(answer `csorchestrator_version`, then `copier update`)")
     if not_adopted:
         trows += ["", "Not on the template yet: " + ", ".join(link(org, r) for r in not_adopted) + "."]
+
+    # --- version bump: a repository with commits on main since its last final release must already declare the next
+    # version (bumped in the first commit that changes it: CONTRIBUTING.md, "Versions"). Its version: pyproject.toml
+    # (tools, distributions, applications), project(... VERSION) of the top CMakeLists.txt (libraries). A tag with a
+    # suffix of ours (csopencvcpu v5.1.0-cpu.3: the level is the suffix) is not checked.
+    for repo in sorted((r for r, k in kinds.items() if k in ("tool", "distribution", "application", "library")),
+                       key=str.lower):
+        finals = sorted((t for t in tags(org, repo) if re.fullmatch(r"v\d+\.\d+\.\d+", t)), key=vkey)
+        if not finals:
+            continue
+        if kinds[repo] == "library":
+            m = re.search(r"project\s*\([^)]*?VERSION\s+(\d+\.\d+\.\d+)", file_on_main(org, repo, "CMakeLists.txt") or "",
+                          re.I)
+        else:
+            m = re.search(r'^version\s*=\s*"([^"]+)"', file_on_main(org, repo, "pyproject.toml") or "", re.M)
+        if not m or m.group(1) != finals[-1][1:]:
+            continue
+        cmp_ = api(f"repos/{org}/{repo}/compare/{finals[-1]}...main")
+        if cmp_ and cmp_["ahead_by"] > 0:  # type: ignore[index]
+            attention.append(f"{link(org, repo)}: {cmp_['ahead_by']} commit(s) on `main` since {finals[-1]}, "  # type: ignore[index]
+                             f"version still {m.group(1)} (bump it: CONTRIBUTING.md, Versions)")
 
     # --- CI of main
     for repo in sorted(outer, key=str.lower):

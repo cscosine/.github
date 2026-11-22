@@ -29,6 +29,30 @@ good practice: skip it when in a hurry (scenario 6).
 CI builds `main` on every push and every week (the latest code on the latest runner images), and every tag (the
 release). A feature branch is built on demand. `stable` is never built: it only receives commits already built.
 
+## Versions
+
+Every repository declares its version: `version` in `pyproject.toml` (tools, distributions, applications),
+`project(... VERSION x.y.z)` in the top `CMakeLists.txt` (libraries, copies). A tag `vX.Y.Z-rcN` or `vX.Y.Z` needs that
+version to be `X.Y.Z` already.
+
+- **When**: the first commit after a release that changes the repository also bumps the version (and opens the
+  `## vX.Y.Z (unreleased)` section of `CHANGELOG.md`, where there is one). Not right after a release: the level is not
+  known yet, and a repository that does not change keeps its version and is not released again. A later change that
+  needs a higher level raises it before the first rc (patch → minor).
+- **Which number** ([semantic versioning](https://semver.org)):
+
+  | The change | From 1.0.0 | Before 1.0.0 (0.x) |
+  |---|---|---|
+  | Breaking: a consumer must change (removed or renamed API, changed behaviour) | major (1.4.2 → 2.0.0) | minor (0.1.3 → 0.2.0) |
+  | A new feature, compatible | minor (1.4.2 → 1.5.0) | patch (0.1.3 → 0.1.4) |
+  | A fix | patch (1.4.2 → 1.4.3) | patch (0.1.3 → 0.1.4) |
+
+- **Exceptions**: a distribution of a third-party product follows it (csqt6 = the Qt version); csopencvcpu /
+  csopencvcuda add their level as a suffix (`v5.1.0-cpu.3` → `-cpu.4`); forks follow upstream (`vX.Y.Z-cs.N`, `N` + 1
+  for each change of ours).
+- **Checked**: ECOSYSTEM.md flags a repository with commits on `main` since its last final tag whose version is still
+  that tag's (suffix tags excepted).
+
 ## What a pull request is
 
 A pull request (PR) is a request to merge one branch into another, kept on GitHub: the list of commits, the diff,
