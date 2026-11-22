@@ -22,7 +22,7 @@ edit: change the repositories, or the script.
 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | – | v5.0.1-rc3 | 0 | – |
 | [csoptimization](https://github.com/cscosine/csoptimization) | v0.1.0 | – | 0 | at the last final |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | – | – | – | – |
-| [csqt6](https://github.com/cscosine/csqt6) | v6.12.0 | – | 1 | at the last final |
+| [csqt6](https://github.com/cscosine/csqt6) | v6.12.0 | – | 2 | at the last final |
 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | v0.1.0 | – | 0 | at the last final |
 | [csWiki](https://github.com/cscosine/csWiki) | – | – | – | – |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | v0.1.0 | – | 0 | at the last final |
