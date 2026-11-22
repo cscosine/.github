@@ -46,7 +46,7 @@ repositories, the build train in dependency order, the ecosystem update in the m
 crons on `main` (UTC; shown in local time, so they move by an hour with summer time). A new outer project gets
 its own slot after the projects it depends on.
 
-| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 runs) |
+| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 successful runs) |
 |---|---|---|---|
 | Sun 15:00 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | csopencvcuda | 3 h 11 m |
 | Sun 21:07 | [csqt6](https://github.com/cscosine/csqt6) | csqt6 | 2 h 46 m |
