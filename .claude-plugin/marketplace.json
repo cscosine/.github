@@ -8,6 +8,17 @@
       "description": "How changes move in the cscosine repositories (branches, CI on demand, releases, the release train across repositories, fork syncs) and the state of a local workspace.",
       "source": "./plugins/cs-org",
       "category": "development"
+    },
+    {
+      "name": "cscmake",
+      "description": "How to use csCMake in a C++ project: the cs_* commands, packages with components, build configurations, compile profiles, presets and layouts, deployments, its error messages.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cscosine/csCMake.git",
+        "path": "agent-plugin",
+        "ref": "main"
+      },
+      "category": "development"
     }
   ]
 }

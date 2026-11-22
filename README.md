@@ -40,13 +40,21 @@ This repository is the organisation's plugin marketplace
 across projects (`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`),
 the state of the organisation (`cs-ecosystem-status`, members).
 
+The plugins of the tools and libraries live in their own repository, in an `agent-plugin/` folder next to the code
+they describe (the marketplace points to it on `main`), so an API change updates its skill in the same PR:
+
+| Plugin | Repository | Skills |
+|---|---|---|
+| `cscmake` | [csCMake/agent-plugin](https://github.com/cscosine/csCMake/tree/main/agent-plugin) | `cscmake-usage`: using csCMake in a project |
+
 ```
 /plugin marketplace add cscosine/.github
 /plugin install cs-org@cscosine
+/plugin install cscmake@cscosine
 ```
 
-Every repository created from the template declares it in its `.claude/settings.json`, so Claude Code proposes it when
-the folder is trusted.
+Every repository created from the template declares the marketplace in its `.claude/settings.json` and enables
+`cs-org`, so Claude Code proposes it when the folder is trusted.
 
 ## Avatars
 
