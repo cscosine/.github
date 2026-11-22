@@ -575,10 +575,10 @@ Sunday 14:30. `schedule=` in each recipe, the tools' `ci.yml` from the template 
 csorchestrator's default schedule. The weekly runs use pinned releases: the order spreads the load and makes failures
 read top-down, no run consumes another's output.
 
-**Next (2026-11-22):** csopencvcuda back into the chain (`PLAN-csopencvcuda.md`: C0 = level with csopencvcpu,
+**Next (2026-11-22):** S4 (tool / library plugins), S7, S6 when ready. **Low priority** (csopencvcuda is unused for
+now; the rc1 build is checked when convenient): csopencvcuda back into the chain (`PLAN-csopencvcuda.md`: C0 = level with csopencvcpu,
 OpenCV 5.1.0, template, csCMake 1.0.0, third_party_base_libs v0.1.0; then its own steps: compile time, getting CUDA,
-matrix, Jetson / arm64 via JetPack containers, which need csorchestrator container jobs and arm64 variants); S4
-(tool / library plugins), S7, S6 when ready.
+matrix, Jetson / arm64 via JetPack containers, which need csorchestrator container jobs and arm64 variants).
 
 **csorchestrator or Copier first?** (earlier reasoning) csorchestrator R0, then the Copier base layer: R0 is the largest maturity gap
 (no releases, unreproducible workflows) and the base layer of the template does not depend on it, so they can overlap;

@@ -17,7 +17,7 @@ Status 2026-11-22. Larger work is in the plans (`PLAN-cscosine-org.md`); this is
       later an SBOM per release.
 - [ ] **Every repository**: `CITATION.cff`; the copyright line (`PLAN-licensing.md`, L1).
 - [ ] csopencvcuda: back into the chain, then its final; the only repository ECOSYSTEM.md still flags. Now a plan:
-      `PLAN-csopencvcuda.md` (C0 doing).
+      `PLAN-csopencvcuda.md` (C0: rc1 built, to check; low priority, unused for now).
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.
