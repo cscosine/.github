@@ -10,7 +10,8 @@ The plans of the organisation and their progress: each plan has a status line, i
 | [PLAN-licensing.md](PLAN-licensing.md): the open points of the licensing policy ([LICENSING.md](../LICENSING.md)) | open | L1, L3, L4, L6–L8 |
 | [PLAN-csopencvcuda.md](PLAN-csopencvcuda.md): csopencvcuda back into the chain, then build time, CUDA install, Jetson | low priority (unused for now) | C0 (rc1 built, to check), C1–C6 |
 | [PLAN-csorchestrator-architecture.md](PLAN-csorchestrator-architecture.md): csorchestrator as a mature framework | to approve | R0–R9 |
-| [PLAN-libraries.md](PLAN-libraries.md): the first-party libraries: review, documentation, agent instructions | todo (not scheduled) | LB1–LB7 |
+| [PLAN-libraries.md](PLAN-libraries.md): the first-party libraries: review, documentation, agent instructions | in progress: LB2 (csLie) | LB1–LB7 (LB2: L0–L7, L1 WIP on `feature/cslie-accuracy`) |
+| [PLAN-vscode.md](PLAN-vscode.md): VS Code as an IDE on the build folders of the workspace | experiment positive (csLie `feature/vscode-setup`), not scheduled | V1–V9 |
 
 This table is written by hand for now; a script may generate it later, once the plans' status lines share one structure
 ([TODO-org.md](TODO-org.md)).
