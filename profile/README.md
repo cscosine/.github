@@ -37,7 +37,7 @@ Linux, Windows and macOS.
 
 <!-- ecosystem:start -->
 
-**Status** (updated nightly): 4 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
+**Status** (updated nightly): 2 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
 
 | Project | What it is | Release | Candidate | CI | Built on |
 |---|---|---|---|---|---|
@@ -54,7 +54,7 @@ Linux, Windows and macOS.
 | [csoptimization](https://github.com/cscosine/csoptimization) | Non-linear optimisation libraries (builds [csNelson](https://github.com/cscosine/csNelson), [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)) | [v0.1.0](https://github.com/cscosine/csoptimization/releases/tag/v0.1.0) | – | [![CI](https://github.com/cscosine/csoptimization/actions/workflows/csoptimization.yml/badge.svg?branch=main)](https://github.com/cscosine/csoptimization/actions/workflows/csoptimization.yml) | [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0`, [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0` |
 | **Applications** | | | | | |
 | [csImgTracker](https://github.com/cscosine/csImgTracker) | Image tracking application | [v0.2.2](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.2) | – | [![CI](https://github.com/cscosine/csImgTracker/actions/workflows/csImgTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csImgTracker/actions/workflows/csImgTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.1.0-cpu.3` |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | – | [v0.1.0-rc6](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0-rc6) | [![CI](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0`, [csoptimization](https://github.com/cscosine/csoptimization) `v0.1.0`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.1.0-cpu.3` |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | [v0.1.0](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0) | – | [![CI](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml/badge.svg?branch=main)](https://github.com/cscosine/csSkiTracker/actions/workflows/csSkiTracker.yml) | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) `v0.1.0`, [csfoundation](https://github.com/cscosine/csfoundation) `v0.1.0`, [csoptimization](https://github.com/cscosine/csoptimization) `v0.1.0`, [csqt6](https://github.com/cscosine/csqt6) `v6.12.0`, [csopencvcpu](https://github.com/cscosine/csopencvcpu) `v5.1.0-cpu.3` |
 
 The release chain (who builds on whom):
 
