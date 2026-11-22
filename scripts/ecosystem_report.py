@@ -19,12 +19,17 @@ import re
 import subprocess
 import sys
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 SETTINGS = ROOT / "scripts" / "github-settings.json"
 OUT = ROOT / "ECOSYSTEM.md"
 STALE_DAYS = 30
+LOCAL_TZ = ZoneInfo("Europe/Rome")  # the weekly queue is planned in CET (the crons are UTC)
+DEFAULT_CRON = "0 3 * * 1"  # csorchestrator's default schedule: an outer project left there is not in the queue
+DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
 def token() -> str | None:
@@ -137,7 +142,29 @@ def _mark(run: dict, label: str) -> str:
     return f"{'✅' if run['conclusion'] == 'success' else '❌'} [{label}]({run['html_url']})"
 
 
-def ci_status(org: str, repo: str, outer_repo: bool, attention: list[str]) -> tuple[str, str, str]:
+def crons(text: str) -> list[str]:
+    """The `schedule:` crons of a workflow file."""
+    return [c.strip().strip("'\"") for c in re.findall(r"^\s*-\s*cron:\s*(.+?)\s*$", text, re.M)]
+
+
+def local_slots(cron: str) -> list[tuple[int, int, int]]:
+    """(weekday 0=Mon, hour, minute) in LOCAL_TZ (this week's offset) of a `M H * * D` cron in UTC; daily -> 7 slots;
+    nothing for another shape."""
+    f = cron.split()
+    if len(f) != 5 or not (f[0].isdigit() and f[1].isdigit()) or f[2:4] != ["*", "*"]:
+        return []
+    cron_days = range(7) if f[4] == "*" else [(int(d) - 1) % 7 for d in f[4].split(",") if d.isdigit()]
+    monday = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+    monday -= timedelta(days=monday.weekday())
+    out = []
+    for d in cron_days:
+        loc = (monday + timedelta(days=d, hours=int(f[1]), minutes=int(f[0]))).astimezone(LOCAL_TZ)
+        out.append((loc.weekday(), loc.hour, loc.minute))
+    return out
+
+
+def ci_status(org: str, repo: str, outer_repo: bool, attention: list[str],
+              queue: list[tuple[tuple[int, int, int], str, str, str]]) -> tuple[str, str, str]:
     """The CI cells of a repository: the last real run of each workflow on `main`, the builds of its newest tag (outer
     repositories; failed -> attention, as no newer tag built green), the last run of each workflow on `stable`
     (failed -> attention). Each run a mark linking to it, labelled by the workflow file."""
@@ -153,6 +180,30 @@ def ci_status(org: str, repo: str, outer_repo: bool, attention: list[str]) -> tu
             continue
         runs = api(f"repos/{org}/{repo}/actions/workflows/{w['id']}/runs?branch=main&per_page=20") or {}  # type: ignore[index]
         done = _real(runs.get("workflow_runs", []))  # type: ignore[union-attr]
+        # the weekly queue: each scheduled workflow, its slot and the duration of its last real run on main
+        text = "" if w["path"].startswith("dynamic/") else (file_on_main(org, repo, w["path"]) or "")  # type: ignore[index]
+        cron_list = crons(text)
+        duration = "–"
+        if cron_list:
+            # the shortest of the last 5 successful runs (any branch or tag): runs sharing the runners take far longer
+            recent = [r for r in _real((api(f"repos/{org}/{repo}/actions/workflows/{w['id']}/runs?per_page=30") or {})  # type: ignore[index]
+                                       .get("workflow_runs", []))  # type: ignore[union-attr]
+                      if r["conclusion"] == "success"][:5]
+            secs_list = [(datetime.fromisoformat(r["updated_at"].replace("Z", "+00:00"))
+                          - datetime.fromisoformat(r["run_started_at"].replace("Z", "+00:00"))).total_seconds()
+                         for r in recent if r.get("run_started_at")]
+            if secs_list:
+                secs = min(secs_list)
+                duration = f"{int(secs // 3600)} h {int(secs % 3600 // 60):02d} m" if secs >= 3600 else f"{max(1, int(secs // 60))} m"
+        for c in cron_list:
+            if outer_repo and c == DEFAULT_CRON:
+                attention.append(f"{link(org, repo)}: {name[w['id']]} on the default schedule (`{c}`), not in the weekly "  # type: ignore[index]
+                                 "queue: give it a slot (`schedule=` in the recipe; the org rules, Builds)")
+            slots = local_slots(c)
+            if len(slots) == 7:
+                queue.append(((7, *slots[0][1:]), repo, name[w["id"]], duration))  # type: ignore[index]
+            for s in slots if len(slots) < 7 else []:
+                queue.append((s, repo, name[w["id"]], duration))  # type: ignore[index]
         if done:
             main_marks.append(_mark(done[0], name[w["id"]]))  # type: ignore[index]
             if done[0]["conclusion"] != "success":
@@ -387,10 +438,20 @@ def main() -> int:
     # --- CI: every repository with workflows (tools, distributions, applications, libraries: the checks everywhere)
     ci_repos = [r for r, k in kinds.items() if k in ("tool", "distribution", "application", "library")]
     cirows = ["| Repository | `main` (each workflow) | Last tag build | `stable` |", "|---|---|---|---|"]
-    for repo in sorted(ci_repos, key=str.lower):
-        main_cell, tag_cell, stable_cell = ci_status(org, repo, outer_repo=repo in outer, attention=attention)
+    queue: list[tuple[tuple[int, int, int], str, str, str]] = []
+    for repo in sorted(ci_repos + [".github"], key=str.lower):
+        if repo == ".github":  # not a project, but its ecosystem update closes the queue
+            ci_status(org, repo, outer_repo=False, attention=[], queue=queue)
+            continue
+        main_cell, tag_cell, stable_cell = ci_status(org, repo, outer_repo=repo in outer, attention=attention,
+                                                     queue=queue)
         if main_cell or tag_cell or stable_cell:
             cirows.append(f"| {link(org, repo)} | {main_cell or '–'} | {tag_cell or '–'} | {stable_cell or '–'} |")
+
+    qrows = ["| When (Europe/Rome) | Repository | Workflow | Takes (shortest of the last 5 runs) |", "|---|---|---|---|"]
+    # the queue starts on Sunday (csqt6); the daily runs last
+    for (d, h, m), repo, wf, dur in sorted(queue, key=lambda q: ((q[0][0] + 1) % 7 if q[0][0] < 7 else 7, *q[0][1:], q[1].lower())):
+        qrows.append(f"| {'Daily' if d == 7 else DAYS[d]} {h:02d}:{m:02d} | {link(org, repo)} | {wf} | {dur} |")
 
     graph = ["```mermaid", "flowchart LR", *[f"  {a} --> {b}" for a, b in sorted(edges)], "```"]
     doc = "\n".join([
@@ -409,6 +470,15 @@ def main() -> int:
         "tag that still exists (outer repositories); the last run of each workflow on `stable`.",
         "",
         *cirows,
+        "",
+        "### Weekly queue",
+        "",
+        "The scheduled runs on `main`, one project at a time (no shared runners): csqt6 on Sunday evening, the base",
+        "repositories, the build train in dependency order, the ecosystem update in the morning. From the `schedule:`",
+        "crons on `main` (UTC; shown in local time, so they move by an hour with summer time). A new outer project gets",
+        "its own slot after the projects it depends on.",
+        "",
+        *qrows,
         "",
         "## Versions (outer projects)",
         "",
