@@ -19,6 +19,39 @@
         "ref": "main"
       },
       "category": "development"
+    },
+    {
+      "name": "csorchestrator",
+      "description": "How a cscosine project uses csorchestrator: its project script, providers of prebuilt libraries, the generated workflow, releases and manifests.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cscosine/csorchestrator.git",
+        "path": "agent-plugin",
+        "ref": "main"
+      },
+      "category": "development"
+    },
+    {
+      "name": "csfoundation",
+      "description": "The csfoundation C++ libraries (csCore, csLie, csCamera, csVisOpenGL): which one for what, packages and components, how a project gets them.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cscosine/csfoundation.git",
+        "path": "agent-plugin",
+        "ref": "main"
+      },
+      "category": "development"
+    },
+    {
+      "name": "csoptimization",
+      "description": "The csoptimization C++ libraries (csNelson nonlinear least squares, csBlockMatrix block matrices): what they are for, packages, how a project gets them.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/cscosine/csoptimization.git",
+        "path": "agent-plugin",
+        "ref": "main"
+      },
+      "category": "development"
     }
   ]
 }

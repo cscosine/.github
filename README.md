@@ -46,6 +46,9 @@ they describe (the marketplace points to it on `main`), so an API change updates
 | Plugin | Repository | Skills |
 |---|---|---|
 | `cscmake` | [csCMake/agent-plugin](https://github.com/cscosine/csCMake/tree/main/agent-plugin) | `cscmake-usage`: using csCMake in a project |
+| `csorchestrator` | [csorchestrator/agent-plugin](https://github.com/cscosine/csorchestrator/tree/main/agent-plugin) | `csorchestrator-usage`: a project's script, providers, workflow, releases |
+| `csfoundation` | [csfoundation/agent-plugin](https://github.com/cscosine/csfoundation/tree/main/agent-plugin) | `csfoundation-libs`: csCore, csLie, csCamera, csVisOpenGL |
+| `csoptimization` | [csoptimization/agent-plugin](https://github.com/cscosine/csoptimization/tree/main/agent-plugin) | `csoptimization-libs`: csNelson, csBlockMatrix |
 
 ```
 /plugin marketplace add cscosine/.github
@@ -54,7 +57,8 @@ they describe (the marketplace points to it on `main`), so an API change updates
 ```
 
 Every repository created from the template declares the marketplace in its `.claude/settings.json` and enables
-`cs-org`, so Claude Code proposes it when the folder is trusted.
+`cs-org` and the plugins of what it uses (the template answer `claude_plugins`), so Claude Code proposes them when the
+folder is trusted.
 
 ## Avatars
 
