@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate the "projects" section of profile/README.md from GitHub: what each project is, its latest release and
-release candidate, its CI status, what it is built on, and the release chain as a Mermaid graph.
+release candidate, its build status, and the release chain as a Mermaid graph (what each project is built on, exactly:
+ECOSYSTEM.md).
 
     python3 scripts/ecosystem.py            # rewrite the section between the markers
     python3 scripts/ecosystem.py --check    # exit 1 if the section is out of date
@@ -86,6 +87,19 @@ def description(org: str, repo: str) -> str | None:
     return value or None
 
 
+def build_status(org: str, repo: str, wf: str) -> str:
+    """The last real build of the workflow: the newest completed run on `main` or on a release tag that was not
+    cancelled or skipped (a release cancels the `main` run its tag build replaces, so GitHub's badge would say
+    "failing"), as a mark linking to the run."""
+    runs = (api(f"repos/{org}/{repo}/actions/workflows/{wf}/runs?status=completed&per_page=30") or {})
+    for r in runs.get("workflow_runs", []):  # type: ignore[union-attr]
+        on_main_or_tag = r["head_branch"] == "main" or (r["event"] == "push" and re.match(r"v\d", r["head_branch"] or ""))
+        if on_main_or_tag and r["conclusion"] not in ("cancelled", "skipped"):
+            mark = "✅" if r["conclusion"] == "success" else "❌"
+            return f"[{mark} {r['head_branch']}]({r['html_url']})"
+    return "–"
+
+
 def link(org: str, repo: str) -> str:
     return f"[{repo}](https://github.com/{org}/{repo})"
 
@@ -111,26 +125,21 @@ def generate() -> str:
     cfg = json.loads(CONFIG.read_text())
     org = cfg["org"]
     public = {r["name"] for r in api(f"orgs/{org}/repos?type=public&per_page=100") or []}  # type: ignore[union-attr]
-    lines = ["| Project | What it is | Release | Candidate | CI | Built on |", "|---|---|---|---|---|---|"]
+    lines = ["| Project | What it is | Release | Candidate | Last build |", "|---|---|---|---|---|"]
     edges: list[tuple[str, str]] = []
     for group in cfg["groups"]:
-        lines.append(f"| **{group['name']}** | | | | | |")
+        lines.append(f"| **{group['name']}** | | | | |")
         for entry in group["repos"]:
             repo = entry["repo"]
             if repo not in public:
                 continue  # private (or gone): not on the public page
             final, rc = releases(org, repo)
             wf = entry.get("workflow", f"{repo}.yml")
-            badge = (f"[![CI](https://github.com/{org}/{repo}/actions/workflows/{wf}/badge.svg?branch=main)]"
-                     f"(https://github.com/{org}/{repo}/actions/workflows/{wf})")
-            deps = providers(org, repo)
-            for dep, _tag in deps:
+            for dep, _tag in providers(org, repo):
                 edges.append((dep, repo))
-            inner = [r for r in entry.get("builds", []) if r in public]
-            built_on = ", ".join(f"{link(org, d)} `{t}`" for d, t in deps) or "–"
-            what = (description(org, repo) or entry.get("what", "")) + (f" (builds {', '.join(link(org, r) for r in inner)})" if inner else "")
+            what = description(org, repo) or entry.get("what", "")
             lines.append(f"| {link(org, repo)} | {what} | {release_link(org, repo, final)} | "
-                         f"{release_link(org, repo, rc)} | {badge} | {built_on} |")
+                         f"{release_link(org, repo, rc)} | {build_status(org, repo, wf)} |")
     graph = ["```mermaid", "flowchart LR"]
     graph += [f"  {a} --> {b}" for a, b in sorted(set(edges))]
     graph.append("```")
