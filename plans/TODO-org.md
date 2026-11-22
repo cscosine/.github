@@ -21,10 +21,12 @@ Status 2026-11-22 (evening). Larger work is in the plans (`PLAN-cscosine-org.md`
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.
-- [ ] Stale docs found during S4 (documentation only, `[skip ci]`): csfoundation `README.md` still names
+- [x] Stale docs found during S4 (documentation only, `[skip ci]`): csfoundation `README.md` still names
       `csfoundation/csorchestrator_config.py` and constants that no longer exist (`CSFOUNDATION_PROJECT_VERSION`,
       `THIRD_PARTY_LIBRARY_DEPENDENCIES`, ...: now `csfoundation_config.py`); csorchestrator `README.md` "Using the
-      package" example is outdated (compare with a real `*_project.py`).
+      package" example is outdated (compare with a real `*_project.py`). Done 2026-11-22: csfoundation #6, csorchestrator #7 (`[skip ci]`, no version bump; pipes
+      removed from the csfoundation README, dropped 2026-11-16).
 - [ ] csfoundation `csfoundation_project.py`: `phase_name_suffix="csoptimization dependencies"` (copy-paste); the fix
       regenerates the workflow (a build): with the next real csfoundation change.
-- [ ] Generated plans index (last item of S5): `plans/README.md` written from the status lines of the plans.
+- [ ] Generated plans index (later, not S5 any more: S5 closed 2026-11-22 with the index hand-written): first one
+      structure for the plans' status lines (`PLAN-libraries.md` differs), then `plans/README.md` written from them.
