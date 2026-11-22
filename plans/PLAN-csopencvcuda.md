@@ -1,6 +1,7 @@
 # PLAN: csopencvcuda, back into the chain and beyond
 
-Date: 2026-11-22 · Status: **C0 in progress** (rc1 building) · Org plan: `PLAN-cscosine-org.md` §8 ("Next")
+Date: 2026-11-22 · Status: **low priority** (csopencvcuda is unused for now): C0 rc1 built 2026-11-22 (run 45030290737), its result to
+check when convenient (2026-11-23 or later); C1 onwards when a consumer needs it · Org plan: `PLAN-cscosine-org.md` §8 ("Next")
 
 csopencvcuda builds OpenCV with CUDA / cuDNN for Linux x64 (Ubuntu 22.04 / 24.04, GCC and Clang) and Windows x64
 (MSVC 2022). It was set aside during stable-dev and the finals round (old csCMake / third_party_base_libs pins, no
