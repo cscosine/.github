@@ -544,6 +544,12 @@ later.
   `pull_request` trigger for `main` in the generated workflows; a final `ci-ok` job (`needs:` all, `if: always()`)
   as the one stable check a ruleset can require; build once per commit (the republish above). Until then `main`
   builds after the merge.
+- **Build after the checks** (2026-11-22, from `PLAN-cscosine-org.md` S8): the template's `.github/workflows/checks.yml`
+  (full pre-commit in the project venv) runs beside the generated build workflow, not before it: a failed check does
+  not stop the build. Later (R6, with the smaller generated YAML): `checks.yml` callable (`workflow_call`), the
+  generated workflow calls it as its first job and the matrix `needs:` it, so a failed check skips the build (fewer
+  builds). Then the template's tool `ci.yml` drops its own pre-commit step (it runs in every matrix job today) and
+  calls `checks.yml` the same way. A ruleset requiring the checks on `main` is not the way: it ends direct commits.
 
 ## 8. Parking lot
 
