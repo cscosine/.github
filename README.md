@@ -2,51 +2,57 @@
 
 The organisation-level repository of cscosine (public; the only one):
 
-- `profile/README.md`: the public page of the organisation (links, get started; its projects section and status line
-  generated nightly).
-- `CONTRIBUTING.md`: how changes move (branches, releases, the fast path); shown by GitHub in every repository
-  without its own.
-- `LICENSING.md`: the licensing policy.
+- [profile/README.md](profile/README.md): the public page of the organisation (links, get started; its projects section
+  and status line generated nightly).
+- [CONTRIBUTING.md](CONTRIBUTING.md): how changes move (branches, releases, the fast path); shown by GitHub in every
+  repository without its own.
+- [LICENSING.md](LICENSING.md): the licensing policy; [LICENSE](LICENSE).
 - [plans/](plans/README.md): the plans of the organisation and their progress.
-- `ECOSYSTEM.md`: every repository, versions, dependencies, forks, the template version of each, what needs attention
-  (generated nightly).
-- `scripts/`: `github_settings.py` (repository settings, rulesets and labels, from `github-settings.json`; run
+- [ECOSYSTEM.md](ECOSYSTEM.md): every repository, versions, dependencies, forks, the template version of each, what
+  needs attention (generated nightly).
+- [scripts/](scripts/): `github_settings.py` (repository settings, rulesets and labels, from `github-settings.json`; run
   locally with an admin login), `ecosystem_report.py` and `ecosystem.py` (the generated parts above, in this order).
-- `assets/cscosine-logo.svg` / `.png`: the logo; `assets/cscosine-mark.svg` / `.png` (800 × 800): the mark alone,
-  centred to fit in a circle, for round avatars.
+- [assets/](assets/): [cscosine-logo.svg](assets/cscosine-logo.svg) / `.png`: the logo;
+  [cscosine-mark.svg](assets/cscosine-mark.svg) / `.png` (800 × 800): the mark alone, centred to fit in a circle, for
+  round avatars.
 
-The files every repository shares (setup, checks, CI of the tools, the agent files) and the **rules of every
-repository** (`template/.claude/cscosine-rules.md`, imported by each `CLAUDE.md`) live in
+The files every repository shares (setup, checks, CI of the tools, the agent files) and the
+[**rules of every repository**](https://github.com/cscosine/cs-project-template/blob/main/template/.claude/cscosine-rules.md)
+(`template/.claude/cscosine-rules.md`, imported by each `CLAUDE.md`) live in
 [cs-project-template](https://github.com/cscosine/cs-project-template), their only source.
 
 ## A new repository
 
-Created from [cs-project-template](https://github.com/cscosine/cs-project-template) (its README: create, update),
-then registered here, one line each in `scripts/`:
+Created from [cs-project-template](https://github.com/cscosine/cs-project-template) (its README: create, update), then
+registered here, one line each in `scripts/`:
 
-- `github-settings.json`: the name under its kind. `scripts/github_settings.py --apply <name>` then sets its rulesets,
-  settings and labels, and the nightly report tracks it in `ECOSYSTEM.md` (releases, CI, template version, drift).
-- `ecosystem.json` (public repositories worth showing): its group and one sentence, for the organisation page.
+- [github-settings.json](scripts/github-settings.json): the name under its kind.
+  `scripts/github_settings.py --apply <name>` then sets its rulesets, settings and labels, and the nightly report tracks
+  it in `ECOSYSTEM.md` (releases, CI, template version, drift).
+- [ecosystem.json](scripts/ecosystem.json) (public repositories worth showing): its group and one sentence, for the
+  organisation page.
 
 ## Claude Code plugins
 
-This repository is the organisation's plugin marketplace (`.claude-plugin/marketplace.json`). Plugin `cs-org`
-(`plugins/cs-org/`): how changes move in the cscosine repositories (`cs-workflow`), the release train across projects
-(`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`), the state of the
-organisation (`cs-ecosystem-status`, members).
+This repository is the organisation's plugin marketplace
+([.claude-plugin/marketplace.json](.claude-plugin/marketplace.json)). Plugin `cs-org`
+([plugins/cs-org/](plugins/cs-org/)): how changes move in the cscosine repositories (`cs-workflow`), the release train
+across projects (`cs-release-train`), the forks (`cs-fork-sync`), the state of a local workspace (`cs-local-status`),
+the state of the organisation (`cs-ecosystem-status`, members).
 
 ```
 /plugin marketplace add cscosine/.github
 /plugin install cs-org@cscosine
 ```
 
-Every repository created from the template declares it in its `.claude/settings.json`, so Claude Code proposes it
-when the folder is trusted.
+Every repository created from the template declares it in its `.claude/settings.json`, so Claude Code proposes it when
+the folder is trusted.
 
 ## Avatars
 
 No service sets an avatar everywhere from one upload: Google and GitHub each keep their own. Use
-`assets/cscosine-mark.png` (round avatars) and upload it by hand, again after every change of the logo:
+[assets/cscosine-mark.png](assets/cscosine-mark.png) (round avatars) and upload it by hand, again after every change of
+the logo:
 
 | Where | How |
 |---|---|
