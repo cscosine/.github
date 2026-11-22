@@ -5,8 +5,6 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
-- [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks)
-  - 1 commit(s) on `main` since v1.0.0, version still 1.0.0 (bump it: CONTRIBUTING.md, Versions)
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda)
   - csCMake 1.0.0-rc2, latest is v1.0.0
   - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0
@@ -69,7 +67,7 @@ its own slot after the projects it depends on.
 
 | Project | Final | Candidate | Commits on main since | stable |
 |---|---|---|---|---|
-| [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | v1.0.0 | – | 1 | at the last final |
+| [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | v1.0.0 | – | 2 | at the last final |
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | – | – | – | – |
 | [csCMake](https://github.com/cscosine/csCMake) | v1.0.0 | – | 4 | at the last final |
 | [csfoundation](https://github.com/cscosine/csfoundation) | v0.1.0 | – | 4 | at the last final |
