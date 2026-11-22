@@ -37,14 +37,14 @@ Linux, Windows and macOS.
 
 <!-- ecosystem:start -->
 
-**Status** (updated nightly): 2 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
+**Status** (updated nightly): 21 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
 
 | Project | What it is | Release | Candidate | Last build |
 |---|---|---|---|---|
 | **Tooling** | | | | |
 | [csCMake](https://github.com/cscosine/csCMake) | CMake for families of C++ projects: targets, packages, presets for every platform | [v1.0.0](https://github.com/cscosine/csCMake/releases/tag/v1.0.0) | – | [✅ main](https://github.com/cscosine/csCMake/actions/runs/44928988629) |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | One Python script per project: run locally or as a generated CI, releases as binary packages | – | – | [✅ main](https://github.com/cscosine/csorchestrator/actions/runs/44984084169) |
-| [cs-project-template](https://github.com/cscosine/cs-project-template) | Copier template: the shared files and rules of every repository, created and kept up to date | – | – | [✅ main](https://github.com/cscosine/cs-project-template/actions/runs/45004710624) |
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | Copier template: the shared files and rules of every repository, created and kept up to date | – | – | [✅ main](https://github.com/cscosine/cs-project-template/actions/runs/45019057905) |
 | [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | pre-commit hooks of every repository: gersemi with the csCMake signatures, cscmake-lint | [v1.0.0](https://github.com/cscosine/cs-pre-commit-hooks/releases/tag/v1.0.0) | – | [✅ main](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44960512898) |
 | **Foundations** | | | | |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform | [v0.1.0](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0) | – | [✅ v0.1.0](https://github.com/cscosine/third_party_base_libs/actions/runs/44989560064) |

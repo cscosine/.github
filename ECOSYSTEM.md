@@ -5,9 +5,68 @@ edit: change the repositories, or the script.
 
 ## Needs attention
 
+- [csBlockMatrix](https://github.com/cscosine/csBlockMatrix)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csCamera](https://github.com/cscosine/csCamera)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csCMake](https://github.com/cscosine/csCMake)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csCore](https://github.com/cscosine/csCore)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csfoundation](https://github.com/cscosine/csfoundation)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csImgTracker](https://github.com/cscosine/csImgTracker)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csLie](https://github.com/cscosine/csLie)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csNelson](https://github.com/cscosine/csNelson)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csopencvcpu](https://github.com/cscosine/csopencvcpu)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
 - [csopencvcuda](https://github.com/cscosine/csopencvcuda)
   - csCMake 1.0.0-rc2, latest is v1.0.0
   - pins third_party_base_libs v0.1.0-rc6, latest is v0.1.0
+- [csoptimization](https://github.com/cscosine/csoptimization)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csorchestrator](https://github.com/cscosine/csorchestrator)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csqt6](https://github.com/cscosine/csqt6)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csSkiTracker](https://github.com/cscosine/csSkiTracker)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csVisOpenGL](https://github.com/cscosine/csVisOpenGL)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [csWiki](https://github.com/cscosine/csWiki)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [fmt-eigen](https://github.com/cscosine/fmt-eigen)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [NamedType](https://github.com/cscosine/NamedType)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [tclap](https://github.com/cscosine/tclap)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+- [third_party_base_libs](https://github.com/cscosine/third_party_base_libs)
+  - template v1.0.0, latest is v1.1.0 (`copier update`)
+
+## CI
+
+The last real run (completed, not cancelled or skipped) of each workflow on `main`; the builds of the newest
+tag that still exists (outer repositories); the last run of each workflow on `stable`.
+
+| Repository | `main` (each workflow) | Last tag build | `stable` |
+|---|---|---|---|
+| [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | ✅ [ci](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44960512898) | `v1.0.0` ✅ [release](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/44982576787) | – |
+| [cs-project-template](https://github.com/cscosine/cs-project-template) | ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/45019057905) | `v1.0.0` ✅ [ci](https://github.com/cscosine/cs-project-template/actions/runs/44983059410) | – |
+| [csCMake](https://github.com/cscosine/csCMake) | ✅ [ci](https://github.com/cscosine/csCMake/actions/runs/44928988629)<br>✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44928988586)<br>✅ [smoke](https://github.com/cscosine/csCMake/actions/runs/44928988602) | `v1.0.0` ✅ [release](https://github.com/cscosine/csCMake/actions/runs/44985202613) | ✅ [docs](https://github.com/cscosine/csCMake/actions/runs/44985204900) |
+| [csfoundation](https://github.com/cscosine/csfoundation) | ✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44931629150) | `v0.1.0` ✅ [csfoundation](https://github.com/cscosine/csfoundation/actions/runs/44999719820) | – |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/44917172567) | `v0.2.2` ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/45002938555) | – |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44916518930) | `v5.1.0-cpu.3` ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) | – |
+| [csopencvcuda](https://github.com/cscosine/csopencvcuda) | ✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/43262723471) | `v5.0.1-rc3` ✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/43262753895) | – |
+| [csoptimization](https://github.com/cscosine/csoptimization) | ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/44917041840) | `v0.1.0` ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/45001631628) | – |
+| [csorchestrator](https://github.com/cscosine/csorchestrator) | ✅ [ci](https://github.com/cscosine/csorchestrator/actions/runs/44984084169) | – | – |
+| [csqt6](https://github.com/cscosine/csqt6) | ✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44916504733) | `v6.12.0` ✅ [csqt6](https://github.com/cscosine/csqt6/actions/runs/44984322898) | – |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | ✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/44917189180) | `v0.1.0` ✅ [csSkiTracker](https://github.com/cscosine/csSkiTracker/actions/runs/45002986356) | – |
+| [csWiki](https://github.com/cscosine/csWiki) | ✅ [ci](https://github.com/cscosine/csWiki/actions/runs/45003738124)<br>✅ [pages-build-deployment](https://github.com/cscosine/csWiki/actions/runs/45003738175) | – | – |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | ✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44916490041) | `v0.1.0` ✅ [third_party_base_libs](https://github.com/cscosine/third_party_base_libs/actions/runs/44989560064) | – |
 
 ## Versions (outer projects)
 
@@ -80,7 +139,7 @@ flowchart LR
 
 ## Project template
 
-Latest template: v1.0.0
+Latest template: v1.1.0
 
 | Repository | Kind | Template | Answers |
 |---|---|---|---|
