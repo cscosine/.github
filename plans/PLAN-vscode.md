@@ -257,7 +257,7 @@ The template changes twice (V7a, then W2 and the new folder name): released once
 | C1 | csCMake | W1: the standalone layout's folder renamed (W4) and documented as csCMake's; `cscmake-generate-presets` | rc |
 | C2 | csorchestrator | W3: the standalone-layout check of `base_target_dir` in its csCMake part | rc |
 | C3 | cs-project-template | V7a; W2 (no `workspace_dir`, the new name literal); `open-code` reads the workspace root from the layout file itself (`<csCMake>/presets/layout/<layout>.json`, `CSCMAKE_WORKSPACE_ROOT` with `${sourceDir}` / `${sourceParentDir}` / `$penv{}` expanded; before the first recipe run, csCMake not there yet: the include path's prefix), so no folder name in the scripts; optionally the Claude Code extension in `extensions.json` (§7) | one release |
-| C4 | every repository on the template, release-chain order | `copier update` + the unused `workspace_dir` key deleted + (projects) include paths of `CMakePresets.json` / `csCMakeProjectSetup.json` and the recipe's `base_target_dir` to the new name + csCMake / csorchestrator to C1 / C2; one PR per repository, `[skip ci]` where nothing builds | per repository, as usual |
+| C4 | every repository on the template, release-chain order | `copier update` + the unused `workspace_dir` key deleted + (projects) include paths of `CMakePresets.json` / `csCMakeProjectSetup.json` and the recipe's `base_target_dir` to the new name + csCMake 1.1.0 / csorchestrator 0.1.2; one PR per repository, `[skip ci]` where nothing builds | per repository, as usual |
 | C5 | csLie, csImgTracker | the `feature/vscode-setup` experiment branches deleted (ask first) | — |
 
 Locally after C4: the old `workspace/` folders are stale (rename them or run the recipe again).
@@ -272,18 +272,19 @@ long and named after csorchestrator.
   (commits, pushes, releases) up to C4; at C4 the user supervises the adoption of one repository per kind, then
   allows the rest.
 - C1 done: csCMake **v1.1.0** (de3cc0a; rc1, then the final on the same commit), `stable` moved.
-- C2 done: csorchestrator **v0.1.1** (3956e86; no rc: its tags build nothing, `main` CI green), `stable` moved.
+- C2 done: csorchestrator **v0.1.1** (3956e86; no rc: its tags build nothing, `main` CI green), then **v0.1.2**
+  (98f3874): the check removed, the `_csw` examples kept (below).
 - C3 done: cs-project-template **v1.2.0** (99fd613, `main` fast-forwarded to `feature/vscode-setup`). The template CI
   checks `open-code.ps1` on Windows with PowerShell 7 and 5.1. The branch `feature/vscode-setup` is still on origin
   (delete at C5, ask first).
 - The macOS runners were short all afternoon (jobs cancelled before a runner took them): only the failed jobs were
   re-run, never a new tag.
 - Revised 2026-11-23 (the user): the C2 check is in the wrong layer (csCMake knowledge in the CMake step, local runs
-  only, while the normal use is the generated workflow). Minimal now: no new csorchestrator release, each recipe writes
-  `_csw` itself (as before), the 0.1.1 check stays until the rewrite. The right design, and the workspace on another
+  only, while the normal use is the generated workflow). Minimal now: the check removed (csorchestrator 0.1.2), each recipe
+  writes `_csw` itself (as before), C4 pins 0.1.2. The right design, and the workspace on another
   disk (a machine-local `_csw` link): PLAN-csorchestrator-architecture.md B14 (R4), csorchestrator
-  `TODO-cscmake-alignment.md`. Template: `/_csw` instead of `_csw/` in `.gitignore` (a link is matched too), v1.2.1
-  before C4.
+  `TODO-cscmake-alignment.md`. The template stays at v1.2.0: the workspace is always a real folder for
+  now (`/_csw` in `.gitignore` only when the links of B14 come).
 - Next: C4, the user supervises one repository per kind first.
 
 ### 6.1 The steps in detail
@@ -337,7 +338,7 @@ csImgTracker experiment branches stay as they are until C5. Not during the weekl
 4. csfoundation (and csCore, csLie, csCamera, csVisOpenGL), csoptimization (and csNelson, csBlockMatrix).
 5. csImgTracker, csSkiTracker (standalone: the include paths too).
 In each project: `copier update --defaults --vcs-ref v1.2.0`, delete `workspace_dir` from `.copier-answers.yml`;
-recipe `base_target_dir = Path("_csw")`, csCMake `1.1.0` and csorchestrator `0.1.1` pins; standalone projects:
+recipe `base_target_dir = Path("_csw")`, csCMake `1.1.0` and csorchestrator `0.1.2` pins; standalone projects:
 `CMakePresets.json` and `csCMakeProjectSetup.json` include `${sourceDir}/_csw/csCMake/...`; README mentions of
 `workspace/`; `generate-github-workflow`; CI on the branch (one build), merge, release as usual. A library: `copier
 update` only, in its project's PR (same branch name).

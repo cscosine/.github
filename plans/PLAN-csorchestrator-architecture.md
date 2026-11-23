@@ -436,16 +436,16 @@ graph corrects it.
 Today a recipe spells every folder (`base_target_dir`, `base_install_dir`, `base_libs_dir`, `base_build_dir`, the
 deploy archives) one by one, and they must agree with csCMake's layout (standalone: `<project>/_csw`, csCMake 1.1.0;
 then `<root>/install|libs|build|deploy`) by hand. The folders are used by checkouts, provider downloads, artifacts and
-deployments, not only by the CMake workflow step. csorchestrator 0.1.1 checks `base_target_dir` against a standalone
-layout inside the CMake workflow step, local runs only: the wrong place (csCMake knowledge in the generic CMake step,
-nothing at workflow generation), kept until this rewrite and then removed.
+deployments, not only by the CMake workflow step. Nothing checks them: a check inside the CMake workflow step
+(csorchestrator 0.1.1) was the wrong place (csCMake knowledge in the generic CMake step, local runs only, nothing at
+workflow generation) and was removed in 0.1.2.
 
 - **csCMake glue, consistent by construction**: `cscmake_workspace(<project dir>)` next to `cscmake_release.py` (the
   csCMake part of csorchestrator) reads the project's `csCMakeProjectSetup.json` (the layout's include, the root before
   `/csCMake/presets/layout/`) and gives `root`, `cscmake`, `libs`, `install`, `build`, `deploy`, `deploy_archives`; a
   project without C++ sources of its own (a distribution): the default `_csw`. The recipe module reads it at import, so
   local runs and `generate-github-workflow` see the same folders. The recipe helpers take this object (B13), the
-  separate path arguments go, and the step check of 0.1.1 too. A recipe without csCMake keeps plain paths.
+  separate path arguments go. A recipe without csCMake keeps plain paths.
 - **Who places it**: the developer, per machine; never the project (it declares only the default, its layout). The
   machine-local file of B12, `cs-workspace.local.toml` (git-ignored), may say `workspace = "/mnt/big/csImgTracker"`
   (code on one disk, the large builds on another). csorchestrator then makes `<project>/_csw` a link to it (symlink;
@@ -454,9 +454,9 @@ nothing at workflow generation), kept until this rewrite and then removed.
   (every hand configure and VS Code would need `CSCMAKE_WORKSPACE_ROOT`; CMake presets cannot say "the variable, else
   `${sourceDir}/_csw`").
 - **CI**: always the default `<project>/_csw`.
-- **Until then** (decided 2026-11-23): each recipe writes `_csw` itself; a developer who wants another disk makes the
-  link by hand (`ln -s /mnt/big/csImgTracker _csw`, `mklink /J _csw D:\big\csImgTracker`); the template ignores
-  `/_csw` (also a link: `_csw/` would not match it, git sees a link as a file).
+- **Until then** (decided 2026-11-23): each recipe writes `_csw` itself; the workspace is always a real folder in the
+  project. With the links of this proposal, the template's `.gitignore` must say `/_csw` (`_csw/` does not match a
+  link: git sees it as a file).
 
 ## 4. Target architecture
 
@@ -487,7 +487,7 @@ One phase at a time, CI green and every consumer's workflow regenerated (diff re
 | R1 | Checkout | B12 on the current model: `ls-remote` / one fetch, parallel, plain git, URL normalisation, policies `auto / keep / update / strict / reset`, `--offline`, `status`, `cs-workspace.local.toml` (`path`, `ref`, `workspace`: the `_csw` link of B14); provenance in the manifest (ref, commit, tag, package version of every repository built) | 1–2 weeks |
 | R2 | Core model | B1 (steps as data, handlers), B2 (event bus, Diagnostic, `Result[T]`, run record), B3 types (effects, Secret / Param / MatrixVar); adapter for the current API | 3–4 weeks |
 | R3 | Configure stage | B4: pure `create_orchestrator`, `configure`, plan.json, cs.lock, manifest cache, offline, sha256; manifest schema v2 (declarative dependencies, test dependencies, system requirements); matrix from csCMake's `variants.json` (`TODO-cscmake-alignment.md`) | 2–3 weeks |
-| R4 | Project API | B13: `Project` / `Repo` / `Provider` / `Builder`, B14 (workspace folders from the csCMake glue, the 0.1.1 step check removed), topological build order, validation, `describe --graph`, manifest from the graph; consumers migrated one per commit (third_party_base_libs, csfoundation, csoptimization, applications; then csqt6, csopencvcpu, csopencvcuda with builders); `*_config.py` dropped | 3–4 weeks |
+| R4 | Project API | B13: `Project` / `Repo` / `Provider` / `Builder`, B14 (workspace folders from the csCMake glue), topological build order, validation, `describe --graph`, manifest from the graph; consumers migrated one per commit (third_party_base_libs, csfoundation, csoptimization, applications; then csqt6, csopencvcpu, csopencvcuda with builders); `*_config.py` dropped | 3–4 weeks |
 | R5 | Local experience | B6 selection (with the graph), variant selection, B7 actions and clean, B3 policy + pre-flight + `doctor`, B10 Markdown report + GitHub summary | 2–3 weeks |
 | R6 | Runner exec mode | B5: `csorchestrator exec` on runners, smaller GitHub YAML, `csorchestratorsdk/` removed; ccache / `actions/cache`; per-project variant selection | 2 weeks |
 | R7 | Interfaces | B9: Textual TUI (+ `textual serve`), `generate vscode-tasks` | 2–3 weeks |
