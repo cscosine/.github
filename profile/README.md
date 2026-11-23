@@ -49,7 +49,7 @@ Linux, Windows and macOS.
 | **Foundations** | | | | |
 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform | [v0.1.0](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0) | – | [✅ main](https://github.com/cscosine/third_party_base_libs/actions/runs/45132698729) |
 | [csqt6](https://github.com/cscosine/csqt6) | Qt 6 (LGPL modules) built for every platform | [v6.12.0](https://github.com/cscosine/csqt6/releases/tag/v6.12.0) | – | [✅ main](https://github.com/cscosine/csqt6/actions/runs/45089106279) |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | OpenCV 5 (CPU) built for every platform | [v5.1.0-cpu.3](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3) | – | [✅ v5.1.0-cpu.3](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | OpenCV 5 (CPU) built for every platform | [v5.1.0-cpu.3](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3) | – | [✅ main](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) |
 | [csfoundation](https://github.com/cscosine/csfoundation) | The base C++ libraries: core, Lie groups, cameras, OpenGL visualisation | [v0.1.0](https://github.com/cscosine/csfoundation/releases/tag/v0.1.0) | – | [✅ v0.1.0](https://github.com/cscosine/csfoundation/actions/runs/44999719820) |
 | [csoptimization](https://github.com/cscosine/csoptimization) | Non-linear optimisation libraries | [v0.1.0](https://github.com/cscosine/csoptimization/releases/tag/v0.1.0) | – | [✅ v0.1.0](https://github.com/cscosine/csoptimization/actions/runs/45001631628) |
 | **Applications** | | | | |

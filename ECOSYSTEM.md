@@ -25,7 +25,7 @@ started (Europe/Rome; 🕰️ older than 8 days).
 | [csImgTracker](https://github.com/cscosine/csImgTracker) | ✅ [checks](https://github.com/cscosine/csImgTracker/actions/runs/45019774982) 22 Nov 12:56<br>✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/44917172567) 21 Nov 16:04 | `v0.2.2` ✅ [csImgTracker](https://github.com/cscosine/csImgTracker/actions/runs/45002938555) 22 Nov 09:27 | – |
 | [csLie](https://github.com/cscosine/csLie) | ✅ [checks](https://github.com/cscosine/csLie/actions/runs/45019730763) 22 Nov 12:56 | – | – |
 | [csNelson](https://github.com/cscosine/csNelson) | ✅ [checks](https://github.com/cscosine/csNelson/actions/runs/45019740215) 22 Nov 12:56 | – | – |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | ✅ [checks](https://github.com/cscosine/csopencvcpu/actions/runs/45019763084) 22 Nov 12:56<br>✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44916518930) 21 Nov 15:56 | `v5.1.0-cpu.3` ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) 22 Nov 06:58 | – |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | ✅ [checks](https://github.com/cscosine/csopencvcpu/actions/runs/45019763084) 22 Nov 12:56<br>✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) 23 Nov 09:37 | `v5.1.0-cpu.3` ✅ [csopencvcpu](https://github.com/cscosine/csopencvcpu/actions/runs/44991670275) 22 Nov 06:58 | – |
 | [csopencvcuda](https://github.com/cscosine/csopencvcuda) | ✅ [checks](https://github.com/cscosine/csopencvcuda/actions/runs/45030259813) 22 Nov 14:58<br>✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/45066508428) 22 Nov 21:27 | `v5.1.0-cuda.1-rc1` ✅ [csopencvcuda](https://github.com/cscosine/csopencvcuda/actions/runs/45030290737) 22 Nov 14:58 | – |
 | [csoptimization](https://github.com/cscosine/csoptimization) | ✅ [checks](https://github.com/cscosine/csoptimization/actions/runs/45019771497) 22 Nov 12:56<br>✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/44917041840) 21 Nov 16:02 | `v0.1.0` ✅ [csoptimization](https://github.com/cscosine/csoptimization/actions/runs/45001631628) 22 Nov 09:11 | – |
 | [csorchestrator](https://github.com/cscosine/csorchestrator) | ✅ [checks](https://github.com/cscosine/csorchestrator/actions/runs/45019821512) 22 Nov 12:57<br>✅ [ci](https://github.com/cscosine/csorchestrator/actions/runs/45087641686) 23 Nov 01:14 | – | – |
@@ -57,12 +57,12 @@ than 8 days (the slot did not fire last week).
 | Sun 20:15 | [csWiki](https://github.com/cscosine/csWiki) | ci | 2 m – 1 h 24 m | ✅ [23 Nov 01:19](https://github.com/cscosine/csWiki/actions/runs/45088127169) |
 | Sun 20:50 | [csqt6](https://github.com/cscosine/csqt6) | csqt6 | 2 h 46 m – 3 h 56 m | ✅ [23 Nov 01:29](https://github.com/cscosine/csqt6/actions/runs/45089106279) |
 | Mon 01:15 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | third_party_base_libs | 20 m – 33 m | ✅ [23 Nov 08:39](https://github.com/cscosine/third_party_base_libs/actions/runs/45132698729) |
-| Mon 02:00 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | csopencvcpu | 1 h 52 m – 3 h 01 m | ⏳ [23 Nov 09:37](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) |
+| Mon 02:00 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | csopencvcpu | 2 h 05 m – 3 h 01 m | ✅ [23 Nov 09:37](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) |
 | Mon 04:35 | [csfoundation](https://github.com/cscosine/csfoundation) | csfoundation | 18 m – 2 h 40 m | – |
 | Mon 05:10 | [csoptimization](https://github.com/cscosine/csoptimization) | csoptimization | 14 m – 2 h 13 m | – |
 | Mon 05:40 | [csImgTracker](https://github.com/cscosine/csImgTracker) | csImgTracker | 7 m – 2 h 26 m | – |
 | Mon 06:10 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | csSkiTracker | 11 m – 2 h 21 m | – |
-| Daily 07:00 | [.github](https://github.com/cscosine/.github) | ecosystem | 2 m – 3 m | ✅ [21 Nov 13:43](https://github.com/cscosine/.github/actions/runs/44905298496) |
+| Daily 07:00 | [.github](https://github.com/cscosine/.github) | ecosystem | 2 m – 4 m | ✅ [21 Nov 13:43](https://github.com/cscosine/.github/actions/runs/44905298496) |
 
 ## Versions (outer projects)
 
