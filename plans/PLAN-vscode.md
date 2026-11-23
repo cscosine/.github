@@ -271,11 +271,20 @@ long and named after csorchestrator.
 - 2026-11-23: C0 done (template `feature/vscode-setup` fb7fe5a, this plan). The user authorized working unattended
   (commits, pushes, releases) up to C4; at C4 the user supervises the adoption of one repository per kind, then
   allows the rest.
-- C1: csCMake de3cc0a on `main`, `v1.1.0-rc1` tagged (release run 45207808372); smoke OK locally (host gcc).
-- C2: csorchestrator 3956e86 on `main` (CI 45208321371); `v0.1.1-rc1` after its CI. The check runs in the local
-  execution of the CMake workflow step only: the workflow generation has no project folder to read.
-- C3: template `feature/vscode-setup` 99fd613 (CI 45208717043); then merged to `main`, `v1.2.0`. The Windows check of
-  `open-code.ps1` (PowerShell 7 and 5.1) passed in the template CI (run 45206973532).
+- C1 done: csCMake **v1.1.0** (de3cc0a; rc1, then the final on the same commit), `stable` moved.
+- C2 done: csorchestrator **v0.1.1** (3956e86; no rc: its tags build nothing, `main` CI green), `stable` moved.
+- C3 done: cs-project-template **v1.2.0** (99fd613, `main` fast-forwarded to `feature/vscode-setup`). The template CI
+  checks `open-code.ps1` on Windows with PowerShell 7 and 5.1. The branch `feature/vscode-setup` is still on origin
+  (delete at C5, ask first).
+- The macOS runners were short all afternoon (jobs cancelled before a runner took them): only the failed jobs were
+  re-run, never a new tag.
+- Revised 2026-11-23 (the user): the C2 check is in the wrong layer (csCMake knowledge in the CMake step, local runs
+  only, while the normal use is the generated workflow). Minimal now: no new csorchestrator release, each recipe writes
+  `_csw` itself (as before), the 0.1.1 check stays until the rewrite. The right design, and the workspace on another
+  disk (a machine-local `_csw` link): PLAN-csorchestrator-architecture.md B14 (R4), csorchestrator
+  `TODO-cscmake-alignment.md`. Template: `/_csw` instead of `_csw/` in `.gitignore` (a link is matched too), v1.2.1
+  before C4.
+- Next: C4, the user supervises one repository per kind first.
 
 ### 6.1 The steps in detail
 
