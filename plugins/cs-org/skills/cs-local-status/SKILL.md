@@ -13,7 +13,7 @@ bash ${CLAUDE_PLUGIN_ROOT}/skills/cs-local-status/scripts/local_status.sh [<fold
 ```
 
 - `<folder>`: default, the parent folder of the current repository.
-- `--inner`: also the clones the projects make in their `workspace/` folder (the libraries of csfoundation /
+- `--inner`: also the clones the projects make in their `_csw/` folder (the libraries of csfoundation /
   csoptimization, the forks of third_party_base_libs, opencv).
 
 Read the result as:

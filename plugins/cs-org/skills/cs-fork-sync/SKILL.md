@@ -22,7 +22,7 @@ description: Maintain the cscosine forks of third-party libraries (eigen3, fmt, 
 ## See where the forks are
 
 ```bash
-python3 ${CLAUDE_PLUGIN_ROOT}/skills/cs-fork-sync/scripts/fork_status.py <workspace>/third_party_base_libs/workspace/*
+python3 ${CLAUDE_PLUGIN_ROOT}/skills/cs-fork-sync/scripts/fork_status.py <workspace>/third_party_base_libs/_csw/*
 ```
 
 It prints the base, our commits and the newer upstream releases of each fork, from the clones (a local tool for
@@ -31,7 +31,7 @@ the sync below). The organisation-wide view, from GitHub: the Forks section of `
 
 ## Sync a fork with a new upstream release
 
-In the fork's clone (`<workspace>/third_party_base_libs/workspace/<fork>`, or `csopencvcpu/workspace/opencv`):
+In the fork's clone (`<workspace>/third_party_base_libs/_csw/<fork>`, or `csopencvcpu/_csw/opencv`):
 
 ```bash
 git fetch <upstream url>.git refs/tags/<new>:refs/tags/<new>

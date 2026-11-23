@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One line per git repository found in a folder (default: the parent of the current repository), and with --inner the
-# repositories the projects check out in their workspace/ folder: branch, ahead / behind its upstream, uncommitted
+# repositories the projects check out in their _csw/ folder: branch, ahead / behind its upstream, uncommitted
 # changes, latest tag. Fetches first (--no-fetch to skip). Reads only; changes nothing.
 set -u
 root=""; inner=0; fetch=1
@@ -15,7 +15,7 @@ if [ -z "$root" ]; then
   top=$(git rev-parse --show-toplevel 2>/dev/null) && root=$(dirname "$top") || root=$(pwd)
 fi
 dirs=("$root"/*/)
-[ "$inner" = 1 ] && dirs+=("$root"/*/workspace/*/)
+[ "$inner" = 1 ] && dirs+=("$root"/*/_csw/*/)
 printf "%-48s %-12s %-14s %-6s %s\n" "repository" "branch" "ahead/behind" "dirty" "latest tag"
 for d in "${dirs[@]}"; do
   [ -e "$d/.git" ] || continue

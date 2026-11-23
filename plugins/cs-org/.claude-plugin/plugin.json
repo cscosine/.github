@@ -1,6 +1,6 @@
 {
   "name": "cs-org",
   "description": "How changes move in the cscosine repositories: branches, CI on demand, releases, the release train across repositories, fork syncs, the state of a local workspace.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": { "name": "cscosine" }
 }
