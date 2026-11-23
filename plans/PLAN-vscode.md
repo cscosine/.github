@@ -266,6 +266,17 @@ W4, the name: **`_csw`** (decided 2026-11-23): short (Windows path length), neut
 without csorchestrator), not a Python package name, sorts first. `_csorchestrator-run` was considered: explicit, but
 long and named after csorchestrator.
 
+### 6.0 Progress
+
+- 2026-11-23: C0 done (template `feature/vscode-setup` fb7fe5a, this plan). The user authorized working unattended
+  (commits, pushes, releases) up to C4; at C4 the user supervises the adoption of one repository per kind, then
+  allows the rest.
+- C1: csCMake de3cc0a on `main`, `v1.1.0-rc1` tagged (release run 45207808372); smoke OK locally (host gcc).
+- C2: csorchestrator 3956e86 on `main` (CI 45208321371); `v0.1.1-rc1` after its CI. The check runs in the local
+  execution of the CMake workflow step only: the workflow generation has no project folder to read.
+- C3: template `feature/vscode-setup` 99fd613 (CI 45208717043); then merged to `main`, `v1.2.0`. The Windows check of
+  `open-code.ps1` (PowerShell 7 and 5.1) passed in the template CI (run 45206973532).
+
 ### 6.1 The steps in detail
 
 **C0, before starting (this plan, the user):** review and commit V7a (template branch) and this plan; the csLie /
