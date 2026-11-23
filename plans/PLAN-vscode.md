@@ -299,10 +299,14 @@ long and named after csorchestrator.
   - Locally every `workspace/` renamed `_csw/` (clones, libs, csLie's branches, stashes and `_reference_impl` kept;
     build / install / deploy dropped: their caches named the old path). csfoundation, csoptimization,
     third_party_base_libs, csSkiTracker, csopencv*: run the recipe again before using VS Code on them.
-- Next: C5 rest (below); then template **v1.2.3** (the user, 2026-11-23): the Claude Code extension
-  (`anthropic.claude-code`) in `extensions.json`, no format on save for C/C++ (`"[cpp]"`, `"[c]"`, `"[cuda-cpp]"`:
-  clangd's clang-format differs from pre-commit's 20.1.4; pre-commit stays the formatter), copier update on every
-  repository; the validation builds (the user).
+- C5 done (2026-11-24): the `feature/vscode-setup` branches (template, csLie, csImgTracker: local and origin) and the
+  experiment stashes removed; cs-org 0.1.1 (`cs-local-status --inner` and `cs-fork-sync` find the clones in `_csw/`).
+- Template **v1.2.3** (2026-11-24, the user): Claude Code (`anthropic.claude-code`) recommended; no format on save for
+  C, C++, CUDA (clangd's bundled clang-format vs pre-commit's pinned 20.1.4; pre-commit is the formatter); on all 20
+  repositories, `[skip ci]`, no build.
+- Left (the user): the validation builds of the projects pushed with `[skip ci]` (weekly queue Sun 29 Nov, or a
+  dispatch in chain order), the local recipe runs before VS Code on csfoundation, csoptimization,
+  third_party_base_libs, csSkiTracker. Open: Windows Ninja + MSVC (a kit with the MSVC environment), macOS (V4).
 
 ### 6.1 The steps in detail
 
@@ -361,8 +365,7 @@ recipe `base_target_dir = Path("_csw")`, csCMake `1.1.0` and csorchestrator `0.1
 update` only, in its project's PR (same branch name).
 Locally: `mv workspace _csw` in each project (or run the recipe again); `open-code` then finds the builds.
 
-**C5, clean-up** (2026-11-24: the local branches `feature/vscode-setup` and the experiment stashes removed; left: the
-origin branches (ask), the cs-org skills (a `.github` commit)):
+**C5, clean-up** (done 2026-11-24):
 - Branches `feature/vscode-setup`: cs-project-template (origin, merged), csLie and csImgTracker (local and origin,
   the experiment, superseded). Stashes of the experiment: csLie 2, csImgTracker 1 (`git stash list`).
 - `.github`: the cs-org skills `cs-local-status`, `cs-fork-sync` and the plans that say `workspace/`.
