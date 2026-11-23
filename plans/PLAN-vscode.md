@@ -285,7 +285,21 @@ long and named after csorchestrator.
   disk (a machine-local `_csw` link): PLAN-csorchestrator-architecture.md B14 (R4), csorchestrator
   `TODO-cscmake-alignment.md`. The template stays at v1.2.0: the workspace is always a real folder for
   now (`/_csw` in `.gitignore` only when the links of B14 come).
-- Next: C4, the user supervises one repository per kind first.
+- C4 done (2026-11-23): template **v1.2.1** (README line fix) and **v1.2.2** (open-code chooses a build by its
+  compiler family: short folder names say none) released on the way; every repository on the template (20) is on
+  v1.2.2, pushed. Supervised first: csWiki (tool), csImgTracker (project), csLie (library); the rest unattended.
+  - csImgTracker: built on `main` (CI green, every OS): the change validated end to end (csCMake 1.1.0 standalone
+    `_csw`, csorchestrator 0.1.2, the regenerated workflow); local run green (gcc, clang).
+  - The distributions and csSkiTracker: `[skip ci]` (folder paths and the csCMake 1.1.0 download only in their
+    workflows); no build yet (csqt6 / csopencv* take hours): the weekly queue (Sun 29 Nov) builds them, or a dispatch
+    one at a time in chain order.
+  - Special cases: csqt6 builds Qt with its own scripts: one `WORKSPACE_DIR = "_csw"` in `utils/scripts.py`, used by
+    the recipe; csopencvcuda's debug upload of the build tree follows `base_target_dir`; tclap (fork) keeps upstream's
+    own `.gitignore` (the template's does not apply).
+  - Locally every `workspace/` renamed `_csw/` (clones, libs, csLie's branches, stashes and `_reference_impl` kept;
+    build / install / deploy dropped: their caches named the old path). csfoundation, csoptimization,
+    third_party_base_libs, csSkiTracker, csopencv*: run the recipe again before using VS Code on them.
+- Next: C5 (below), then the validation builds.
 
 ### 6.1 The steps in detail
 
@@ -344,7 +358,14 @@ recipe `base_target_dir = Path("_csw")`, csCMake `1.1.0` and csorchestrator `0.1
 update` only, in its project's PR (same branch name).
 Locally: `mv workspace _csw` in each project (or run the recipe again); `open-code` then finds the builds.
 
-**C5, clean-up:** delete the experiment branches `feature/vscode-setup` of csLie and csImgTracker (local and origin; ask
+**C5, clean-up** (status 2026-11-23: todo; ask before deleting):
+- Branches `feature/vscode-setup`: cs-project-template (origin, merged), csLie and csImgTracker (local and origin,
+  the experiment, superseded). Stashes of the experiment: csLie 2, csImgTracker 1 (`git stash list`).
+- `.github`: the cs-org skills `cs-local-status`, `cs-fork-sync` and the plans that say `workspace/`.
+- Validation builds, chain order, one at a time (or the weekly queue): third_party_base_libs, csqt6, csopencvcpu,
+  csfoundation, csoptimization, csSkiTracker (csopencvcuda: low priority).
+
+Original text:  delete the experiment branches `feature/vscode-setup` of csLie and csImgTracker (local and origin; ask
 first); `.github`: the `cs-org` skills that say `workspace/` (`cs-local-status`, `cs-fork-sync`), the plans' "next"
 lines, ECOSYSTEM.md picks up the template version by itself.
 
