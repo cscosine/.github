@@ -299,7 +299,10 @@ long and named after csorchestrator.
   - Locally every `workspace/` renamed `_csw/` (clones, libs, csLie's branches, stashes and `_reference_impl` kept;
     build / install / deploy dropped: their caches named the old path). csfoundation, csoptimization,
     third_party_base_libs, csSkiTracker, csopencv*: run the recipe again before using VS Code on them.
-- Next: C5 (below), then the validation builds.
+- Next: C5 rest (below); then template **v1.2.3** (the user, 2026-11-23): the Claude Code extension
+  (`anthropic.claude-code`) in `extensions.json`, no format on save for C/C++ (`"[cpp]"`, `"[c]"`, `"[cuda-cpp]"`:
+  clangd's clang-format differs from pre-commit's 20.1.4; pre-commit stays the formatter), copier update on every
+  repository; the validation builds (the user).
 
 ### 6.1 The steps in detail
 
@@ -358,7 +361,8 @@ recipe `base_target_dir = Path("_csw")`, csCMake `1.1.0` and csorchestrator `0.1
 update` only, in its project's PR (same branch name).
 Locally: `mv workspace _csw` in each project (or run the recipe again); `open-code` then finds the builds.
 
-**C5, clean-up** (status 2026-11-23: todo; ask before deleting):
+**C5, clean-up** (2026-11-24: the local branches `feature/vscode-setup` and the experiment stashes removed; left: the
+origin branches (ask), the cs-org skills (a `.github` commit)):
 - Branches `feature/vscode-setup`: cs-project-template (origin, merged), csLie and csImgTracker (local and origin,
   the experiment, superseded). Stashes of the experiment: csLie 2, csImgTracker 1 (`git stash list`).
 - `.github`: the cs-org skills `cs-local-status`, `cs-fork-sync` and the plans that say `workspace/`.
