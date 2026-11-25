@@ -9,6 +9,8 @@ edit: change the repositories, or the script.
   - 2 commit(s) on `main` since v1.1.0, version still 1.1.0 (bump it: CONTRIBUTING.md, Versions)
 - [csorchestrator](https://github.com/cscosine/csorchestrator)
   - 3 commit(s) on `main` since v0.1.2, version still 0.1.2 (bump it: CONTRIBUTING.md, Versions)
+- [magic_enum](https://github.com/cscosine/magic_enum)
+  - upstream has v0.10.0 (we are on v0.9.8)
 
 ## CI
 
@@ -59,13 +61,13 @@ than 8 days (the slot did not fire last week).
 | Sun 20:15 | [csorchestrator](https://github.com/cscosine/csorchestrator) | ci | 4 m – 14 m | ✅ [23 Nov 01:14](https://github.com/cscosine/csorchestrator/actions/runs/45087641686) |
 | Sun 20:15 | [csWiki](https://github.com/cscosine/csWiki) | ci | 2 m – 1 h 24 m | ✅ [23 Nov 01:19](https://github.com/cscosine/csWiki/actions/runs/45088127169) |
 | Sun 20:50 | [csqt6](https://github.com/cscosine/csqt6) | csqt6 | 2 h 46 m – 3 h 56 m | ✅ [23 Nov 01:29](https://github.com/cscosine/csqt6/actions/runs/45089106279) |
-| Mon 01:15 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | third_party_base_libs | 20 m – 33 m | ✅ [23 Nov 08:39](https://github.com/cscosine/third_party_base_libs/actions/runs/45132698729) |
+| Mon 01:15 | [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | third_party_base_libs | 11 m – 33 m | ✅ [23 Nov 08:39](https://github.com/cscosine/third_party_base_libs/actions/runs/45132698729) |
 | Mon 02:00 | [csopencvcpu](https://github.com/cscosine/csopencvcpu) | csopencvcpu | 2 h 05 m – 3 h 01 m | ✅ [23 Nov 09:37](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) |
 | Mon 04:35 | [csfoundation](https://github.com/cscosine/csfoundation) | csfoundation | 18 m – 1 h 03 m | ✅ [23 Nov 14:35](https://github.com/cscosine/csfoundation/actions/runs/45185390620) |
 | Mon 05:10 | [csoptimization](https://github.com/cscosine/csoptimization) | csoptimization | 14 m – 2 h 13 m | ✅ [23 Nov 15:30](https://github.com/cscosine/csoptimization/actions/runs/45194897196) |
 | Mon 05:40 | [csImgTracker](https://github.com/cscosine/csImgTracker) | csImgTracker | 7 m – 21 m | ✅ [24 Nov 00:01](https://github.com/cscosine/csImgTracker/actions/runs/45203727231) |
 | Mon 06:10 | [csSkiTracker](https://github.com/cscosine/csSkiTracker) | csSkiTracker | 9 m – 2 h 21 m | ✅ [24 Nov 00:01](https://github.com/cscosine/csSkiTracker/actions/runs/45210427925) |
-| Daily 07:00 | [.github](https://github.com/cscosine/.github) | ecosystem | 3 m – 4 m | ⏳ [24 Nov 17:42](https://github.com/cscosine/.github/actions/runs/45440259422) |
+| Daily 07:00 | [.github](https://github.com/cscosine/.github) | ecosystem | 3 m – 5 m | ⏳ [25 Nov 17:27](https://github.com/cscosine/.github/actions/runs/45654026937) |
 
 ## Versions (outer projects)
 
@@ -175,7 +177,7 @@ syncs: the `cs-fork-sync` skill.
 | [eigen3](https://github.com/cscosine/eigen3) | https://gitlab.com/libeigen/eigen | `5.0.1` | 3 | v5.0.1-cs.1, v5.0.1-cs.2 | – |
 | [fmt](https://github.com/cscosine/fmt) | https://github.com/fmtlib/fmt | `12.2.1` | 3 | v12.2.1-cs.1, v12.2.1-cs.2 | – |
 | [libassert](https://github.com/cscosine/libassert) | https://github.com/jeremy-rifkin/libassert | `v2.2.1` | 5 | v2.2.1-cs.1, v2.2.1-cs.2 | – |
-| [magic_enum](https://github.com/cscosine/magic_enum) | https://github.com/Neargye/magic_enum | `v0.9.8` | 3 | v0.9.8-cs.1, v0.9.8-cs.2 | – |
+| [magic_enum](https://github.com/cscosine/magic_enum) | https://github.com/Neargye/magic_enum | `v0.9.8` | 3 | v0.9.8-cs.1, v0.9.8-cs.2 | v0.10.0 |
 | [opencv](https://github.com/cscosine/opencv) | https://github.com/opencv/opencv | `5.1.0` | 8 | v5.1.0-cuda.1, v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
 | [opencv_contrib](https://github.com/cscosine/opencv_contrib) | https://github.com/opencv/opencv_contrib | `5.1.0` | 3 | v5.1.0-cuda.1, v5.1.0-cpu.1, v5.1.0-cpu.2, v5.1.0-cpu.3 | – |
 | [tl-expected](https://github.com/cscosine/tl-expected) | https://github.com/TartanLlama/expected | `v1.3.1` | 3 | v1.3.1-cs.1, v1.3.1-cs.2 | – |
@@ -195,7 +197,7 @@ Copies of our own (upstream inactive, no syncs; a csCMake project of ours around
 |---|---|---|---|---|---|
 | [.github](https://github.com/cscosine/.github) | meta | public | main | main | – |
 | [Catch2](https://github.com/cscosine/Catch2) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
-| [cpptrace](https://github.com/cscosine/cpptrace) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
+| [cpptrace](https://github.com/cscosine/cpptrace) | fork | public | main | feature/new-libs, main | fork-branches, tags-prerelease, tags-stable |
 | [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | tool | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | tool | public | main | main | outer-main, tags-prerelease, tags-stable |
 | [csBlockMatrix](https://github.com/cscosine/csBlockMatrix) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
@@ -223,6 +225,6 @@ Copies of our own (upstream inactive, no syncs; a csCMake project of ours around
 | [opencv](https://github.com/cscosine/opencv) | fork | public | main | cpu, cuda, main | fork-branches, tags-prerelease, tags-stable |
 | [opencv_contrib](https://github.com/cscosine/opencv_contrib) | fork | public | main | cpu, cuda, main | fork-branches, tags-prerelease, tags-stable |
 | [tclap](https://github.com/cscosine/tclap) | library | public | main | main | inner-branches, tags-prerelease, tags-stable |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | public | main | main, stable | outer-main, tags-prerelease, tags-stable |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | distribution | public | main | feature/new-libs, main, stable | outer-main, tags-prerelease, tags-stable |
 | [tl-expected](https://github.com/cscosine/tl-expected) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
 | [tl-optional](https://github.com/cscosine/tl-optional) | fork | public | main | main | fork-branches, tags-prerelease, tags-stable |
