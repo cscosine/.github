@@ -31,5 +31,25 @@ Status 2026-11-22 (evening). Larger work is in the plans (`PLAN-cscosine-org.md`
       removed from the csfoundation README, dropped 2026-11-16).
 - [ ] csfoundation `csfoundation_project.py`: `phase_name_suffix="csoptimization dependencies"` (copy-paste); the fix
       regenerates the workflow (a build): with the next real csfoundation change.
+- [ ] Drop tl-optional and tclap from third_party_base_libs, after their consumers move:
+      - tl-optional: csCore (`language/Optional.hpp`, its tests `language/tests/optional`) moves to `std::optional`
+        (check for `optional<T&>` and the monadic functions `map` / `and_then` / `or_else` in csCore and its
+        consumers; with `PLAN-libraries.md` LB1), `tl-optional` out of csCore's CMake and of
+        `csfoundation_config.py`, released through csfoundation.
+      - tclap: csSkiTracker (`skiTrackerApp/CommandLineOptions.cpp`, its CMake, `csSkiTracker_config.py`) moves to
+        CLI11 (in third_party_base_libs from 0.1.1).
+      - Then both dropped in third_party_base_libs (the consumers pin a release of it, so the order is safe).
+- [ ] Platform matrix: when to drop Ubuntu 22.04; macOS 15 for as long as GitHub provides the runner. CI cost of
+      third_party_base_libs (20 jobs; per job, first run: Xcode ~16 min, macOS Ninja Multi-Config ~10, Ubuntu 26.04
+      5-10): one generator per macOS version if needed.
+- [ ] third_party_base_libs, optional: the Tracy viewer and `tracy-capture` built from the `tracy` fork. The upstream
+      release has them prebuilt (Linux x64, macOS, Windows), but the Linux tools need glibc 2.38 (checked on v0.15.0;
+      the viewer is an AppImage, not checked), so they do not run on Ubuntu 22.04, and there is no Linux arm64 build.
+      Cost: a GUI application with system packages on the Linux runners (Wayland, xkbcommon, EGL, dbus, freetype; or
+      X11 with glfw) and `CPM` downloads at configure (ImGui, capstone, …). If done: a deployment of the fork, Release
+      only, one variant per system and architecture, a `--help` smoke run. Until then: the upstream viewer of the
+      version of the client, where it runs (Ubuntu ≥ 24.04, macOS, Windows).
+- [ ] third_party_base_libs: real recipe tests (the repository list, version alignment, build-matrix invariants;
+      only placeholder tests today).
 - [ ] Generated plans index (later, not S5 any more: S5 closed 2026-11-22 with the index hand-written): first one
       structure for the plans' status lines (`PLAN-libraries.md` differs), then `plans/README.md` written from them.

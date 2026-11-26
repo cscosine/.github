@@ -48,9 +48,9 @@ library's own semver tag, the distribution's release, `stable`).
 | LB1 | csCore | the review's choice (slim / rename), the documentation format (above), README / guide | todo |
 | LB2 | csLie | accuracy and edge cases, then the representation; guide (conventions: exp / log, Jacobians, tangent spaces) | in progress (§3) |
 | LB3 | csCamera | the defects, the models, the target design (shared with LB2); guide (models, projection conventions) | todo |
-| LB4 | csVisOpenGL | the architecture changes the applications need; guide (a `Frame`, visualizers, renderers, painters, the sample) | todo |
-| LB5 | csBlockMatrix | the issues; guide (dimension descriptors, layouts) | todo |
-| LB6 | csNelson | the bugs and the baseline first; guide (sections, edges, solvers, a worked problem) | todo |
+| LB4 | csVisOpenGL | the architecture changes the applications need; macOS: a 4.1 core profile, lines 1 px wide and points not smoothed (`glLineWidth` > 1 and `GL_POINT_SMOOTH` do not exist in a core profile) until the core profile everywhere with lines and points expanded in the shaders (phase 2 of its review); guide (a `Frame`, visualizers, renderers, painters, the sample) | todo |
+| LB5 | csBlockMatrix | the issues; OpenMP on macOS (with LB6); guide (dimension descriptors, layouts) | todo |
+| LB6 | csNelson | the bugs and the baseline first; OpenMP on macOS: built serial today (Apple Clang has no OpenMP runtime, no Homebrew): libomp as a package of third_party_base_libs, a thread pool given by the caller, or no OpenMP at all (measure first: `OMP_NUM_THREADS=1` against the default on Linux); guide (sections, edges, solvers, a worked problem) | todo |
 | LB7 | Index skills | `csfoundation-libs`, `csoptimization-libs` rewritten as indexes linking the guides; library skills only per D3 | todo |
 
 LB7 can follow each library step by step instead of waiting for all of them.

@@ -11,6 +11,7 @@ The plans of the organisation and their progress: each plan has a status line, i
 | [PLAN-csopencvcuda.md](PLAN-csopencvcuda.md): csopencvcuda back into the chain, then build time, CUDA install, Jetson | low priority (unused for now) | C0 (rc1 built, to check), C1–C6 |
 | [PLAN-csorchestrator-architecture.md](PLAN-csorchestrator-architecture.md): csorchestrator as a mature framework | to approve | R0–R9 |
 | [PLAN-libraries.md](PLAN-libraries.md): the first-party libraries: review, documentation, agent instructions | in progress: LB2 (csLie) | LB1–LB7 (LB2: L0–L7, L1 WIP on `feature/cslie-accuracy`) |
+| [PLAN-python-bindings.md](PLAN-python-bindings.md): Python bindings of the C++ libraries (nanobind) | not started (nanobind packaged in third_party_base_libs) | P1–P5 |
 | [PLAN-vscode.md](PLAN-vscode.md): VS Code as an IDE on the build folders of the workspace | experiment positive (csLie `feature/vscode-setup`), not scheduled | V1–V9 |
 
 This table is written by hand for now; a script may generate it later, once the plans' status lines share one structure
