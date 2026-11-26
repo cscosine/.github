@@ -20,7 +20,7 @@ Status 2026-11-22 (evening). Larger work is in the plans (`PLAN-cscosine-org.md`
       `PLAN-csopencvcuda.md` (C0: rc1 built, to check; low priority, unused for now).
 - [ ] **VS Code as an IDE** on the build folders of the workspace, for every C++ repository (template `.vscode/`, the
       workspace file written by csCMake or csorchestrator, `open-code.sh` / `.ps1`): now a plan, `PLAN-vscode.md`
-      (experiment positive on csLie `feature/vscode-setup`; V1–V9, not scheduled).
+      (rolled out 2026-11-24: template v1.2.3 on every repository; left: V3 Windows, V6, V9).
 - [ ] Commit email of `cscosine-dev`: `cscosine@gmail.com` is public. Optional, for future commits only: "Keep my email
       addresses private" and the `…@users.noreply.github.com` address (local `user.email` of every clone); past
       commits keep the old address.

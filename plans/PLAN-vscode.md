@@ -1,6 +1,7 @@
 # Plan: VS Code on a project of the workspace, as an IDE
 
-Status: experiment positive (2026-11-22); reviewed 2026-11-23 (§4: Windows / macOS, extensions, library / standalone /
+Status: **rolled out** (2026-11-24: template v1.2.3 on every repository, §6.0); left: V3 Windows, V6, V9; parked: V4,
+V8, V10. Experiment positive (2026-11-22); reviewed 2026-11-23 (§4: Windows / macOS, extensions, library / standalone /
 mixed), revised steps in §5 replace §3. Decisions of 2026-11-23: §4.7.
 
 ## 0. Why
@@ -235,18 +236,18 @@ reference until B exists.
 |---|---|---|---|
 | V0 | Experiment | csLie `feature/vscode-setup` (§1) | done |
 | V1 | Decide §4.6 | A for now (§4.7) | done |
-| V2 | Generator | (in the scripts, §4.7: done on Linux) find builds (3 search roots, depth 2–3, single-config), `--list`, priority chain + filter, roots (project / repos), engine / debugger / kit per build (§4.2), workspace file by `json.dump`, written only when changed; pytest with fake caches of the 3 OS | todo |
-| V3 | Windows | try on a Windows machine: Visual Studio generator (cpptools), Ninja + vcvars kit (clangd), cppvsdbg, Test Explorer | todo |
-| V4 | macOS | try on a Mac: Ninja Multi-Config + lldb, Xcode + cpptools; CodeLLDB if needed | todo |
-| V5 | Kit prompt | `[Unspecified]` the first time (Linux / macOS / VS generator); the generated kit on Windows Ninja: check whether CMake Tools can preselect it | todo |
+| V2 | Generator | (in the scripts, §4.7: done on Linux) find builds (3 search roots, depth 2–3, single-config), `--list`, priority chain + filter, roots (project / repos), engine / debugger / kit per build (§4.2), workspace file by `json.dump`, written only when changed; pytest with fake caches of the 3 OS | done: template v1.2.0 (`tests/check_open_code.py` on the 3 OS); v1.2.2 chooses a build by compiler family |
+| V3 | Windows | try on a Windows machine: Visual Studio generator (cpptools), Ninja + vcvars kit (clangd), cppvsdbg, Test Explorer | todo: `open-code.ps1` checked in the template CI (PowerShell 7 and 5.1), not tried in VS Code on Windows; Ninja + MSVC needs a kit with the MSVC environment |
+| V4 | macOS | try on a Mac: Ninja Multi-Config + lldb, Xcode + cpptools; CodeLLDB if needed | parked (§4.7: macOS out for now) |
+| V5 | Kit prompt | `[Unspecified]` the first time (Linux / macOS / VS generator); the generated kit on Windows Ninja: check whether CMake Tools can preselect it | done: `[Unspecified]` once, documented (the script opens the README at "Working in VS Code"); Windows Ninja: with V3 |
 | V6 | Build before run | `preLaunchTask` for the generated Catch2 configuration; Test Explorer run builds first? | todo |
-| V7a | Template (2026-11-23, cs-project-template `feature/vscode-setup`, unstaged) | `open-code.*` for every kind and repository on the template (libraries and the forks on the template included; a fork not on the template gets nothing); `.vscode/settings.json` without the C/C++ engine keys (a library: C++ part only); README section in the `cs-template` block per kind; setup messages; `tests/check_open_code.py` in the template CI on the 3 OS (bash, bash 3.2, PowerShell 7 and 5.1). Not released alone: §6 | review |
-| V7b | Adoption | with the workspace change, one round: §6 | todo |
-| V7 | Template (original step) | the csLie files become the template's: `open-code.sh` / `.ps1` for **every** kind (today excluded for `library`, venv-only for the others), `.vscode/settings.json` without the C/C++ engine keys (also for `library`, C++ part only), the README section in the `cs-template` block; template release, `copier update` of the projects; csLie experiment branch deleted | todo |
-| V8 | Mixed / multi-root | a project + its checked-out libraries in one window (§4.4); chain build + install task; symlinked installs opt-in | todo |
-| V9 | csorchestrator up to a project | run only the dependencies of a repository (`--until` / `--skip`), then VS Code takes over | todo |
-| V10 | Preset filter (optional) | `CSCMAKE_PRESETS_FILTER` (§2) | todo |
-| V11 | Roll out | csCore, csCamera, csVisOpenGL, csNelson, csBlockMatrix, csImgTracker / csSkiTracker (launch target = the application) | todo |
+| V7a | Template (2026-11-23, cs-project-template `feature/vscode-setup`, unstaged) | `open-code.*` for every kind and repository on the template (libraries and the forks on the template included; a fork not on the template gets nothing); `.vscode/settings.json` without the C/C++ engine keys (a library: C++ part only); README section in the `cs-template` block per kind; setup messages; `tests/check_open_code.py` in the template CI on the 3 OS (bash, bash 3.2, PowerShell 7 and 5.1). Not released alone: §6 | done: template v1.2.0 (C3) |
+| V7b | Adoption | with the workspace change, one round: §6 | done 2026-11-23: every repository on the template (C4), v1.2.3 since 2026-11-24 |
+| V7 | Template (original step) | the csLie files become the template's: `open-code.sh` / `.ps1` for **every** kind (today excluded for `library`, venv-only for the others), `.vscode/settings.json` without the C/C++ engine keys (also for `library`, C++ part only), the README section in the `cs-template` block; template release, `copier update` of the projects; csLie experiment branch deleted | done: by V7a / V7b (C3–C5) |
+| V8 | Mixed / multi-root | a project + its checked-out libraries in one window (§4.4); chain build + install task; symlinked installs opt-in | parked (§4.7) |
+| V9 | csorchestrator up to a project | run only the dependencies of a repository (`--until` / `--skip`), then VS Code takes over | todo: with csorchestrator R5 (B6 selection) |
+| V10 | Preset filter (optional) | `CSCMAKE_PRESETS_FILTER` (§2) | parked (optional) |
+| V11 | Roll out | csCore, csCamera, csVisOpenGL, csNelson, csBlockMatrix, csImgTracker / csSkiTracker (launch target = the application) | done: the files are on every repository (C4); tried in VS Code on csLie and csImgTracker only, the others when first used |
 
 ## 6. One chained change: VS Code + the workspace folder (2026-11-23, with the user)
 
