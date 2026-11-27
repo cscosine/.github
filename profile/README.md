@@ -37,7 +37,7 @@ Linux, Windows and macOS.
 
 <!-- ecosystem:start -->
 
-**Status** (updated nightly): 3 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
+**Status** (updated nightly): 11 item(s) need attention · every repository, versions, dependencies, forks, template: [ECOSYSTEM.md](https://github.com/cscosine/.github/blob/main/ECOSYSTEM.md)
 
 | Project | What it is | Release | Candidate | Last build |
 |---|---|---|---|---|
@@ -47,14 +47,14 @@ Linux, Windows and macOS.
 | [cs-project-template](https://github.com/cscosine/cs-project-template) | Copier template: the shared files and rules of every repository, created and kept up to date | – | – | [✅ v1.2.3](https://github.com/cscosine/cs-project-template/actions/runs/45286311911) |
 | [cs-pre-commit-hooks](https://github.com/cscosine/cs-pre-commit-hooks) | pre-commit hooks of every repository: gersemi with the csCMake signatures, cscmake-lint | [v1.0.0](https://github.com/cscosine/cs-pre-commit-hooks/releases/tag/v1.0.0) | – | [✅ main](https://github.com/cscosine/cs-pre-commit-hooks/actions/runs/45085988995) |
 | **Foundations** | | | | |
-| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform | [v0.1.0](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.0) | – | [✅ main](https://github.com/cscosine/third_party_base_libs/actions/runs/45132698729) |
+| [third_party_base_libs](https://github.com/cscosine/third_party_base_libs) | Eigen, fmt, cpptrace, libassert, magic_enum, Catch2, ... built for every platform | [v0.1.1](https://github.com/cscosine/third_party_base_libs/releases/tag/v0.1.1) | – | [✅ v0.1.1](https://github.com/cscosine/third_party_base_libs/actions/runs/46010042885) |
 | [csqt6](https://github.com/cscosine/csqt6) | Qt 6 (LGPL modules) built for every platform | [v6.12.0](https://github.com/cscosine/csqt6/releases/tag/v6.12.0) | – | [✅ main](https://github.com/cscosine/csqt6/actions/runs/45089106279) |
-| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | OpenCV 5 (CPU) built for every platform | [v5.1.0-cpu.3](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3) | – | [✅ main](https://github.com/cscosine/csopencvcpu/actions/runs/45140090779) |
-| [csfoundation](https://github.com/cscosine/csfoundation) | The base C++ libraries: core, Lie groups, cameras, OpenGL visualisation | [v0.1.0](https://github.com/cscosine/csfoundation/releases/tag/v0.1.0) | – | [✅ main](https://github.com/cscosine/csfoundation/actions/runs/45185390620) |
-| [csoptimization](https://github.com/cscosine/csoptimization) | Non-linear optimisation libraries | [v0.1.0](https://github.com/cscosine/csoptimization/releases/tag/v0.1.0) | – | [✅ main](https://github.com/cscosine/csoptimization/actions/runs/45194897196) |
+| [csopencvcpu](https://github.com/cscosine/csopencvcpu) | OpenCV 5 (CPU) built for every platform | [v5.1.0-cpu.3](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.3) | [v5.1.0-cpu.4-rc1](https://github.com/cscosine/csopencvcpu/releases/tag/v5.1.0-cpu.4-rc1) | [✅ v5.1.0-cpu.4-rc1](https://github.com/cscosine/csopencvcpu/actions/runs/45905368331) |
+| [csfoundation](https://github.com/cscosine/csfoundation) | The base C++ libraries: core, Lie groups, cameras, OpenGL visualisation | [v0.1.1](https://github.com/cscosine/csfoundation/releases/tag/v0.1.1) | – | [✅ v0.1.1](https://github.com/cscosine/csfoundation/actions/runs/46016179639) |
+| [csoptimization](https://github.com/cscosine/csoptimization) | Non-linear optimisation libraries | [v0.1.1](https://github.com/cscosine/csoptimization/releases/tag/v0.1.1) | – | [✅ v0.1.1](https://github.com/cscosine/csoptimization/actions/runs/46020369912) |
 | **Applications** | | | | |
-| [csImgTracker](https://github.com/cscosine/csImgTracker) | Image tracking application | [v0.2.2](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.2) | – | [✅ main](https://github.com/cscosine/csImgTracker/actions/runs/45281762139) |
-| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | [v0.1.0](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0) | – | [✅ main](https://github.com/cscosine/csSkiTracker/actions/runs/45210427925) |
+| [csImgTracker](https://github.com/cscosine/csImgTracker) | Image tracking application | [v0.2.2](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.2) | [v0.2.3-rc1](https://github.com/cscosine/csImgTracker/releases/tag/v0.2.3-rc1) | [✅ v0.2.3-rc1](https://github.com/cscosine/csImgTracker/actions/runs/45969628762) |
+| [csSkiTracker](https://github.com/cscosine/csSkiTracker) | Ski tracking application | [v0.1.0](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.0) | [v0.1.1-rc1](https://github.com/cscosine/csSkiTracker/releases/tag/v0.1.1-rc1) | [✅ v0.1.1-rc1](https://github.com/cscosine/csSkiTracker/actions/runs/45971119680) |
 
 The release chain (who builds on whom):
 
